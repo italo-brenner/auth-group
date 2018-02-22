@@ -9,4 +9,5 @@ public class AuthGroupApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(AuthGroupApplication.class, args);
 	}
+	
 }
