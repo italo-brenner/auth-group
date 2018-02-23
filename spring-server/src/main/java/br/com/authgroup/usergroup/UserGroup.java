@@ -19,14 +19,14 @@ public class UserGroup {
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Long id;
 	
-	private String descricao;
-	
-	@ManyToMany
-	private List<Resource> resources;
+	private String name;
 	
 	@OneToMany(mappedBy="userGroup")
-	private List<ApplicationUser> applicationUsers;
+	private List<ApplicationUser> listApplicationUser;
 	
+	@ManyToMany
+	private List<Resource> listResource;
+
 	public Long getId() {
 		return id;
 	}
@@ -34,29 +34,29 @@ public class UserGroup {
 	public void setId(Long id) {
 		this.id = id;
 	}
-
-	public String getDescricao() {
-		return descricao;
+	
+	public String getName() {
+		return name;
 	}
 
-	public void setDescricao(String descricao) {
-		this.descricao = descricao;
+	public void setName(String name) {
+		this.name = name;
 	}
 
-	public List<Resource> getResources() {
-		return resources;
+	public List<ApplicationUser> getListApplicationUser() {
+		return listApplicationUser;
 	}
 
-	public void setResources(List<Resource> resources) {
-		this.resources = resources;
+	public void setListApplicationUser(List<ApplicationUser> listApplicationUser) {
+		this.listApplicationUser = listApplicationUser;
 	}
 
-	public List<ApplicationUser> getApplicationUsers() {
-		return applicationUsers;
+	public List<Resource> getListResource() {
+		return listResource;
 	}
 
-	public void setApplicationUsers(List<ApplicationUser> applicationUsers) {
-		this.applicationUsers = applicationUsers;
+	public void setListResource(List<Resource> listResource) {
+		this.listResource = listResource;
 	}
 	
 }

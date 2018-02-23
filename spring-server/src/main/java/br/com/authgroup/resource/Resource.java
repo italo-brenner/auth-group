@@ -17,10 +17,10 @@ public class Resource {
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Long id;
 	
-	private String descricao;
+	private String name;
 	
-	@ManyToMany(mappedBy="resources")
-	private List<UserGroup> userGroups;
+	@ManyToMany(mappedBy="listResource")
+	private List<UserGroup> listUserGroup;
 
 	public Long getId() {
 		return id;
@@ -30,20 +30,20 @@ public class Resource {
 		this.id = id;
 	}
 
-	public String getDescricao() {
-		return descricao;
+	public String getName() {
+		return name;
 	}
 
-	public void setDescricao(String descricao) {
-		this.descricao = descricao;
+	public void setName(String name) {
+		this.name = name;
 	}
 
-	public List<UserGroup> getUserGroups() {
-		return userGroups;
+	public List<UserGroup> getListUserGroup() {
+		return listUserGroup;
 	}
 
-	public void setUserGroups(List<UserGroup> userGroups) {
-		this.userGroups = userGroups;
+	public void setListUserGroup(List<UserGroup> listUserGroup) {
+		this.listUserGroup = listUserGroup;
 	}
 	
 }
