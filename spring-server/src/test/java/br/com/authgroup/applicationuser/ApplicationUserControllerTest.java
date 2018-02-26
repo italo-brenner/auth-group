@@ -13,20 +13,33 @@ import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 
 import br.com.authgroup.AuthGroupApplication;
 import br.com.authgroup.AuthGroupApplicationTests;
+import br.com.authgroup.usergroup.UserGroup;
+import br.com.authgroup.usergroup.UserGroupRepository;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest(classes=AuthGroupApplication.class)
 @WebAppConfiguration
 public class ApplicationUserControllerTest extends AuthGroupApplicationTests {
 	
+	private UserGroup userGroup;
+	
 	private ApplicationUser applicationUser;
 	
 	@Autowired
 	private ApplicationUserRepository applicationUserRepository;
 	
+	@Autowired
+	private UserGroupRepository userGroupRepository;
+	
 	@Before
 	public void setup() throws Exception {
 		applicationUserRepository.deleteAllInBatch();
+		userGroupRepository.deleteAllInBatch();
+		
+		userGroup = new UserGroup();
+		userGroup.setName("name");
+		
+		userGroupRepository.save(userGroup);
 		
 		applicationUser = new ApplicationUser();
 		applicationUser.setUsername("username");
@@ -49,6 +62,10 @@ public class ApplicationUserControllerTest extends AuthGroupApplicationTests {
 		ApplicationUser applicationUser = new ApplicationUser();
 		applicationUser.setUsername("username");
 		applicationUser.setPassword("password");
+		
+		UserGroup userGroup = new UserGroup();
+		userGroup.setId(1L);
+		applicationUser.setUserGroup(userGroup);
 		
 		mockMvc.perform(MockMvcRequestBuilders.post("/api/applicationuser/signup")
                 .contentType(contentTypeJSON)

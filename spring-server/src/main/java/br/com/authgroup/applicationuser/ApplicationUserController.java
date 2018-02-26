@@ -22,7 +22,6 @@ public class ApplicationUserController {
 	
 	@PostMapping("/signup")
 	public void signUp(@RequestBody ApplicationUser user) {
-		user.setPassword(user.getPassword());
 		applicationUserRepository.save(user);
 	}
 	
