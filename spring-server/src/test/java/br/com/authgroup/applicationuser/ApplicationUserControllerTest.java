@@ -18,7 +18,6 @@ import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
 
 import br.com.authgroup.AuthGroupApplicationTests;
-import br.com.authgroup.converter.Converter;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest(classes=AuthGroupApplicationTests.class)
@@ -30,9 +29,6 @@ public class ApplicationUserControllerTest {
 	private MockMvc mockMvc;
 	
 	private ApplicationUser applicationUser;
-	
-	@Autowired
-	private Converter converter;
 	
 	@Autowired
 	private WebApplicationContext webApplicationContext;
@@ -60,18 +56,6 @@ public class ApplicationUserControllerTest {
 		.andExpect(MockMvcResultMatchers.content().contentType(contentType))
 		.andExpect(MockMvcResultMatchers.jsonPath("$.[0].username", Matchers.is(applicationUser.getUsername())))
 		.andExpect(MockMvcResultMatchers.jsonPath("$.[0].password", Matchers.is(applicationUser.getPassword())));
-	}
-	
-	@Test
-	public void signUp() throws Exception {
-		ApplicationUser applicationUser = new ApplicationUser();
-		applicationUser.setUsername("username");
-		applicationUser.setPassword("password");
-		
-		mockMvc.perform(MockMvcRequestBuilders.post("/api/applicationuser/signup")
-                .contentType(contentType)
-				.content(converter.json(applicationUser)))
-				.andExpect(MockMvcResultMatchers.status().isOk());
 	}
 	
 	@Test
