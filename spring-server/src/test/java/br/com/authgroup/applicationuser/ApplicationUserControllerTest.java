@@ -17,10 +17,10 @@ import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
 
-import br.com.authgroup.AuthGroupApplicationTests;
+import br.com.authgroup.AuthGroupApplication;
 
 @RunWith(SpringRunner.class)
-@SpringBootTest(classes=AuthGroupApplicationTests.class)
+@SpringBootTest(classes=AuthGroupApplication.class)
 @WebAppConfiguration
 public class ApplicationUserControllerTest {
 	
