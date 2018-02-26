@@ -1,6 +1,7 @@
 package br.com.authgroup.applicationuser;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -31,8 +32,8 @@ public class ApplicationUserController {
 	}
 	
 	@GetMapping("/{id}")
-	public ApplicationUser getApplicationUser(@PathVariable Long id) {
-		return applicationUserRepository.findOne(id);
+	public Optional<ApplicationUser> getApplicationUser(@PathVariable Long id) {
+		return applicationUserRepository.findById(id);
 	}
 	
 }
