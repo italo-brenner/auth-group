@@ -54,7 +54,7 @@ public class ApplicationUserControllerTest extends AuthGroupApplicationTests {
                 .contentType(contentTypeJSON)
 				.content(json(applicationUser)))
 				.andExpect(MockMvcResultMatchers.status().isOk());
-}
+	}
 	
 	@Test
 	public void getUser() throws Exception {

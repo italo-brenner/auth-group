@@ -1,4 +1,4 @@
-package br.com.authgroup.usergroup;
+package br.com.authgroup.book;
 
 import org.hamcrest.Matchers;
 import org.junit.Before;
@@ -17,48 +17,48 @@ import br.com.authgroup.AuthGroupApplicationTests;
 @RunWith(SpringRunner.class)
 @SpringBootTest(classes=AuthGroupApplication.class)
 @WebAppConfiguration
-public class UserGroupControllerTest extends AuthGroupApplicationTests {
+public class BookControllerTest extends AuthGroupApplicationTests {
 	
-	private UserGroup userGroup;
+	private Book book;
 	
 	@Autowired
-	private UserGroupRepository userGroupRepository;
+	private BookRepository bookRepository;
 	
 	@Before
 	public void setup() throws Exception {
-		userGroupRepository.deleteAllInBatch();
+		bookRepository.deleteAllInBatch();
 		
-		userGroup = new UserGroup();
-		userGroup.setName("name");
+		book = new Book();
+		book.setName("name");
 		
-		userGroupRepository.save(userGroup);
+		bookRepository.save(book);
 	}
 	
 	@Test
-	public void listUserGroup() throws Exception {
-		mockMvc.perform(MockMvcRequestBuilders.get("/api/usergroup"))
+	public void listBook() throws Exception {
+		mockMvc.perform(MockMvcRequestBuilders.get("/api/book"))
 		.andExpect(MockMvcResultMatchers.status().isOk())
 		.andExpect(MockMvcResultMatchers.content().contentType(contentTypeJSON))
-		.andExpect(MockMvcResultMatchers.jsonPath("$.[0].name", Matchers.is(userGroup.getName())));
+		.andExpect(MockMvcResultMatchers.jsonPath("$.[0].name", Matchers.is(book.getName())));
 	}
 
 	@Test
-	public void addUserGroup() throws Exception {
-		UserGroup userGroup = new UserGroup();
-		userGroup.setName("name");
+	public void addBook() throws Exception {
+		Book book = new Book();
+		book.setName("name");
 		
-		mockMvc.perform(MockMvcRequestBuilders.post("/api/usergroup")
+		mockMvc.perform(MockMvcRequestBuilders.post("/api/book")
                 .contentType(contentTypeJSON)
-				.content(json(userGroup)))
+				.content(json(book)))
 				.andExpect(MockMvcResultMatchers.status().isOk());
 	}
 	
 	@Test
-	public void getUserGroup() throws Exception {
-		mockMvc.perform(MockMvcRequestBuilders.get("/api/usergroup/" + userGroup.getId()))
+	public void getBook() throws Exception {
+		mockMvc.perform(MockMvcRequestBuilders.get("/api/book/" + book.getId()))
 		.andExpect(MockMvcResultMatchers.status().isOk())
 		.andExpect(MockMvcResultMatchers.content().contentType(contentTypeJSON))
-		.andExpect(MockMvcResultMatchers.jsonPath("$.name", Matchers.is(userGroup.getName())));
+		.andExpect(MockMvcResultMatchers.jsonPath("$.name", Matchers.is(book.getName())));
 	}
 	
 }

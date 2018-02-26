@@ -1,4 +1,4 @@
-package br.com.authgroup.usergroup;
+package br.com.authgroup.plane;
 
 import org.hamcrest.Matchers;
 import org.junit.Before;
@@ -17,48 +17,48 @@ import br.com.authgroup.AuthGroupApplicationTests;
 @RunWith(SpringRunner.class)
 @SpringBootTest(classes=AuthGroupApplication.class)
 @WebAppConfiguration
-public class UserGroupControllerTest extends AuthGroupApplicationTests {
+public class PlaneControllerTest extends AuthGroupApplicationTests {
 	
-	private UserGroup userGroup;
+	private Plane plane;
 	
 	@Autowired
-	private UserGroupRepository userGroupRepository;
+	private PlaneRepository planeRepository;
 	
 	@Before
 	public void setup() throws Exception {
-		userGroupRepository.deleteAllInBatch();
+		planeRepository.deleteAllInBatch();
 		
-		userGroup = new UserGroup();
-		userGroup.setName("name");
+		plane = new Plane();
+		plane.setName("name");
 		
-		userGroupRepository.save(userGroup);
+		planeRepository.save(plane);
 	}
 	
 	@Test
-	public void listUserGroup() throws Exception {
-		mockMvc.perform(MockMvcRequestBuilders.get("/api/usergroup"))
+	public void listPlane() throws Exception {
+		mockMvc.perform(MockMvcRequestBuilders.get("/api/plane"))
 		.andExpect(MockMvcResultMatchers.status().isOk())
 		.andExpect(MockMvcResultMatchers.content().contentType(contentTypeJSON))
-		.andExpect(MockMvcResultMatchers.jsonPath("$.[0].name", Matchers.is(userGroup.getName())));
+		.andExpect(MockMvcResultMatchers.jsonPath("$.[0].name", Matchers.is(plane.getName())));
 	}
 
 	@Test
-	public void addUserGroup() throws Exception {
-		UserGroup userGroup = new UserGroup();
-		userGroup.setName("name");
+	public void addPlane() throws Exception {
+		Plane plane = new Plane();
+		plane.setName("name");
 		
-		mockMvc.perform(MockMvcRequestBuilders.post("/api/usergroup")
+		mockMvc.perform(MockMvcRequestBuilders.post("/api/plane")
                 .contentType(contentTypeJSON)
-				.content(json(userGroup)))
+				.content(json(plane)))
 				.andExpect(MockMvcResultMatchers.status().isOk());
 	}
 	
 	@Test
-	public void getUserGroup() throws Exception {
-		mockMvc.perform(MockMvcRequestBuilders.get("/api/usergroup/" + userGroup.getId()))
+	public void getPlane() throws Exception {
+		mockMvc.perform(MockMvcRequestBuilders.get("/api/plane/" + plane.getId()))
 		.andExpect(MockMvcResultMatchers.status().isOk())
 		.andExpect(MockMvcResultMatchers.content().contentType(contentTypeJSON))
-		.andExpect(MockMvcResultMatchers.jsonPath("$.name", Matchers.is(userGroup.getName())));
+		.andExpect(MockMvcResultMatchers.jsonPath("$.name", Matchers.is(plane.getName())));
 	}
 	
 }

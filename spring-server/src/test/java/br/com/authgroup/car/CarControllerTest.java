@@ -1,4 +1,4 @@
-package br.com.authgroup.usergroup;
+package br.com.authgroup.car;
 
 import org.hamcrest.Matchers;
 import org.junit.Before;
@@ -17,48 +17,48 @@ import br.com.authgroup.AuthGroupApplicationTests;
 @RunWith(SpringRunner.class)
 @SpringBootTest(classes=AuthGroupApplication.class)
 @WebAppConfiguration
-public class UserGroupControllerTest extends AuthGroupApplicationTests {
+public class CarControllerTest extends AuthGroupApplicationTests {
 	
-	private UserGroup userGroup;
+	private Car car;
 	
 	@Autowired
-	private UserGroupRepository userGroupRepository;
+	private CarRepository carRepository;
 	
 	@Before
 	public void setup() throws Exception {
-		userGroupRepository.deleteAllInBatch();
+		carRepository.deleteAllInBatch();
 		
-		userGroup = new UserGroup();
-		userGroup.setName("name");
+		car = new Car();
+		car.setName("name");
 		
-		userGroupRepository.save(userGroup);
+		carRepository.save(car);
 	}
 	
 	@Test
-	public void listUserGroup() throws Exception {
-		mockMvc.perform(MockMvcRequestBuilders.get("/api/usergroup"))
+	public void listCar() throws Exception {
+		mockMvc.perform(MockMvcRequestBuilders.get("/api/car"))
 		.andExpect(MockMvcResultMatchers.status().isOk())
 		.andExpect(MockMvcResultMatchers.content().contentType(contentTypeJSON))
-		.andExpect(MockMvcResultMatchers.jsonPath("$.[0].name", Matchers.is(userGroup.getName())));
+		.andExpect(MockMvcResultMatchers.jsonPath("$.[0].name", Matchers.is(car.getName())));
 	}
 
 	@Test
-	public void addUserGroup() throws Exception {
-		UserGroup userGroup = new UserGroup();
-		userGroup.setName("name");
+	public void addCar() throws Exception {
+		Car car = new Car();
+		car.setName("name");
 		
-		mockMvc.perform(MockMvcRequestBuilders.post("/api/usergroup")
+		mockMvc.perform(MockMvcRequestBuilders.post("/api/car")
                 .contentType(contentTypeJSON)
-				.content(json(userGroup)))
+				.content(json(car)))
 				.andExpect(MockMvcResultMatchers.status().isOk());
 	}
 	
 	@Test
-	public void getUserGroup() throws Exception {
-		mockMvc.perform(MockMvcRequestBuilders.get("/api/usergroup/" + userGroup.getId()))
+	public void getCar() throws Exception {
+		mockMvc.perform(MockMvcRequestBuilders.get("/api/car/" + car.getId()))
 		.andExpect(MockMvcResultMatchers.status().isOk())
 		.andExpect(MockMvcResultMatchers.content().contentType(contentTypeJSON))
-		.andExpect(MockMvcResultMatchers.jsonPath("$.name", Matchers.is(userGroup.getName())));
+		.andExpect(MockMvcResultMatchers.jsonPath("$.name", Matchers.is(car.getName())));
 	}
 	
 }
