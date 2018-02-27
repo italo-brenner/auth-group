@@ -9,7 +9,10 @@ import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import br.com.authgroup.applicationuser.ApplicationUser;
+import br.com.authgroup.menu.Menu;
 import br.com.authgroup.resource.Resource;
 
 @Entity
@@ -26,6 +29,10 @@ public class UserGroup {
 	
 	@ManyToMany
 	private List<Resource> listResource;
+	
+	@OneToMany(mappedBy="userGroup")
+	@JsonManagedReference
+	private List<Menu> listMenu;
 
 	public Long getId() {
 		return id;
@@ -57,6 +64,14 @@ public class UserGroup {
 
 	public void setListResource(List<Resource> listResource) {
 		this.listResource = listResource;
+	}
+
+	public List<Menu> getListMenu() {
+		return listMenu;
+	}
+
+	public void setListMenu(List<Menu> listMenu) {
+		this.listMenu = listMenu;
 	}
 	
 }
