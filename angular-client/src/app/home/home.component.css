@@ -30,6 +30,6 @@ h1.app-name {
   flex: 1 0 auto;
 }
 
-.menu-item {
+mat-sidenav {
   width: 200px;
 }
