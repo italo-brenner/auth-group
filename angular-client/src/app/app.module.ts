@@ -1,39 +1,36 @@
-import { BrowserModule } from "@angular/platform-browser";
-import { NgModule } from "@angular/core";
-import { RouterModule } from "@angular/router";
-import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
+/**
+ * @license
+ * Copyright Akveo. All Rights Reserved.
+ * Licensed under the MIT License. See License.txt in the project root for license information.
+ */
+import { APP_BASE_HREF } from '@angular/common';
+import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { NgModule } from '@angular/core';
+import { HttpClientModule } from '@angular/common/http';
+import { CoreModule } from './@core/core.module';
 
-import {
-  MatButtonModule,
-  MatCheckboxModule,
-  MatIconModule,
-  MatMenuModule,
-  MatSidenavModule,
-  MatToolbarModule,
-  MatDividerModule,
-  MatListModule
-} from "@angular/material";
-
-import { AppComponent } from "./app.component";
-import { HomeComponent } from "./home/home.component";
-
-import { ROUTES } from "./app.routes";
+import { AppComponent } from './app.component';
+import { AppRoutingModule } from './app-routing.module';
+import { ThemeModule } from './@theme/theme.module';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
-  declarations: [AppComponent, HomeComponent],
+  declarations: [AppComponent],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
-    MatIconModule,
-    MatButtonModule,
-    MatCheckboxModule,
-    MatToolbarModule,
-    MatMenuModule,
-    MatSidenavModule,
-    MatListModule,
-    RouterModule.forRoot(ROUTES)
+    HttpClientModule,
+    AppRoutingModule,
+
+    NgbModule.forRoot(),
+    ThemeModule.forRoot(),
+    CoreModule.forRoot(),
   ],
-  providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  providers: [
+    { provide: APP_BASE_HREF, useValue: '/' },
+  ],
 })
-export class AppModule {}
+export class AppModule {
+}
