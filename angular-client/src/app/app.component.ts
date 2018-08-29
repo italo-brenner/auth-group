@@ -1,21 +1,22 @@
-/**
- * @license
- * Copyright Akveo. All Rights Reserved.
- * Licensed under the MIT License. See License.txt in the project root for license information.
- */
-import { Component, OnInit } from '@angular/core';
-import { AnalyticsService } from './@core/utils/analytics.service';
+import { Component } from "@angular/core";
 
 @Component({
-  selector: 'ngx-app',
-  template: '<router-outlet></router-outlet>',
+  selector: "app-root",
+  templateUrl: "./app.component.html",
+  styleUrls: ["./app.component.scss"]
 })
-export class AppComponent implements OnInit {
+export class AppComponent {
+  title = "angular-client";
 
-  constructor(private analytics: AnalyticsService) {
+  mobileMenuActive: boolean;
+
+  onMobileMenuButton(event) {
+    this.mobileMenuActive = !this.mobileMenuActive;
+    event.preventDefault();
   }
 
-  ngOnInit() {
-    this.analytics.trackPageViews();
+  hideMobileMenu(event) {
+    this.mobileMenuActive = false;
+    event.preventDefault();
   }
 }

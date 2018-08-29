@@ -1,0 +1,11 @@
+<div class="layout-sidebar" [ngClass]="{'layout-sidebar-active':app.mobileMenuActive}">
+  <ul class="layout-menu" (click)="app.hideMobileMenu($event)">
+    <li>
+      <a [routerLink]="['/']" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}">
+        <i class="fa fa-globe"></i>
+        <span>Home</span>
+      </a>
+    </li>
+  </ul>
+
+</div>
