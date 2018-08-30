@@ -1,0 +1,31 @@
+<div class="layout-sidebar" [ngClass]="{'layout-sidebar-active':app.mobileMenuActive}">
+  <ul class="layout-menu" (click)="app.hideMobileMenu($event)">
+    <li>
+      <a [routerLink]="['/']" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}">
+        <i class="fa fa-globe"></i>
+        <span>Home</span>
+      </a>
+      <a [routerLink]="['/login']" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}">
+        <i class="fa fa-user"></i>
+        <span>Login</span>
+      </a>
+      <a [routerLink]="['/page1']" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}">
+        <i class="fa fa-file"></i>
+        <span>Página 1</span>
+      </a>
+      <a [routerLink]="['/cars']" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}">
+        <i class="fa fa-car"></i>
+        <span>Carros</span>
+      </a>
+      <a [routerLink]="['/books']" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}">
+        <i class="fa fa-book"></i>
+        <span>Livros</span>
+      </a>
+      <a [routerLink]="['/planes']" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}">
+        <i class="fa fa-plane"></i>
+        <span>Aviões</span>
+      </a>
+    </li>
+  </ul>
+
+</div>
