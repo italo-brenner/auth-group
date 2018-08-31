@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
 import { Car } from './car.model';
 
 @Injectable({
@@ -6,19 +7,17 @@ import { Car } from './car.model';
 })
 export class CarService {
 
-  constructor() { }
+  constructor(private http: HttpClient) { }
 
   getCars() {
-    return <Car[]> [
-      {
-        id: '1',
-        name: 'Volvo'
-      },
-      {
-        id: '2',
-        name: 'Gol'
-      }
-    ];
+    return this.http.get<any>('http://localhost:8080/api/car')
+      .toPromise()
+      .then(res => {
+        console.log(res);
+        return <Car[]> res.data
+      })
+      .then(data => { return data; });
   }
+  
 
 }
