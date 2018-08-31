@@ -13,8 +13,7 @@ export class CarService {
     return this.http.get<any>('http://localhost:8080/api/car')
       .toPromise()
       .then(res => {
-        console.log(res);
-        return <Car[]> res.data
+        return <Car[]> res
       })
       .then(data => { return data; });
   }
