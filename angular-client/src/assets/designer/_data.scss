@@ -1,6 +1,234 @@
 /* Purchase the Designer API to get full access to the theme engine. */
 
 body {
+
+    .ui-paginator {
+        background-color: #f4f4f4;
+        border: 1px solid #c8c8c8;
+        padding: 0;
+
+        .ui-paginator-first,
+        .ui-paginator-prev,
+        .ui-paginator-next,
+        .ui-paginator-last {
+            color: #737373;
+            height: 2.286em;
+            min-width: 2.286em;
+            border: 0 none;
+            line-height: 2.286em;
+            padding: 0;
+            margin: 0;
+            vertical-align: top;
+            -moz-border-radius: 0;
+            -webkit-border-radius: 0;
+            border-radius: 0;
+        }
+
+        .ui-paginator-first:not(.ui-state-disabled):not(.ui-state-active):hover,
+        .ui-paginator-prev:not(.ui-state-disabled):not(.ui-state-active):hover,
+        .ui-paginator-next:not(.ui-state-disabled):not(.ui-state-active):hover,
+        .ui-paginator-last:not(.ui-state-disabled):not(.ui-state-active):hover {
+            background-color: #e0e0e0;
+            color: #333333;
+        }
+
+        .ui-dropdown {
+            border: 0 none;
+
+            .ui-dropdown-trigger,
+            .ui-dropdown-label {
+                color: #737373;
+            }
+
+            &:hover {
+                .ui-dropdown-trigger,
+                .ui-dropdown-label {
+                    color: #333333;
+                }
+            }
+        }
+
+        .ui-paginator-first:before {
+            position: relative;
+            top: 1px;
+        }
+
+        .ui-paginator-prev:before {
+            position: relative;
+        }
+
+        .ui-paginator-next:before {
+            position: relative;
+            top: 1px;
+        }
+
+        .ui-paginator-last:before {
+            position: relative;
+            top: 1px;
+        }
+
+        .ui-paginator-pages {
+            vertical-align: top;
+            display: inline-block;
+            padding: 0;
+
+            .ui-paginator-page {
+                color: #737373;
+                height: 2.286em;
+                min-width: 2.286em;
+                border: 0 none;
+                line-height: 2.286em;
+                padding: 0;
+                margin: 0;
+                vertical-align: top;
+                -moz-border-radius: 0;
+                -webkit-border-radius: 0;
+                border-radius: 0;
+
+                &.ui-state-active {
+                    background-color: #007ad9;
+                    color: #ffffff;
+                }
+                &:not(.ui-state-active):hover {
+                    background-color: #e0e0e0;
+                    color: #333333;
+                }
+            }
+
+        }
+
+        .ui-dropdown {
+            margin-left: 0.5em;
+            height: 2.286em;
+            min-width: auto; 
+        }
+    }
+
+    .ui-table {
+
+        .ui-table-caption,
+        .ui-table-summary {
+            background-color: #333333;
+            color: #ffffff;
+            border: 1px solid #333333;
+            padding: 0.571em 1em;
+            text-align: center;
+        }
+
+        .ui-table-caption {
+            border-bottom: 0 none;
+            font-weight: 700;
+        }
+
+        .ui-table-summary {
+            border-top: 0 none;
+            font-weight: 700;
+        }
+
+        .ui-table-thead > tr > th {
+            padding: 0.571em 0.857em;
+            border: 1px solid #c8c8c8;
+            font-weight: 700;
+            color: #333333;
+            background-color: #f4f4f4;
+        }
+
+        .ui-table-tbody > tr > td {
+            padding: 0.429em 0.857em;
+        }
+
+        .ui-table-tfoot > tr > td {
+            padding: 0.571em 0.857em;
+            border: 1px solid #c8c8c8;
+            font-weight: 700;
+            color: #333333;
+            background-color: #ffffff;
+        }
+
+        .ui-sortable-column {
+            a {
+                color: #737373;
+                &:hover {
+                    color: #737373;
+                }
+            }
+            &:not(.ui-state-highlight):hover {
+                background-color: #e0e0e0;
+                color: #333333;
+                a {
+                    color: #333333;
+                    &:hover {
+                        color: #333333;
+                    }
+                }
+            }
+            &.ui-state-highlight {
+                background-color: #007ad9;
+                color: #ffffff;
+                a {
+                    color: #ffffff;
+                    &:hover {
+                        color: #ffffff;
+                    }
+                }
+            }
+        }
+
+        .ui-editable-column input {
+            font-size: 14px;
+            font-family: "Open Sans", "Helvetica Neue", sans-serif;
+            &:focus {
+                outline: 1px solid #007ad9;
+                outline-offset: 2px;
+            }
+        }
+
+        .ui-table-tbody > tr {
+            background: #ffffff;
+            color: #333333;
+            > td {
+                background: inherit;
+                border: 1px solid #c8c8c8;
+            }
+            &.ui-state-highlight, &.ui-contextmenu-selected {
+                background-color: #007ad9;
+                color: #ffffff;
+            }
+            &:nth-child(even) {
+                background-color: #f9f9f9;
+                &.ui-state-highlight, &.ui-contextmenu-selected {
+                    background-color: #007ad9;
+                    color: #ffffff;
+                }
+            }
+        }
+
+        &.ui-table-hoverable-rows .ui-table-tbody > tr:not(.ui-state-highlight):not(.ui-contextmenu-selected):hover {
+            cursor: pointer;
+            background-color: #eaeaea;
+            color: #333333;
+        }
+
+        .ui-column-resizer-helper {
+            background-color: #007ad9;
+        }
+
+        @media screen and (max-width: 40em) {
+            .ui-table-responsive {
+                .ui-paginator-top {
+                    border-bottom: 1px solid #c8c8c8;
+                }
+
+                .ui-paginator-bottom {
+                    border-top: 1px solid #c8c8c8;
+                }
+                .ui-table-tbody > tr > td {
+                    border: 0 none;
+                }
+            }
+        }
+    }
+
     .ui-picklist {
         .ui-picklist-buttons {
             button {
@@ -76,4 +304,5 @@ body {
             }
         }
     }
+
 }
