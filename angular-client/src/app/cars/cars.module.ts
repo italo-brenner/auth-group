@@ -5,13 +5,15 @@ import { CarsComponent } from './cars.component';
 import { CarListComponent } from './car-list/car-list.component';
 import { CarsRoutingModule } from './cars-routing.module';
 import {TableModule} from 'primeng/table';
+import {ButtonModule} from 'primeng/button';
 
 @NgModule({
   imports: [
     CommonModule,
     CarsRoutingModule,
     SharedModule,
-    TableModule
+    TableModule,
+    ButtonModule
   ],
   declarations: [
     CarsComponent,

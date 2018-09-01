@@ -4,16 +4,25 @@
 
     <div class="layout-content">
         <p-table [value]="cars" [paginator]="true" [rows]="10">
+            <ng-template pTemplate="caption">
+                <div class="ui-helper-clearfix">
+                    <p-button type="button" icon="fa fa-plus" label="Novo" style="float:left"></p-button>
+                </div>
+            </ng-template>
             <ng-template pTemplate="header">
                 <tr>
                     <th>Id</th>
                     <th>Name</th>
+                    <th class="ui-column-icon"></th>
+                    <th class="ui-column-icon"></th>
                 </tr>
             </ng-template>
             <ng-template pTemplate="body" let-car>
                 <tr>
                     <td>{{car.id}}</td>
                     <td>{{car.name}}</td>
+                    <td><p-button label="" icon="fa fa-edit"></p-button></td>
+                    <td><p-button label="" icon="fa fa-trash"></p-button></td>
                 </tr>
             </ng-template>
         </p-table>
