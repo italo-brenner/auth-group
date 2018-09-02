@@ -1,155 +1,328 @@
 /* Purchase the Designer API to get full access to the theme engine. */
 
 body {
-    .ui-widget-content {
-        p {
-            line-height: 1.5;
-            margin: 0;
+  .ui-widget-content {
+    p {
+      line-height: 1.5;
+      margin: 0;
+    }
+  }
+  .ui-panel {
+    padding: 0;
+    border: 0 none;
+    .ui-panel-titlebar {
+      border: 1px solid #333333;
+      padding: 0.571em 1em;
+      background-color: #333333;
+      color: #ffffff;
+      -moz-border-radius-topleft: 3px;
+      -webkit-border-top-left-radius: 3px;
+      border-top-left-radius: 3px;
+      -moz-border-radius-topright: 3px;
+      -webkit-border-top-right-radius: 3px;
+      border-top-right-radius: 3px;
+      -moz-border-radius-bottomleft: 0;
+      -webkit-border-bottom-left-radius: 0;
+      border-bottom-left-radius: 0;
+      -moz-border-radius-bottomright: 0;
+      -webkit-border-bottom-right-radius: 0;
+      border-bottom-right-radius: 0;
+      .ui-panel-title {
+        vertical-align: middle;
+        font-weight: 400;
+      }
+      .ui-panel-titlebar-icon {
+        margin: 0;
+        position: relative;
+        font-size: 14px;
+        color: #ffffff;
+        border: 1px solid transparent;
+        -moz-transition: color 0.2s;
+        -o-transition: color 0.2s;
+        -webkit-transition: color 0.2s;
+        transition: color 0.2s;
+        &:hover {
+          color: #b4b4b4;
         }
+      }
+    }
+    .ui-panel-content {
+      padding: 0.571em 1em;
+      border: 1px solid #c8c8c8;
+      background-color: #ffffff;
+      color: #333333;
+      padding: 0.571em 1em;
+      border-top: 0 none;
+    }
+    .ui-panel-footer {
+      padding: 0.571em 1em;
+      border: 1px solid #c8c8c8;
+      background-color: #ffffff;
+      color: #333333;
+      border-top: 0 none;
+      margin: 0;
+    }
+  }
+  .ui-fieldset {
+    border: 1px solid #c8c8c8;
+    background-color: #ffffff;
+    color: #333333;
+    .ui-fieldset-legend a {
+      padding: 0.571em 1em;
+      border: 1px solid #333333;
+      color: #ffffff;
+      background-color: #333333;
+      -moz-transition: background-color 0.2s;
+      -o-transition: background-color 0.2s;
+      -webkit-transition: background-color 0.2s;
+      transition: background-color 0.2s;
+      .ui-fieldset-toggler {
+        float: none;
+        display: inline-block;
+        vertical-align: middle;
+        margin-right: .5em;
+        color: #ffffff;
+      }
+      .ui-fieldset-legend-text {
+        padding: 0;
+      }
+    }
+    &.ui-fieldset-toggleable .ui-fieldset-legend a:hover {
+      background-color: #494949;
+      border: 1px solid #494949;
+      color: #ffffff;
+      .ui-fieldset-toggler {
+        color: #ffffff;
+      }
+    }
+    .ui-fieldset-content {
+      padding: 0;
+    }
+  }
+  .ui-accordion {
+    .ui-accordion-header {
+      margin-bottom: 2px;
+      a {
+        padding: 0.571em 1em;
+        border: 1px solid #333333;
+        color: #ffffff;
+        background-color: #333333;
+        color: #ffffff;
+        font-weight: 400;
+        -moz-transition: background-color 0.2s;
+        -o-transition: background-color 0.2s;
+        -webkit-transition: background-color 0.2s;
+        transition: background-color 0.2s;
+        .ui-accordion-toggle-icon {
+          color: #ffffff;
+          &.pi-caret-right:before {
+            content: "";
+          }
+          &.pi-caret-down:before {
+            content: "";
+          }
+        }
+      }
+      &:not(.ui-state-active):not(.ui-state-disabled):hover a {
+        background-color: #494949;
+        border: 1px solid #494949;
+        color: #ffffff;
+        .ui-accordion-toggle-icon {
+          color: #ffffff;
+        }
+      }
+      &:not(.ui-state-disabled).ui-state-active {
+        a {
+          background-color: #007ad9;
+          border: 1px solid #007ad9;
+          color: #ffffff;
+          .ui-accordion-toggle-icon {
+            color: #ffffff;
+          }
+        }
+        &:hover a {
+          border: 1px solid #005b9f;
+          background-color: #005b9f;
+          color: #ffffff;
+          .ui-accordion-toggle-icon {
+            color: #ffffff;
+          }
+        }
+      }
+    }
+    .ui-accordion-content {
+      padding: 0.571em 1em;
+      border: 1px solid #c8c8c8;
+      background-color: #ffffff;
+      color: #333333;
+      padding: 0.571em 1em;
+    }
+  }
+  .ui-tabview {
+    &.ui-tabview-top,
+    &.ui-tabview-bottom,
+    &.ui-tabview-left,
+    &.ui-tabview-right {
+      border: 0 none;
+
+      .ui-tabview-nav {
+        padding: 0;
+        background: $tabsNavBgColor;
+
+        li {
+          border: $panelHeaderBorder;
+          background-color: $panelHeaderBgColor;
+
+          a {
+            float: none;
+            display: inline-block;
+            color: $panelHeaderTextColor;
+            padding: $panelHeaderPadding;
+
+            .ui-tabview-left-icon {
+              color: $panelHeaderIconColor;
+              margin-right: $inlineSpacing;
+            }
+
+            .ui-tabview-right-icon {
+              color: $panelHeaderIconColor;
+              margin-left: $inlineSpacing;
+            }
+          }
+
+          .ui-tabview-close {
+            color: $panelHeaderIconColor;
+            margin: 0 $inlineSpacing 0 -1 * $inlineSpacing;
+          }
+
+          &:not(.ui-state-active):not(.ui-state-disabled):hover {
+            background-color: $panelHeaderHoverBgColor;
+            border: $panelHeaderHoverBorder;
+
+            a {
+              color: $panelHeaderHoverTextColor;
+
+              .ui-tabview-left-icon,
+              .ui-tabview-right-icon {
+                color: $panelHeaderIconHoverColor;
+              }
+            }
+
+            .ui-tabview-close {
+              color: $panelHeaderHoverTextColor;
+            }
+          }
+
+          &.ui-state-active {
+            background-color: $panelHeaderActiveBgColor;
+            border: $panelHeaderActiveBorder;
+
+            a {
+              color: $panelHeaderActiveTextColor;
+
+              .ui-tabview-left-icon,
+              .ui-tabview-right-icon {
+                color: $panelHeaderActiveIconColor;
+              }
+            }
+
+            .ui-tabview-close {
+              color: $panelHeaderActiveIconColor;
+            }
+
+            &:hover {
+              border: $panelHeaderActiveHoverBorder;
+              background-color: $panelHeaderActiveHoverBgColor;
+
+              a {
+                color: $panelHeaderActiveHoverTextColor;
+
+                .ui-tabview-left-icon,
+                .ui-tabview-right-icon {
+                  color: $panelHeaderActiveHoverIconColor;
+                }
+              }
+            }
+          }
+
+          &.ui-tabview-selected {
+            a {
+              cursor: pointer;
+            }
+          }
+        }
+      }
     }
 
-    .ui-tabview {
-        &.ui-tabview-top,
-        &.ui-tabview-bottom,
-        &.ui-tabview-left,
-        &.ui-tabview-right {
-            border: 0 none;
+    &.ui-tabview-top {
+      .ui-tabview-nav {
+        margin-bottom: -1px;
 
-            .ui-tabview-nav {
-                padding: 0;
-                background: $tabsNavBgColor;
-
-                li {
-                    border: $panelHeaderBorder;
-                    background-color: $panelHeaderBgColor;
-
-                    a {
-                        float: none;
-                        display: inline-block;
-                        color: $panelHeaderTextColor;
-                        padding: $panelHeaderPadding;
-
-                        .ui-tabview-left-icon {
-                            color: $panelHeaderIconColor;
-                            margin-right: $inlineSpacing;
-                        }
-
-                        .ui-tabview-right-icon {
-                            color: $panelHeaderIconColor;
-                            margin-left: $inlineSpacing;
-                        }
-                    }
-
-                    .ui-tabview-close {
-                        color: $panelHeaderIconColor;
-                        margin: 0 $inlineSpacing 0 -1 * $inlineSpacing;
-                    }
-
-                    &:not(.ui-state-active):not(.ui-state-disabled):hover {
-                        background-color: $panelHeaderHoverBgColor;
-                        border: $panelHeaderHoverBorder;
-                        
-                        a {
-                            color: $panelHeaderHoverTextColor;
-
-                            .ui-tabview-left-icon, .ui-tabview-right-icon{
-                                color: $panelHeaderIconHoverColor;
-                            }
-                        }
-
-                        .ui-tabview-close {
-                            color: $panelHeaderHoverTextColor;
-                        }
-                    }
-
-                    &.ui-state-active {
-                        background-color: $panelHeaderActiveBgColor;
-                        border: $panelHeaderActiveBorder;
-
-                        a {
-                            color: $panelHeaderActiveTextColor;
-
-                            .ui-tabview-left-icon, .ui-tabview-right-icon{
-                                color: $panelHeaderActiveIconColor;
-                            }
-                        }
-
-                        .ui-tabview-close {
-                            color: $panelHeaderActiveIconColor;
-                        }
-
-                        &:hover {
-                            border: $panelHeaderActiveHoverBorder;
-                            background-color: $panelHeaderActiveHoverBgColor;
-
-                            a {
-                                color: $panelHeaderActiveHoverTextColor;
-                                
-                                .ui-tabview-left-icon, .ui-tabview-right-icon{
-                                    color: $panelHeaderActiveHoverIconColor;
-                                }
-                            }
-                        }
-                    }
-
-                    &.ui-tabview-selected {
-                        a {
-                            cursor: pointer;
-                        }
-                    }
-                }
-            }
+        li {
+          margin-right: $tabHeaderSpacing;
         }
-
-        &.ui-tabview-top {
-            .ui-tabview-nav {
-                margin-bottom: -1px;
-
-                li {
-                    margin-right: $tabHeaderSpacing;
-                }
-            }
-        }
-
-        &.ui-tabview-bottom {
-            .ui-tabview-nav {
-                margin-top: -1px;
-
-                li {
-                    margin-right: $tabHeaderSpacing;
-                }
-            }
-        }
-
-        &.ui-tabview-left {
-            .ui-tabview-nav {
-                margin-right: -px;
-
-                li {
-                    margin-bottom: $tabHeaderSpacing;
-                }
-            }
-        }
-
-        &.ui-tabview-right {
-            .ui-tabview-nav {
-                margin-right: -1px;
-
-                li {
-                    margin-bottom: $tabHeaderSpacing;
-                }
-            }
-        }     
-
-        .ui-tabview-panels {
-            background-color: $panelContentBgColor;
-            padding: $panelContentPadding;
-            border: $panelContentBorder;
-            color: $panelContentTextColor;
-
-            .ui-tabview-panel {
-                padding: 0;
-            }
-        }
+      }
     }
+
+    &.ui-tabview-bottom {
+      .ui-tabview-nav {
+        margin-top: -1px;
+
+        li {
+          margin-right: $tabHeaderSpacing;
+        }
+      }
+    }
+
+    &.ui-tabview-left {
+      .ui-tabview-nav {
+        margin-right: -px;
+
+        li {
+          margin-bottom: $tabHeaderSpacing;
+        }
+      }
+    }
+
+    &.ui-tabview-right {
+      .ui-tabview-nav {
+        margin-right: -1px;
+
+        li {
+          margin-bottom: $tabHeaderSpacing;
+        }
+      }
+    }
+
+    .ui-tabview-panels {
+      background-color: $panelContentBgColor;
+      padding: $panelContentPadding;
+      border: $panelContentBorder;
+      color: $panelContentTextColor;
+
+      .ui-tabview-panel {
+        padding: 0;
+      }
+    }
+  }
+  .ui-toolbar {
+    background-color: #333333;
+    border: 1px solid #333333;
+    padding: 0.571em 1em;
+    button {
+      vertical-align: middle;
+    }
+    .ui-toolbar-separator {
+      vertical-align: middle;
+      color: #ffffff;
+      margin: 0 0.5em;
+    }
+  }
+  .ui-card {
+    background-color: #ffffff;
+    color: #333333;
+    -webkit-box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.2), 0 1px 1px 0 rgba(0, 0, 0, 0.14), 0 2px 1px -1px rgba(0, 0, 0, 0.12);
+    -moz-box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.2), 0 1px 1px 0 rgba(0, 0, 0, 0.14), 0 2px 1px -1px rgba(0, 0, 0, 0.12);
+    box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.2), 0 1px 1px 0 rgba(0, 0, 0, 0.14), 0 2px 1px -1px rgba(0, 0, 0, 0.12);
+  }
 }

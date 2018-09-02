@@ -12,11 +12,16 @@ export class CarService {
   getCars() {
     return this.http.get<any>('/api/car')
       .toPromise()
-      .then(res => {
-        return <Car[]> res
-      })
+      .then(res => <Car[]> res)
       .then(data => { return data; });
   }
   
+  getCar(id) {
+    console.log(id);
+    return this.http.get<any>('/api/car/' + id)
+      .toPromise()
+      .then(res => <Car> res)
+      .then(data => { return data; });
+  }
 
 }

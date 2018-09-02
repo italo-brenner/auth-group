@@ -1,70 +1,321 @@
 /* Purchase the Designer API to get full access to the theme engine. */
 
 body {
+  .ui-button {
+    margin: 0;
+    color: $buttonTextColor;
+    background-color: $buttonBgColor;
+    border: $buttonBorder;
+    font-size: $fontSize;
+    @include transition($buttonTransition);
+
+    &:enabled:hover {
+      background-color: $buttonHoverBgColor;
+      color: $buttonHoverTextColor;
+      border-color: $buttonHoverBorderColor;
+    }
+
+    &:enabled:focus {
+      outline: $buttonFocusOutline;
+      outline-offset: $buttonFocusOutlineOffset;
+      background-color: darken($buttonHoverBgColor, 10%);
+    }
+
+    &:enabled:active {
+      background-color: $buttonActiveBgColor;
+      color: $buttonActiveTextColor;
+      border-color: $buttonActiveBorderColor;
+    }
+
+    &.ui-button-text-only {
+      .ui-button-text {
+        padding: $buttonTextOnlyPadding;
+      }
+    }
+
+    &.ui-button-text-icon-left {
+      .ui-button-text {
+        padding: $buttonWithLeftIconPadding;
+      }
+    }
+
+    &.ui-button-text-icon-right {
+      .ui-button-text {
+        padding: $buttonWithRightIconPadding;
+      }
+    }
+
+    &.ui-button-icon-only {
+      width: $buttonIconOnlyWidth;
+
+      .ui-button-text {
+        padding: $buttonIconOnlyPadding;
+      }
+    }
+
+    &.ui-button-raised {
+      @include shadow($raisedButtonShadow);
+    }
+
+    &.ui-button-rounded {
+      @include border-radius($roundedButtonBorderRadius);
+    }
+  }
+
+  .ui-fluid {
+    .ui-button-icon-only {
+      width: $buttonIconOnlyWidth;
+    }
+  }
+
+  .ui-togglebutton {
+    background-color: #dadada;
+    border: 1px solid #dadada;
+    color: #333333;
+    -moz-transition: background-color 0.2s;
+    -o-transition: background-color 0.2s;
+    -webkit-transition: background-color 0.2s;
+    transition: background-color 0.2s;
+    .ui-button-icon-left {
+      color: #666666;
+    }
+    &:not(.ui-state-disabled):not(.ui-state-active) {
+      &:hover {
+        background-color: #c8c8c8;
+        border-color: #c8c8c8;
+        color: #333333;
+        .ui-button-icon-left {
+          color: #212121;
+        }
+      }
+      &.ui-state-focus {
+        background-color: #c8c8c8;
+        border-color: #c8c8c8;
+        color: #333333;
+        outline: 0 none;
+        .ui-button-icon-left {
+          color: #212121;
+        }
+      }
+    }
+    &.ui-state-active {
+      background-color: #007ad9;
+      border-color: #007ad9;
+      color: #ffffff;
+      .ui-button-icon-left {
+        color: #ffffff;
+      }
+      &:hover {
+        background-color: #116fbf;
+        border-color: #116fbf;
+        color: #ffffff;
+        .ui-button-icon-left {
+          color: #ffffff;
+        }
+      }
+      &.ui-state-focus {
+        background-color: #005b9f;
+        border-color: #005b9f;
+        color: #ffffff;
+        .ui-button-icon-left {
+          color: #ffffff;
+        }
+      }
+    }
+  }
+  .ui-selectbutton .ui-button {
+    background-color: #dadada;
+    border: 1px solid #dadada;
+    color: #333333;
+    -moz-transition: background-color 0.2s;
+    -o-transition: background-color 0.2s;
+    -webkit-transition: background-color 0.2s;
+    transition: background-color 0.2s;
+    .ui-button-icon-left {
+      color: #666666;
+    }
+    &:not(.ui-state-disabled):not(.ui-state-active) {
+      &:hover {
+        background-color: #c8c8c8;
+        border-color: #c8c8c8;
+        color: #333333;
+        .ui-button-icon-left {
+          color: #212121;
+        }
+      }
+      &.ui-state-focus {
+        background-color: #c8c8c8;
+        border-color: #c8c8c8;
+        color: #333333;
+        outline: 0 none;
+        .ui-button-icon-left {
+          color: #212121;
+        }
+      }
+    }
+    &.ui-state-active {
+      background-color: #007ad9;
+      border-color: #007ad9;
+      color: #ffffff;
+      .ui-button-icon-left {
+        color: #ffffff;
+      }
+      &:not(.ui-state-disabled):hover {
+        background-color: #116fbf;
+        border-color: #116fbf;
+        color: #ffffff;
+        .ui-button-icon-left {
+          color: #ffffff;
+        }
+      }
+      &.ui-state-focus {
+        background-color: #005b9f;
+        border-color: #005b9f;
+        color: #ffffff;
+        .ui-button-icon-left {
+          color: #ffffff;
+        }
+      }
+    }
+    &:first-child {
+      -moz-border-radius-topleft: 3px;
+      -webkit-border-top-left-radius: 3px;
+      border-top-left-radius: 3px;
+      -moz-border-radius-bottomleft: 3px;
+      -webkit-border-bottom-left-radius: 3px;
+      border-bottom-left-radius: 3px;
+    }
+    &:last-child {
+      -moz-border-radius-topright: 3px;
+      -webkit-border-top-right-radius: 3px;
+      border-top-right-radius: 3px;
+      -moz-border-radius-bottomright: 3px;
+      -webkit-border-bottom-right-radius: 3px;
+      border-bottom-right-radius: 3px;
+    }
+  }
+  .ui-splitbutton.ui-buttonset {
     .ui-button {
-        margin: 0;
-        color: $buttonTextColor;
-        background-color: $buttonBgColor;
-        border: $buttonBorder;
-        font-size: $fontSize;
-        @include transition($buttonTransition);
-
-        &:enabled:hover {
-            background-color: $buttonHoverBgColor;
-            color: $buttonHoverTextColor;
-            border-color: $buttonHoverBorderColor;
-        }
-
-        &:enabled:focus {
-            outline: $buttonFocusOutline;
-            outline-offset: $buttonFocusOutlineOffset;
-            background-color: darken($buttonHoverBgColor, 10%);
-        }
-
-        &:enabled:active  {
-            background-color: $buttonActiveBgColor;
-            color: $buttonActiveTextColor;
-            border-color: $buttonActiveBorderColor;
-        }
-
-        &.ui-button-text-only {
-            .ui-button-text {
-                padding: $buttonTextOnlyPadding;
-            }
-        }
-
-        &.ui-button-text-icon-left {
-            .ui-button-text {
-                padding: $buttonWithLeftIconPadding;
-            }
-        }
-
-        &.ui-button-text-icon-right {
-            .ui-button-text {
-                padding: $buttonWithRightIconPadding;
-            }
-        }
-
-        &.ui-button-icon-only {
-            width: $buttonIconOnlyWidth;
-
-            .ui-button-text {
-                padding: $buttonIconOnlyPadding;
-            }
-        }
-
-        &.ui-button-raised {
-            @include shadow($raisedButtonShadow);
-        }
-
-        &.ui-button-rounded {
-            @include border-radius($roundedButtonBorderRadius);
-        }
+      border: 1px solid transparent;
     }
-
-    .ui-fluid {
-        .ui-button-icon-only {
-            width: $buttonIconOnlyWidth;
-        }
+    .ui-menu {
+      min-width: 100%;
     }
+    .ui-splitbutton-menubutton .ui-button-icon-left:before {
+      content: "";
+    }
+  }
+  .ui-button.ui-state-default.ui-button-secondary,
+  .ui-buttonset.ui-button-secondary > .ui-button.ui-state-default {
+    color: #333333;
+    background-color: #f4f4f4;
+    border: 1px solid #f4f4f4;
+  }
+  .ui-button.ui-state-default.ui-button-secondary:enabled:hover,
+  .ui-buttonset.ui-button-secondary
+    > .ui-button.ui-state-default:enabled:hover {
+    background-color: #c8c8c8;
+    color: #333333;
+    border-color: #c8c8c8;
+  }
+  .ui-button.ui-state-default.ui-button-secondary:enabled:focus,
+  .ui-buttonset.ui-button-secondary
+    > .ui-button.ui-state-default:enabled:focus {
+    background-color: white;
+  }
+  .ui-button.ui-state-default.ui-button-secondary:enabled:active,
+  .ui-buttonset.ui-button-secondary
+    > .ui-button.ui-state-default:enabled:active {
+    background-color: #a0a0a0;
+    color: #333333;
+    border-color: #a0a0a0;
+  }
+  .ui-button.ui-state-default.ui-button-info,
+  .ui-buttonset.ui-button-info > .ui-button.ui-state-default {
+    color: #ffffff;
+    background-color: #007ad9;
+    border: 1px solid #007ad9;
+  }
+  .ui-button.ui-state-default.ui-button-info:enabled:hover,
+  .ui-buttonset.ui-button-info > .ui-button.ui-state-default:enabled:hover {
+    background-color: #116fbf;
+    color: #ffffff;
+    border-color: #116fbf;
+  }
+  .ui-button.ui-state-default.ui-button-info:enabled:focus,
+  .ui-buttonset.ui-button-info > .ui-button.ui-state-default:enabled:focus {
+    background-color: #0088f3;
+  }
+  .ui-button.ui-state-default.ui-button-info:enabled:active,
+  .ui-buttonset.ui-button-info > .ui-button.ui-state-default:enabled:active {
+    background-color: #005b9f;
+    color: #ffffff;
+    border-color: #005b9f;
+  }
+  .ui-button.ui-state-default.ui-button-success,
+  .ui-buttonset.ui-button-success > .ui-button.ui-state-default {
+    color: #ffffff;
+    background-color: #34a835;
+    border: 1px solid #34a835;
+  }
+  .ui-button.ui-state-default.ui-button-success:enabled:hover,
+  .ui-buttonset.ui-button-success > .ui-button.ui-state-default:enabled:hover {
+    background-color: #107d11;
+    color: #ffffff;
+    border-color: #107d11;
+  }
+  .ui-button.ui-state-default.ui-button-success:enabled:focus,
+  .ui-buttonset.ui-button-success > .ui-button.ui-state-default:enabled:focus {
+    background-color: #3abb3b;
+  }
+  .ui-button.ui-state-default.ui-button-success:enabled:active,
+  .ui-buttonset.ui-button-success > .ui-button.ui-state-default:enabled:active {
+    background-color: #0c6b0d;
+    color: #ffffff;
+    border-color: #0c6b0d;
+  }
+  .ui-button.ui-state-default.ui-button-warning,
+  .ui-buttonset.ui-button-warning > .ui-button.ui-state-default {
+    color: #333333;
+    background-color: #ffba01;
+    border: 1px solid #ffba01;
+  }
+  .ui-button.ui-state-default.ui-button-warning:enabled:hover,
+  .ui-buttonset.ui-button-warning > .ui-button.ui-state-default:enabled:hover {
+    background-color: #ed990b;
+    color: #333333;
+    border-color: #ed990b;
+  }
+  .ui-button.ui-state-default.ui-button-warning:enabled:focus,
+  .ui-buttonset.ui-button-warning > .ui-button.ui-state-default:enabled:focus {
+    background-color: #ffc834;
+  }
+  .ui-button.ui-state-default.ui-button-warning:enabled:active,
+  .ui-buttonset.ui-button-warning > .ui-button.ui-state-default:enabled:active {
+    background-color: #d38b10;
+    color: #333333;
+    border-color: #d38b10;
+  }
+  .ui-button.ui-state-default.ui-button-danger,
+  .ui-buttonset.ui-button-danger > .ui-button.ui-state-default {
+    color: #ffffff;
+    background-color: #e91224;
+    border: 1px solid #e91224;
+  }
+  .ui-button.ui-state-default.ui-button-danger:enabled:hover,
+  .ui-buttonset.ui-button-danger > .ui-button.ui-state-default:enabled:hover {
+    background-color: #c01120;
+    color: #ffffff;
+    border-color: #c01120;
+  }
+  .ui-button.ui-state-default.ui-button-danger:enabled:focus,
+  .ui-buttonset.ui-button-danger > .ui-button.ui-state-default:enabled:focus {
+    background-color: #f25663;
+  }
+  .ui-button.ui-state-default.ui-button-danger:enabled:active,
+  .ui-buttonset.ui-button-danger > .ui-button.ui-state-default:enabled:active {
+    background-color: #a90000;
+    color: #ffffff;
+    border-color: #a90000;
+  }
 }
