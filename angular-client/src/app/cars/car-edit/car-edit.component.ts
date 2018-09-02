@@ -1,29 +1,40 @@
-import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
-import { CarService } from '../shared/car.service';
-import { Car } from '../shared/car.model';
+import { Component, OnInit } from "@angular/core";
+import { ActivatedRoute } from "@angular/router";
+import { FormGroup, FormBuilder, Validators } from "@angular/forms";
+import { CarService } from "../shared/car.service";
+import { Car } from "../shared/car.model";
 
 @Component({
-  selector: 'app-car-edit',
-  templateUrl: './car-edit.component.html',
-  styleUrls: ['./car-edit.component.scss']
+  selector: "app-car-edit",
+  templateUrl: "./car-edit.component.html",
+  styleUrls: ["./car-edit.component.scss"]
 })
 export class CarEditComponent implements OnInit {
-
-  car : Car;
+  formGroup: FormGroup;
+  car: Car;
 
   constructor(
     private carService: CarService,
-    private activatedRoute: ActivatedRoute
-  ) { }
+    private activatedRoute: ActivatedRoute,
+    private formBuilder: FormBuilder
+  ) {
+    this.formGroup = this.formBuilder.group({
+      name: ["", [Validators.required]]
+    });
+  }
 
   ngOnInit() {
-    const carId = this.activatedRoute.snapshot.paramMap.get('id');
+    const carId = this.activatedRoute.snapshot.paramMap.get("id");
     if (carId) {
       this.carService.getCar(carId).then(car => {
-        this.car = car
+        this.car = car;
+        this.formGroup.controls.name.setValue(this.car.name);
       });
     }
+  }
+
+  onSubmit(value: string) {
+    console.log(value);
   }
 
 }

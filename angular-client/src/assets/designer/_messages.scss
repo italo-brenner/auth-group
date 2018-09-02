@@ -1,1 +1,92 @@
-/* Purchase the Designer API to get full access to the theme engine. */
+body {
+  .ui-messages {
+    padding: 1em;
+    margin: 1em 0;
+    &.ui-messages-info {
+      background-color: #7fbcec;
+      border: 0 none;
+      color: #212121;
+      .ui-messages-icon,
+      .ui-messages-close {
+        color: #212121;
+      }
+    }
+    &.ui-messages-success {
+      background-color: #b7d8b7;
+      border: 0 none;
+      color: #212121;
+      .ui-messages-icon,
+      .ui-messages-close {
+        color: #212121;
+      }
+    }
+    &.ui-messages-warn {
+      background-color: #ffe399;
+      border: 0 none;
+      color: #212121;
+      .ui-messages-icon,
+      .ui-messages-close {
+        color: #212121;
+      }
+    }
+    &.ui-messages-error {
+      background-color: #f8b7bd;
+      border: 0 none;
+      color: #212121;
+      .ui-messages-icon,
+      .ui-messages-close {
+        color: #212121;
+      }
+    }
+    .ui-messages-close {
+      top: 0.25em;
+      right: 0.5em;
+      font-size: 1.5em;
+    }
+    .ui-messages-icon {
+      font-size: 2em;
+    }
+  }
+  .ui-message {
+    padding: 0.429em;
+    margin: 0;
+    &.ui-message-info {
+      background-color: #7fbcec;
+      border: 0 none;
+      color: #212121;
+      .ui-message-icon {
+        color: #212121;
+      }
+    }
+    &.ui-message-success {
+      background-color: #b7d8b7;
+      border: 0 none;
+      color: #212121;
+      .ui-message-icon {
+        color: #212121;
+      }
+    }
+    &.ui-message-warn {
+      background-color: #ffe399;
+      border: 0 none;
+      color: #212121;
+      .ui-message-icon {
+        color: #212121;
+      }
+    }
+    &.ui-message-error {
+      background-color: #f8b7bd;
+      border: 0 none;
+      color: #212121;
+      .ui-message-icon {
+        color: #212121;
+      }
+    }
+    .ui-message-icon {
+      font-size: 1.25em;
+    }
+    .ui-message-text {
+      font-size: 1em;
+    }
+  }
+}

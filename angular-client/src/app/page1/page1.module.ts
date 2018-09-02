@@ -3,13 +3,13 @@ import { CommonModule } from '@angular/common';
 
 import { Page1RoutingModule } from './page1-routing.module';
 import { Page1Component } from './page1.component';
-import { SharedModule } from '../shared/shared.module';
+import { AppSharedModule } from '../shared/app-shared.module';
 
 @NgModule({
   imports: [
     CommonModule,
     Page1RoutingModule,
-    SharedModule
+    AppSharedModule
   ],
   declarations: [Page1Component]
 })

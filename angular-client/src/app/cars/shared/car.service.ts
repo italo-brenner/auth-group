@@ -10,15 +10,14 @@ export class CarService {
   constructor(private http: HttpClient) { }
 
   getCars() {
-    return this.http.get<any>('/api/car')
+    return this.http.get<any>('/api/cars')
       .toPromise()
       .then(res => <Car[]> res)
       .then(data => { return data; });
   }
   
   getCar(id) {
-    console.log(id);
-    return this.http.get<any>('/api/car/' + id)
+    return this.http.get<any>('/api/cars/' + id)
       .toPromise()
       .then(res => <Car> res)
       .then(data => { return data; });

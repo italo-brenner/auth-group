@@ -14,7 +14,7 @@ import br.com.authgroup.car.Car;
 import br.com.authgroup.car.CarRepository;
 
 @RestController
-@RequestMapping("/api/car")
+@RequestMapping("/api/cars")
 public class CarController {
 	
 	private CarRepository carRepository;

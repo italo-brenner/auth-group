@@ -4,13 +4,16 @@ import { CommonModule } from '@angular/common';
 import { PlanesRoutingModule } from './planes-routing.module';
 import { PlanesComponent } from './planes.component';
 import { PlaneListComponent } from './plane-list/plane-list.component';
-import { SharedModule } from '../shared/shared.module';
+import { AppSharedModule } from '../shared/app-shared.module';
+
+import { PanelModule } from 'primeng/panel';
 
 @NgModule({
   imports: [
     CommonModule,
     PlanesRoutingModule,
-    SharedModule
+    AppSharedModule,
+    PanelModule
   ],
   declarations: [PlanesComponent, PlaneListComponent]
 })
