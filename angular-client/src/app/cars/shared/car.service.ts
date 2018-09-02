@@ -10,7 +10,7 @@ export class CarService {
   constructor(private http: HttpClient) { }
 
   getCars() {
-    return this.http.get<any>('http://localhost:8080/api/car')
+    return this.http.get<any>('/api/car')
       .toPromise()
       .then(res => {
         return <Car[]> res
