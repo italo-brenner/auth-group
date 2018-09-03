@@ -39,7 +39,7 @@ export class CarEditComponent implements OnInit {
         console.log(err.status);
         console.log(err.status == 404);
         if (err.status == 404) {
-          this.router.navigate(['/not-found']);
+          this.router.navigate(['/not-found'], {replaceUrl : true});
         }
       });
     } else {
