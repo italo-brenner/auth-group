@@ -29,9 +29,18 @@ export class CarEditComponent implements OnInit {
   ngOnInit() {
     const carId = this.activatedRoute.snapshot.paramMap.get("id");
     if (carId) {
-      this.carService.getCar(carId).then(car => {
+      this.carService.getCar(carId)
+      .then(car => {
         this.car = car;
         this.formGroup.controls.name.setValue(this.car.name);
+      })
+      .catch(err => {
+        console.log(err);
+        console.log(err.status);
+        console.log(err.status == 404);
+        if (err.status == 404) {
+          this.router.navigate(['/not-found']);
+        }
       });
     } else {
       this.car = {id: undefined, name: undefined};

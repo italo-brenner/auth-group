@@ -9,18 +9,14 @@ export class CarService {
 
   constructor(private http: HttpClient) { }
 
-  getCars() {
+  getCars() : Promise<Car[]> {
     return this.http.get<any>('/api/cars')
-      .toPromise()
-      .then(res => <Car[]> res)
-      .then(data => { return data; });
+      .toPromise();
   }
   
-  getCar(id) {
+  getCar(id) : Promise<Car> {
     return this.http.get<any>('/api/cars/' + id)
-      .toPromise()
-      .then(res => <Car> res)
-      .then(data => { return data; });
+      .toPromise();
   }
 
   createCar(car : Car) {
