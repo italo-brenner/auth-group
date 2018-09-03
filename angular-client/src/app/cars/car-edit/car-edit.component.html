@@ -18,7 +18,7 @@
           <button pButton type="submit" label="Confimar" [disabled]="! formGroup.valid"></button>
         </div>
         <div class="ui-grid-col-3">
-          <button pButton class="ui-button-secondary" type="button" label="Cancelar"></button>
+          <button pButton class="ui-button-secondary" type="button" label="Cancelar" (click)="cancel()"></button>
         </div>
         <div class="ui-grid-col-4"></div>
       </div>

@@ -1,5 +1,6 @@
 import { Component, OnInit } from "@angular/core";
-import { ActivatedRoute } from "@angular/router";
+import { Location } from '@angular/common';
+import { Router, ActivatedRoute } from "@angular/router";
 import { FormGroup, FormBuilder, Validators } from "@angular/forms";
 import { CarService } from "../shared/car.service";
 import { Car } from "../shared/car.model";
@@ -15,6 +16,8 @@ export class CarEditComponent implements OnInit {
 
   constructor(
     private carService: CarService,
+    private location: Location,
+    private router: Router,
     private activatedRoute: ActivatedRoute,
     private formBuilder: FormBuilder
   ) {
@@ -33,8 +36,18 @@ export class CarEditComponent implements OnInit {
     }
   }
 
-  onSubmit(value: string) {
-    console.log(value);
+  onSubmit(car : Car) {
+    if (this.car.id) {
+      car.id = this.car.id;
+      this.carService.updateCar(car);
+    } else {
+      this.carService.createCar(car);
+    }
+    this.router.navigate(['/cars']);
+  }
+
+  cancel() {
+    this.location.back();
   }
 
 }

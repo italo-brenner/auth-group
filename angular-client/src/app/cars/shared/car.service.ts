@@ -23,4 +23,12 @@ export class CarService {
       .then(data => { return data; });
   }
 
+  createCar(car : Car) {
+    this.http.post<any>('/api/cars', car).toPromise();
+  }
+
+  updateCar(car : Car) {
+    this.http.put<any>('/api/cars/' + car.id, car).toPromise();
+  }
+
 }
