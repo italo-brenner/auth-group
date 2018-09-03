@@ -19,16 +19,16 @@ export class CarService {
       .toPromise();
   }
 
-  createCar(car : Car) {
-    this.http.post<any>('/api/cars', car).toPromise();
+  createCar(car : Car) : Promise<any> {
+    return this.http.post<any>('/api/cars', car).toPromise();
   }
 
-  updateCar(car : Car) {
-    this.http.put<any>('/api/cars/' + car.id, car).toPromise();
+  updateCar(car : Car) : Promise<any> {
+    return this.http.put<any>('/api/cars/' + car.id, car).toPromise();
   }
 
-  deleteCar(id : string) {
-    this.http.delete<any>('/api/cars/' + id).toPromise();
+  deleteCar(id : string) : Promise<any> {
+    return this.http.delete<any>('/api/cars/' + id).toPromise();
   }
 
 }

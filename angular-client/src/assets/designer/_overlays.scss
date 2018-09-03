@@ -1,1 +1,194 @@
-/* Purchase the Designer API to get full access to the theme engine. */
+body {
+  .ui-widget-overlay {
+    background-color: rgba(0, 0, 0, 0.4);
+  }
+  .ui-overlaypanel {
+    background-color: #ffffff;
+    color: #333333;
+    padding: 0;
+    border: 1px solid #c8c8c8;
+    -moz-border-radius: 0;
+    -webkit-border-radius: 0;
+    border-radius: 0;
+    .ui-overlaypanel-content {
+      padding: 0.571em 1em;
+    }
+    .ui-overlaypanel-close {
+      background-color: #007ad9;
+      color: #ffffff;
+      width: 1.538em;
+      height: 1.538em;
+      line-height: 1.538em;
+      text-align: center;
+      position: absolute;
+      top: -0.769em;
+      right: -0.769em;
+      -moz-transition: background-color 0.2s;
+      -o-transition: background-color 0.2s;
+      -webkit-transition: background-color 0.2s;
+      transition: background-color 0.2s;
+      &:hover {
+        background-color: #005b9f;
+        color: #ffffff;
+      }
+    }
+  }
+  .ui-dialog {
+    padding: 0;
+    -webkit-box-shadow: 0 0 6px 0 rgba(0, 0, 0, 0.16);
+    -moz-box-shadow: 0 0 6px 0 rgba(0, 0, 0, 0.16);
+    box-shadow: 0 0 6px 0 rgba(0, 0, 0, 0.16);
+    .ui-dialog-titlebar {
+      border: 1px solid #333333;
+      background-color: #333333;
+      color: #ffffff;
+      padding: 1em;
+      font-weight: 400;
+      border-bottom: 0 none;
+      .ui-dialog-title {
+        margin: 0;
+        float: none;
+      }
+      .ui-dialog-titlebar-icon {
+        color: #ffffff;
+        border: 0 none;
+        padding: 0;
+        margin-left: 0.5em;
+        -moz-transition: color 0.2s;
+        -o-transition: color 0.2s;
+        -webkit-transition: color 0.2s;
+        transition: color 0.2s;
+        &:hover {
+          color: #b4b4b4;
+        }
+      }
+    }
+    .ui-dialog-content {
+      background-color: #ffffff;
+      color: #333333;
+      border: 1px solid #c8c8c8;
+      padding: 0.571em 1em;
+    }
+    .ui-dialog-footer {
+      border: 1px solid #c8c8c8;
+      background-color: #ffffff;
+      color: #333333;
+      padding: 0.571em 1em;
+      margin: 0;
+      text-align: right;
+      position: relative;
+      top: -1px;
+      button {
+        margin: 0 0.5em 0 0;
+        width: auto;
+      }
+    }
+    &.ui-confirm-dialog .ui-dialog-content {
+      padding: 1.5em;
+      > span {
+        float: none;
+        display: inline-block;
+        vertical-align: middle;
+        line-height: 14px;
+        margin: 0;
+        &.ui-icon {
+          margin-right: .35em;
+          font-size: 16px;
+        }
+      }
+    }
+  }
+  .ui-sidebar {
+    background-color: #ffffff;
+    color: #333333;
+    padding: 0.571em 1em;
+    border: 1px solid #c8c8c8;
+    -webkit-box-shadow: 0 0 6px 0 rgba(0, 0, 0, 0.16);
+    -moz-box-shadow: 0 0 6px 0 rgba(0, 0, 0, 0.16);
+    box-shadow: 0 0 6px 0 rgba(0, 0, 0, 0.16);
+    .ui-sidebar-close {
+      color: #737373;
+      &:hover {
+        color: #333333;
+      }
+    }
+  }
+  .ui-tooltip {
+    .ui-tooltip-text {
+      background-color: #333333;
+      color: #ffffff;
+      padding: 0.429em;
+      -webkit-box-shadow: 0 0 6px 0 rgba(0, 0, 0, 0.16);
+      -moz-box-shadow: 0 0 6px 0 rgba(0, 0, 0, 0.16);
+      box-shadow: 0 0 6px 0 rgba(0, 0, 0, 0.16);
+    }
+    &.ui-tooltip-right .ui-tooltip-arrow {
+      border-right-color: #333333;
+    }
+    &.ui-tooltip-left .ui-tooltip-arrow {
+      border-left-color: #333333;
+    }
+    &.ui-tooltip-top .ui-tooltip-arrow {
+      border-top-color: #333333;
+    }
+    &.ui-tooltip-bottom .ui-tooltip-arrow {
+      border-bottom-color: #333333;
+    }
+  }
+  .ui-lightbox {
+    -webkit-box-shadow: 0 0 6px 0 rgba(0, 0, 0, 0.16);
+    -moz-box-shadow: 0 0 6px 0 rgba(0, 0, 0, 0.16);
+    box-shadow: 0 0 6px 0 rgba(0, 0, 0, 0.16);
+    .ui-lightbox-caption {
+      border: 1px solid #333333;
+      background-color: #333333;
+      color: #ffffff;
+      padding: 0.571em 1em;
+      font-weight: 400;
+      .ui-lightbox-caption-text {
+        color: #ffffff;
+        margin: 0;
+      }
+      .ui-lightbox-close {
+        padding: 0;
+        color: #ffffff;
+        -moz-transition: color 0.2s;
+        -o-transition: color 0.2s;
+        -webkit-transition: color 0.2s;
+        transition: color 0.2s;
+        &:hover {
+          color: #b4b4b4;
+        }
+      }
+    }
+    .ui-lightbox-content-wrapper {
+      overflow: hidden;
+      background-color: #ffffff;
+      color: #333333;
+      border: 0 none;
+      padding: 0;
+      -moz-border-radius: 0;
+      -webkit-border-radius: 0;
+      border-radius: 0;
+      .ui-lightbox-nav-left, .ui-lightbox-nav-right {
+        -moz-transition: all 0.2s;
+        -o-transition: all 0.2s;
+        -webkit-transition: all 0.2s;
+        transition: all 0.2s;
+        font-size: 3em;
+        color: #ffffff;
+        margin-top: -.5em;
+      }
+      .ui-lightbox-nav-left:hover, .ui-lightbox-nav-right:hover {
+        -webkit-transform: scale(1.2);
+        -moz-transform: scale(1.2);
+        -o-transform: scale(1.2);
+        -ms-transform: scale(1.2);
+        transform: scale(1.2);
+      }
+      .ui-lightbox-content.ui-lightbox-loading ~ a {
+        display: none;
+      }
+    }
+  }
+}

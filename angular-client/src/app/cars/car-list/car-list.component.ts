@@ -1,6 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 import { Car } from "../shared/car.model";
 import { CarService } from "../shared/car.service";
+import { MessageService } from "primeng/api";
 
 @Component({
   selector: "app-car-list",
@@ -10,16 +11,34 @@ import { CarService } from "../shared/car.service";
 export class CarListComponent implements OnInit {
   cars: Car[];
 
-  constructor(private carService: CarService) {}
+  constructor(
+    private carService: CarService,
+    private messageService: MessageService
+  ) {}
 
   ngOnInit() {
-    this.carService.getCars().then(cars => {
-      this.cars = cars;
-    });
+    this.carService.getCars()
+      .then(cars => {
+        this.cars = cars;
+      })
+      .catch(err => {
+        this.messageService.add({
+          severity: "error",
+          summary: err.status + " " + err.statusText,
+          detail: err.message
+        });
+      });
   }
 
   deleteCar(id: string) {
-    this.carService.deleteCar(id);
+    this.carService.deleteCar(id)
+      .catch(err => {
+        this.messageService.add({
+          severity: "error",
+          summary: err.status + " " + err.statusText,
+          detail: err.message
+        });
+      });
     let position = this.cars.findIndex(car => car.id === id);
     if (position != -1) {
       this.cars.splice(position, 1);

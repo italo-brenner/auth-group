@@ -5,15 +5,14 @@ import { PlanesRoutingModule } from './planes-routing.module';
 import { PlanesComponent } from './planes.component';
 import { PlaneListComponent } from './plane-list/plane-list.component';
 import { AppSharedModule } from '../shared/app-shared.module';
-
-import { PanelModule } from 'primeng/panel';
+import { ButtonModule } from 'primeng/button';
 
 @NgModule({
   imports: [
     CommonModule,
     PlanesRoutingModule,
     AppSharedModule,
-    PanelModule
+    ButtonModule
   ],
   declarations: [PlanesComponent, PlaneListComponent]
 })
