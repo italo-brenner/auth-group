@@ -31,4 +31,8 @@ export class CarService {
     this.http.put<any>('/api/cars/' + car.id, car).toPromise();
   }
 
+  deleteCar(id : string) {
+    this.http.delete<any>('/api/cars/' + id).toPromise();
+  }
+
 }

@@ -17,7 +17,7 @@
             <td>{{car.id}}</td>
             <td>{{car.name}}</td>
             <td><p-button routerLink="/cars/{{car.id}}" label="" icon="fa fa-edit"></p-button></td>
-            <td><p-button label="" icon="fa fa-trash"></p-button></td>
+            <td><p-button (click)="deleteCar(car.id)" label="" icon="fa fa-trash"></p-button></td>
         </tr>
     </ng-template>
 </p-table>

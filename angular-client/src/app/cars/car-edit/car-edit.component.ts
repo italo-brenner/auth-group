@@ -33,6 +33,8 @@ export class CarEditComponent implements OnInit {
         this.car = car;
         this.formGroup.controls.name.setValue(this.car.name);
       });
+    } else {
+      this.car = {id: undefined, name: undefined};
     }
   }
 
