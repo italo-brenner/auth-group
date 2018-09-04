@@ -1,7 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 import { Car } from "../shared/car.model";
 import { CarService } from "../shared/car.service";
-import { MessageService } from "primeng/api";
+import { ConfirmationService, MessageService } from "primeng/api";
 
 @Component({
   selector: "app-car-list",
@@ -13,11 +13,13 @@ export class CarListComponent implements OnInit {
 
   constructor(
     private carService: CarService,
-    private messageService: MessageService
+    private messageService: MessageService,
+    private confirmationService: ConfirmationService
   ) {}
 
   ngOnInit() {
-    this.carService.getCars()
+    this.carService
+      .getCars()
       .then(cars => {
         this.cars = cars;
       })
@@ -31,17 +33,27 @@ export class CarListComponent implements OnInit {
   }
 
   deleteCar(id: string) {
-    this.carService.deleteCar(id)
-      .catch(err => {
-        this.messageService.add({
-          severity: "error",
-          summary: err.status + " " + err.statusText,
-          detail: err.message
-        });
+    this.confirmationService.confirm({
+      message: "Deseja realmente apagar?",
+      accept: () => {
+        this.onConfirmDeleteCar(id);
+      }
+    });
+  }
+
+  onConfirmDeleteCar(id: string) {
+    this.carService.deleteCar(id).catch(err => {
+      this.messageService.add({
+        severity: "error",
+        summary: err.status + " " + err.statusText,
+        detail: err.message
       });
+    });
     let position = this.cars.findIndex(car => car.id === id);
     if (position != -1) {
       this.cars.splice(position, 1);
     }
   }
+
+  onReject() {}
 }

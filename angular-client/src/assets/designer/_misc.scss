@@ -1,1 +1,77 @@
-/* Purchase the Designer API to get full access to the theme engine. */
+body {
+
+  .ui-progressbar {
+    border: 0 none;
+    height: 24px;
+    background-color: #eaeaea;
+    .ui-progressbar-value {
+      border: 0 none;
+      margin: 0;
+      background: #007ad9;
+    }
+    .ui-progressbar-label {
+      margin-top: 0;
+      color: #333333;
+      line-height: 24px;
+    }
+  }
+  .ui-galleria {
+    .ui-galleria-nav-prev,
+    .ui-galleria-nav-next {
+      -moz-transition: all 0.2s;
+      -o-transition: all 0.2s;
+      -webkit-transition: all 0.2s;
+      transition: all 0.2s;
+      position: absolute;
+      color: #848484;
+    }
+    .ui-galleria-nav-prev:hover,
+    .ui-galleria-nav-next:hover {
+      -webkit-transform: scale(1.2);
+      -moz-transform: scale(1.2);
+      -o-transform: scale(1.2);
+      -ms-transform: scale(1.2);
+      transform: scale(1.2);
+    }
+    .ui-galleria-nav-prev,
+    .ui-galleria-nav-next {
+      font-size: 16px;
+    }
+  }
+  .ui-terminal {
+    background-color: #ffffff;
+    color: #333333;
+    border: 1px solid #c8c8c8;
+    padding: 0.571em 1em;
+    .ui-terminal-input {
+      font-size: 14px;
+      font-family: "Open Sans", "Helvetica Neue", sans-serif;
+      height: 16px;
+    }
+    .ui-terminal-command {
+      height: 16px;
+    }
+  }
+  .ui-inplace {
+    min-height: 2.357em;
+    .ui-inplace-display {
+      padding: 0.429em;
+      -moz-border-radius: 3px;
+      -webkit-border-radius: 3px;
+      border-radius: 3px;
+      -moz-transition: background-color 0.2s;
+      -o-transition: background-color 0.2s;
+      -webkit-transition: background-color 0.2s;
+      transition: background-color 0.2s;
+      &:not(.ui-state-disabled):hover {
+        background-color: #eaeaea;
+        color: #333333;
+      }
+    }
+  }
+  .ui-fluid .ui-inplace.ui-inplace-closable .ui-inplace-content > :first-child {
+    display: inline-block;
+    width: calc(100% - 2.357em);
+  }
+  
+}

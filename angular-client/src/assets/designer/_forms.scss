@@ -336,13 +336,13 @@ body {
       line-height: 2em;
       text-align: center;
       padding: 0;
-      color: #737373;
+      color: #848484;
       .ui-dropdown-trigger-icon:before {
         content: "";
       }
     }
     .ui-dropdown-clear-icon {
-      color: #737373;
+      color: #848484;
     }
     &:not(.ui-state-disabled).ui-state-focus {
       border-color: #007ad9;
@@ -430,7 +430,7 @@ body {
       line-height: 2em;
       text-align: center;
       padding: 0;
-      color: #737373;
+      color: #848484;
       .ui-multiselect-trigger-icon:before {
         content: "";
       }
@@ -473,7 +473,7 @@ body {
         vertical-align: middle;
       }
       .ui-multiselect-close {
-        color: #737373;
+        color: #848484;
         top: 50%;
         margin-top: -0.5em;
         -moz-transition: color 0.2s;
@@ -618,16 +618,16 @@ body {
   }
   .ui-editor-container {
     .ui-editor-toolbar {
-      background-color: #333333;
+      background-color: #f4f4f4;
     }
     .ql-picker.ql-expanded .ql-picker-label {
-      color: #ffffff;
+      color: #333333;
     }
     .ql-stroke {
-      stroke: #ffffff;
+      stroke: #333333;
     }
     .ql-picker-label {
-      color: #ffffff;
+      color: #333333;
     }
     .ql-snow {
       &.ql-toolbar button:hover,
@@ -642,7 +642,7 @@ body {
       .ql-toolbar .ql-picker-item:hover,
       &.ql-toolbar .ql-picker-item.ql-selected,
       .ql-toolbar .ql-picker-item.ql-selected {
-        color: #b4b4b4;
+        color: #333333;
       }
       &.ql-toolbar button:hover .ql-stroke,
       .ql-toolbar button:hover .ql-stroke,
@@ -668,7 +668,7 @@ body {
       .ql-toolbar .ql-picker-item:hover .ql-stroke-miter,
       &.ql-toolbar .ql-picker-item.ql-selected .ql-stroke-miter,
       .ql-toolbar .ql-picker-item.ql-selected .ql-stroke-miter {
-        stroke: #b4b4b4;
+        stroke: #333333;
       }
     }
   }
@@ -941,10 +941,10 @@ body {
   }
   .ui-fileupload {
     .ui-fileupload-buttonbar {
-      background-color: #333333;
+      background-color: #f4f4f4;
       padding: 0.571em 1em;
-      border: 1px solid #333333;
-      color: #ffffff;
+      border: 1px solid #c8c8c8;
+      color: #333333;
       border-bottom: 0 none;
       .ui-button {
         margin-right: 8px;
@@ -991,7 +991,7 @@ body {
     .ui-inputgroup-addon {
       border-color: #a6a6a6;
       background-color: #eaeaea;
-      color: #737373;
+      color: #848484;
       padding: 0.429em;
       min-width: 2em;
       &:first-child {

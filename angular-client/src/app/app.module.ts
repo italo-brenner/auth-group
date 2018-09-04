@@ -7,6 +7,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { HttpClientModule } from '@angular/common/http';
 import { NotFoundComponent } from './shared/pages/not-found/not-found.component';
 import { ToastModule } from 'primeng/toast';
+import { ConfirmDialogModule, ConfirmationService, MessageService } from 'primeng/primeng';
 
 @NgModule({
   declarations: [
@@ -18,9 +19,13 @@ import { ToastModule } from 'primeng/toast';
     BrowserAnimationsModule,
     AppRoutingModule,
     HttpClientModule,
-    ToastModule
+    ToastModule,
+    ConfirmDialogModule
   ],
-  providers: [],
+  providers: [
+    MessageService,
+    ConfirmationService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -4,7 +4,7 @@ import { Router, ActivatedRoute } from "@angular/router";
 import { FormGroup, FormBuilder, Validators } from "@angular/forms";
 import { CarService } from "../shared/car.service";
 import { Car } from "../shared/car.model";
-import { MessageService } from "primeng/api";
+import { MessageService, ConfirmationService } from "primeng/api";
 
 @Component({
   selector: "app-car-edit",
@@ -21,7 +21,8 @@ export class CarEditComponent implements OnInit {
     private router: Router,
     private activatedRoute: ActivatedRoute,
     private formBuilder: FormBuilder,
-    private messageService: MessageService
+    private messageService: MessageService,
+    private confirmationService: ConfirmationService
   ) {
     this.formGroup = this.formBuilder.group({
       name: ["", [Validators.required]]
@@ -54,8 +55,17 @@ export class CarEditComponent implements OnInit {
   }
 
   onSubmit(car: Car) {
-    console.log(car);
-    console.log(this.car);
+    var confirmMessage = (this.car.id) ? "Deseja modificar esse carro?" : "Deseja criar um novo carro?";
+    this.confirmationService.confirm({
+      message: confirmMessage,
+      accept: () => {
+        this.onConfirmEditCar(car);
+      }
+    });
+    
+  }
+
+  onConfirmEditCar(car: Car) {
     if (this.car.id) {
       car.id = this.car.id;
       this.carService.updateCar(car)

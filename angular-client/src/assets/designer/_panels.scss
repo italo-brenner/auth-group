@@ -11,10 +11,10 @@ body {
     padding: 0;
     border: 0 none;
     .ui-panel-titlebar {
-      border: 1px solid #333333;
+      border: 1px solid #c8c8c8;
       padding: 0.571em 1em;
-      background-color: #333333;
-      color: #ffffff;
+      background-color: #f4f4f4;
+      color: #333333;
       -moz-border-radius-topleft: 3px;
       -webkit-border-top-left-radius: 3px;
       border-top-left-radius: 3px;
@@ -35,14 +35,14 @@ body {
         margin: 0;
         position: relative;
         font-size: 14px;
-        color: #ffffff;
+        color: #848484;
         border: 1px solid transparent;
         -moz-transition: color 0.2s;
         -o-transition: color 0.2s;
         -webkit-transition: color 0.2s;
         transition: color 0.2s;
         &:hover {
-          color: #b4b4b4;
+          color: #333333;
         }
       }
     }
@@ -69,9 +69,9 @@ body {
     color: #333333;
     .ui-fieldset-legend a {
       padding: 0.571em 1em;
-      border: 1px solid #333333;
-      color: #ffffff;
-      background-color: #333333;
+      border: 1px solid #c8c8c8;
+      color: #333333;
+      background-color: #f4f4f4;
       -moz-transition: background-color 0.2s;
       -o-transition: background-color 0.2s;
       -webkit-transition: background-color 0.2s;
@@ -81,15 +81,15 @@ body {
         display: inline-block;
         vertical-align: middle;
         margin-right: .5em;
-        color: #ffffff;
+        color: #848484;
       }
       .ui-fieldset-legend-text {
         padding: 0;
       }
     }
     &.ui-fieldset-toggleable .ui-fieldset-legend a:hover {
-      background-color: #494949;
-      border: 1px solid #494949;
+      background-color: #dbdbdb;
+      border: 1px solid #dbdbdb;
       color: #ffffff;
       .ui-fieldset-toggler {
         color: #ffffff;
@@ -104,17 +104,17 @@ body {
       margin-bottom: 2px;
       a {
         padding: 0.571em 1em;
-        border: 1px solid #333333;
-        color: #ffffff;
-        background-color: #333333;
-        color: #ffffff;
+        border: 1px solid #c8c8c8;
+        color: #333333;
+        background-color: #f4f4f4;
+        color: #333333;
         font-weight: 400;
         -moz-transition: background-color 0.2s;
         -o-transition: background-color 0.2s;
         -webkit-transition: background-color 0.2s;
         transition: background-color 0.2s;
         .ui-accordion-toggle-icon {
-          color: #ffffff;
+          color: #848484;
           &.pi-caret-right:before {
             content: "";
           }
@@ -133,11 +133,11 @@ body {
       }
       &:not(.ui-state-disabled).ui-state-active {
         a {
-          background-color: #007ad9;
-          border: 1px solid #007ad9;
-          color: #ffffff;
+          background-color: #dbdbdb;
+          border: 1px solid #dbdbdb;
+          color: #333333;
           .ui-accordion-toggle-icon {
-            color: #ffffff;
+            color: #333333;
           }
         }
         &:hover a {
@@ -306,15 +306,15 @@ body {
     }
   }
   .ui-toolbar {
-    background-color: #333333;
-    border: 1px solid #333333;
+    background-color: #f4f4f4;
+    border: 1px solid #c8c8c8;
     padding: 0.571em 1em;
     button {
       vertical-align: middle;
     }
     .ui-toolbar-separator {
       vertical-align: middle;
-      color: #ffffff;
+      color: #848484;
       margin: 0 0.5em;
     }
   }

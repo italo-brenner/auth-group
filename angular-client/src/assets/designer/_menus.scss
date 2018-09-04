@@ -63,7 +63,7 @@ body {
         .ui-steps-title {
           display: block;
           margin-top: 6px;
-          color: #737373;
+          color: #848484;
         }
       }
       &.ui-state-highlight {
@@ -127,8 +127,8 @@ body {
     .ui-submenu-header {
       margin: 0;
       padding: 0.714em 0.857em;
-      color: #ffffff;
-      background-color: #333333;
+      color: #333333;
+      background-color: #f4f4f4;
       font-weight: 400;
       border: 0 none;
     }
@@ -254,13 +254,13 @@ body {
     .ui-slidemenu-backward {
       margin: 0;
       padding: 0.571em 1em;
-      color: #ffffff;
-      background-color: #333333;
+      color: #333333;
+      background-color: #f4f4f4;
       font-weight: 400;
       border: 0 none;
       &:hover {
-        background-color: #494949;
-        color: #ffffff;
+        background-color: #dbdbdb;
+        color: #333333;
       }
     }
     .ui-menu-separator {
@@ -273,11 +273,11 @@ body {
     .ui-tabmenu-nav {
       padding: 0;
       background: transparent;
-      border-bottom: 1px solid #333333;
+      border-bottom: 1px solid #c8c8c8;
       .ui-tabmenuitem {
         position: static;
-        border: 1px solid #333333;
-        background-color: #333333;
+        border: 1px solid #c8c8c8;
+        background-color: #f4f4f4;
         margin-right: 2px;
         margin-bottom: -1px;
         -moz-transition: background-color 0.2s;
@@ -285,22 +285,26 @@ body {
         -webkit-transition: background-color 0.2s;
         transition: background-color 0.2s;
         .ui-menuitem-link {
-          color: #ffffff;
+          color: #333333;
           padding: 0.571em 1em;
-          .ui-menuitem-text, .ui-menuitem-icon {
-            color: #ffffff;
+          .ui-menuitem-text {
+            color: #333333;
+            margin-right: 0.5em;
+          }
+          .ui-menuitem-icon {
+            color: #848484;
             margin-right: 0.5em;
           }
         }
         &:not(.ui-state-active):not(.ui-state-disabled):hover {
-          background-color: #494949;
-          border: 1px solid #494949;
+          background-color: #dbdbdb;
+          border: 1px solid #dbdbdb;
           .ui-menuitem-link {
             .ui-menuitem-text {
               color: #ffffff;
             }
             .ui-menuitem-icon {
-              color: #b4b4b4;
+              color: #333333;
             }
           }
         }
@@ -323,8 +327,8 @@ body {
     .ui-megamenu-submenu-header {
       margin: 0;
       padding: 0.571em 1em;
-      color: #ffffff;
-      background-color: #333333;
+      color: #333333;
+      background-color: #f4f4f4;
       font-weight: 400;
       border: 0 none;
     }
@@ -359,9 +363,9 @@ body {
     .ui-panelmenu-header {
       padding: 0;
       > a {
-        border: 1px solid #333333;
-        background-color: #333333;
-        color: #ffffff;
+        border: 1px solid #c8c8c8;
+        background-color: #f4f4f4;
+        color: #333333;
         padding: 0.714em 0.857em;
         font-weight: 400;
         position: static;
@@ -371,7 +375,7 @@ body {
         -webkit-transition: background-color 0.2s;
         transition: background-color 0.2s;
         .ui-panelmenu-icon {
-          color: #ffffff;
+          color: #848484;
           &.pi-caret-right:before {
             content: "";
           }
@@ -382,11 +386,11 @@ body {
       }
       &:not(.ui-state-active) > a:hover {
         outline: 0 none;
-        border: 1px solid #494949;
-        background-color: #494949;
-        color: #ffffff;
+        border: 1px solid #dbdbdb;
+        background-color: #dbdbdb;
+        color: #333333;
         .ui-panelmenu-icon {
-          color: #ffffff;
+          color: #333333;
         }
       }
       &.ui-state-active > a {
