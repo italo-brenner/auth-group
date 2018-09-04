@@ -1,5 +1,5 @@
 import { Component, OnInit } from "@angular/core";
-import { MessageService } from "primeng/api";
+import { NotificationService } from "../../shared/components/notification/notification.service";
 
 @Component({
   selector: "app-plane-list",
@@ -7,16 +7,15 @@ import { MessageService } from "primeng/api";
   styleUrls: ["./plane-list.component.scss"]
 })
 export class PlaneListComponent implements OnInit {
-  constructor(private messageService: MessageService) {}
+  constructor(private notificationService: NotificationService) {}
 
   ngOnInit() {}
 
   showSuccess() {
-    console.log(this.messageService);
-    this.messageService.add({
-      severity: "success",
-      summary: "Success Message",
-      detail: "Order submitted"
-    });
+    this.notificationService.notify(
+      "success",
+      "Success Message",
+      "Order submitted"
+    );
   }
 }
