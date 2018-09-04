@@ -6,24 +6,21 @@ import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { HttpClientModule } from '@angular/common/http';
 import { NotFoundComponent } from './shared/pages/not-found/not-found.component';
-import { NotificationComponent } from './shared/components/notification/notification.component';
-import { NotificationService } from './shared/components/notification/notification.service';
-import { GrowlModule } from 'primeng/primeng';
+import { ToastModule } from 'primeng/toast';
 
 @NgModule({
   declarations: [
     AppComponent,
-    NotFoundComponent,
-    NotificationComponent
+    NotFoundComponent
   ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
     AppRoutingModule,
     HttpClientModule,
-    GrowlModule
+    ToastModule
   ],
-  providers: [NotificationService],
+  providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
