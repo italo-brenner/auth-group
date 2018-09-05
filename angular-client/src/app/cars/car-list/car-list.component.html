@@ -1,4 +1,4 @@
-<p-table [value]="cars" [paginator]="true" [rows]="10">
+<p-table [value]="cars">
     <ng-template pTemplate="caption">
         <div class="ui-helper-clearfix">
             <p-button routerLink="/cars/new" type="button" icon="fa fa-plus" label="Novo" style="float:left"></p-button>
@@ -25,3 +25,5 @@
         </tr>
     </ng-template>
 </p-table>
+<p-paginator [rows]="10" totalRecords="{{totalRecords}}" (onPageChange)="paginate($event)"></p-paginator>
+

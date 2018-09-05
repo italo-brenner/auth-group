@@ -1,7 +1,5 @@
 package br.com.authgroup.dbconfig;
 
-import java.util.Arrays;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -15,12 +13,12 @@ public class DBService {
 	private CarRepository carRepository;
 	
 	public void instantiateTestDatabase() {
-		Car car1 = new Car();
-		car1.setName("Volvo");
-		Car car2 = new Car();
-		car2.setName("Gol");
-		
-		carRepository.saveAll(Arrays.asList(car1, car2));
+		for (int i=0; i < 56; ++i) {
+			Car car = new Car();
+			car.setName("Car" + i);
+			
+			carRepository.save(car);
+		}
 	}
 	
 

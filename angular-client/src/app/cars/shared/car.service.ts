@@ -13,6 +13,14 @@ export class CarService {
     return this.http.get<any>('/api/cars')
       .toPromise();
   }
+
+  getCarsPage(page: string = '0') : Promise<any> {
+    return this.http.get<any>('/api/cars/page', {
+      params: {
+        'page' : page
+      }})
+      .toPromise();
+  }
   
   getCar(id) : Promise<Car> {
     return this.http.get<any>('/api/cars/' + id)

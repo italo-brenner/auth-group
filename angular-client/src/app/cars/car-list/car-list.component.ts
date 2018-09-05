@@ -10,6 +10,7 @@ import { ConfirmationService, MessageService } from "primeng/api";
 })
 export class CarListComponent implements OnInit {
   cars: Car[];
+  totalRecords: number;
 
   constructor(
     private carService: CarService,
@@ -18,10 +19,15 @@ export class CarListComponent implements OnInit {
   ) {}
 
   ngOnInit() {
+    this.listCars();
+  }
+
+  listCars(page: string = '0') {
     this.carService
-      .getCars()
-      .then(cars => {
-        this.cars = cars;
+      .getCarsPage(page)
+      .then(res => {
+        this.cars = res.content;
+        this.totalRecords = res.totalElements;
       })
       .catch(err => {
         this.messageService.add({
@@ -30,6 +36,14 @@ export class CarListComponent implements OnInit {
           detail: err.message
         });
       });
+  }
+
+  paginate(event) {
+    this.listCars(event.page);
+    //event.first = Index of the first record
+    //event.rows = Number of rows to display in new page
+    //event.page = Index of the new page
+    //event.pageCount = Total number of pages
   }
 
   deleteCar(id: string) {
