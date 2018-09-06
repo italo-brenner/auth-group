@@ -11,6 +11,7 @@ import { ConfirmationService, MessageService } from "primeng/api";
 export class CarListComponent implements OnInit {
   cars: Car[];
   totalRecords: number;
+  page: string;
 
   constructor(
     private carService: CarService,
@@ -23,6 +24,7 @@ export class CarListComponent implements OnInit {
   }
 
   listCars(page: string = '0') {
+    this.page = page;
     this.carService
       .getCarsPage(page)
       .then(res => {
@@ -56,17 +58,18 @@ export class CarListComponent implements OnInit {
   }
 
   onConfirmDeleteCar(id: string) {
-    this.carService.deleteCar(id).catch(err => {
-      this.messageService.add({
-        severity: "error",
-        summary: err.status + " " + err.statusText,
-        detail: err.message
-      });
-    });
-    let position = this.cars.findIndex(car => car.id === id);
-    if (position != -1) {
-      this.cars.splice(position, 1);
-    }
+    this.carService.deleteCar(id)
+      .then(res => {
+        console.log(res);
+        this.listCars(this.page);
+      })
+      .catch(err => {
+          this.messageService.add({
+            severity: "error",
+            summary: err.status + " " + err.statusText,
+            detail: err.message
+          });
+        });
   }
 
   onReject() {}
