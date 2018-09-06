@@ -3,6 +3,8 @@ package br.com.authgroup.core.database;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import br.com.authgroup.applicationuser.ApplicationUser;
+import br.com.authgroup.applicationuser.ApplicationUserRepository;
 import br.com.authgroup.book.Book;
 import br.com.authgroup.book.BookRepository;
 import br.com.authgroup.car.Car;
@@ -21,6 +23,9 @@ public class DBService {
 	
 	@Autowired
 	private PlaneRepository planeRepository;
+	
+	@Autowired
+	private ApplicationUserRepository applicationUserRepository;
 	
 	public void instantiateTestDatabase() {
 		for (int i=0; i < 56; ++i) {
@@ -43,6 +48,11 @@ public class DBService {
 			
 			planeRepository.save(plane);
 		}
+		
+		ApplicationUser root = new ApplicationUser();
+		root.setUsername("root");
+		root.setPassword("123");
+		applicationUserRepository.save(root);
 		
 	}
 	
