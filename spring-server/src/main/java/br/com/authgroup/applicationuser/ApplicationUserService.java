@@ -23,7 +23,7 @@ public class ApplicationUserService implements UserDetailsService {
 			throw new UsernameNotFoundException(username);
 		}
 		ApplicationUser applicationUser = optApplicationUser.get();
-		return new UserSS(applicationUser.getId() , applicationUser.getUsername(), applicationUser.getPassword());
+		return new UserSS(applicationUser.getId() , applicationUser.getUsername(), applicationUser.getPassword(), applicationUser.getUserGroup());
 	}
 
 }

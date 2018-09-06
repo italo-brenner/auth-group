@@ -27,6 +27,7 @@ public class JWTAuthenticationFilter extends UsernamePasswordAuthenticationFilte
 	
 	public JWTAuthenticationFilter(AuthenticationManager authenticationManager, JWTUtil jwtUtil) {
 		setAuthenticationFailureHandler(new JWTAuthenticationFailureHandler());
+		this.setFilterProcessesUrl("/api/login");
 		this.authenticationManager = authenticationManager;
 		this.jwtUtil = jwtUtil;
 	}

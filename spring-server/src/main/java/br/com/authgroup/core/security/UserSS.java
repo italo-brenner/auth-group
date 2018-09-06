@@ -1,9 +1,13 @@
 package br.com.authgroup.core.security;
 
+import java.util.Arrays;
 import java.util.Collection;
 
 import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
+
+import br.com.authgroup.usergroup.UserGroup;
 
 public class UserSS implements UserDetails {
 
@@ -17,10 +21,11 @@ public class UserSS implements UserDetails {
 	public UserSS() {
 	}
 	
-	public UserSS(Long id, String username, String password) {
+	public UserSS(Long id, String username, String password, UserGroup userGroup) {
 		this.id = id;
 		this.username = username;
 		this.password = password;
+		this.authorities = Arrays.asList(new SimpleGrantedAuthority(userGroup.getName()));
 	}
 	
 	public Long getId() {
