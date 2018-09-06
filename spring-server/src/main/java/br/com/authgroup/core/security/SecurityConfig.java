@@ -1,5 +1,7 @@
 package br.com.authgroup.core.security;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -14,6 +16,9 @@ import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.CorsConfigurationSource;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 
+import br.com.authgroup.resource.Resource;
+import br.com.authgroup.resource.ResourceRepository;
+
 @Configuration
 @EnableWebSecurity
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
@@ -22,11 +27,25 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	private UserDetailsService userDetailsService;
 	
 	@Autowired
+	private ResourceRepository resourceRepository;
+	
+	@Autowired
 	private JWTUtil jwtUtil;
 	
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 		http.cors().and().csrf().disable();
+		List<Resource> resources = resourceRepository.findAll();
+		
+		for (Resource resource : resources) {
+			http.authorizeRequests()
+				.antMatchers(resource.getMethod(), resource.getName())
+				//.hasAnyAuthority(resource.getListUserGroup().stream().map(userGroup -> userGroup.getName()).collect(Collectors.toList()).toArray(new String[resource.getListUserGroup().size()]))
+				.authenticated();
+			
+		}
+		
+		http.authorizeRequests().anyRequest().permitAll();
 		http.addFilter(new JWTAuthenticationFilter(authenticationManager(), jwtUtil));
 		http.addFilter(new JWTAuthorizationFilter(authenticationManager(), jwtUtil, userDetailsService));
 		http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);

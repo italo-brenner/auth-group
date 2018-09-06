@@ -1,5 +1,6 @@
 package br.com.authgroup.resource;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.Entity;
@@ -17,10 +18,12 @@ public class Resource {
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Long id;
 	
+	private String method;
+	
 	private String name;
 	
 	@ManyToMany(mappedBy="listResource")
-	private List<UserGroup> listUserGroup;
+	private List<UserGroup> listUserGroup = new ArrayList<>();
 
 	public Long getId() {
 		return id;
@@ -36,6 +39,14 @@ public class Resource {
 
 	public void setName(String name) {
 		this.name = name;
+	}
+
+	public String getMethod() {
+		return method;
+	}
+
+	public void setMethod(String method) {
+		this.method = method;
 	}
 
 	public List<UserGroup> getListUserGroup() {

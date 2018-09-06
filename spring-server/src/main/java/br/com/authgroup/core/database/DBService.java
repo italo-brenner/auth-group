@@ -11,6 +11,8 @@ import br.com.authgroup.car.Car;
 import br.com.authgroup.car.CarRepository;
 import br.com.authgroup.plane.Plane;
 import br.com.authgroup.plane.PlaneRepository;
+import br.com.authgroup.resource.Resource;
+import br.com.authgroup.resource.ResourceRepository;
 import br.com.authgroup.usergroup.UserGroup;
 import br.com.authgroup.usergroup.UserGroupRepository;
 
@@ -31,6 +33,9 @@ public class DBService {
 	
 	@Autowired
 	private UserGroupRepository userGroupRepository;
+	
+	@Autowired
+	private ResourceRepository resourceRepository;
 	
 	public void instantiateTestDatabase() {
 		for (int i=0; i < 56; ++i) {
@@ -64,6 +69,13 @@ public class DBService {
 		root.setUserGroup(userGroup);
 		applicationUserRepository.save(root);
 		
+		/*
+		Resource resource = new Resource();
+		resource.setMethod("GET");
+		resource.setName("/api/books/page");
+		resource.getListUserGroup().add(userGroup);
+		resourceRepository.save(resource);
+		*/
 	}
 	
 }
