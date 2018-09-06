@@ -1,4 +1,4 @@
-package br.com.authgroup.validationconfig.exception;
+package br.com.authgroup.core.exception;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -7,7 +7,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 
-import br.com.authgroup.validationconfig.StandardError;
+import br.com.authgroup.core.validation.StandardError;
 
 @ControllerAdvice
 public class AppExceptionHandler {

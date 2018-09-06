@@ -1,4 +1,4 @@
-package br.com.authgroup.appconfig;
+package br.com.authgroup.core.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

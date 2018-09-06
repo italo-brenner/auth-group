@@ -11,7 +11,7 @@ import { MessageModule } from 'primeng/message';
 import { PanelModule } from 'primeng/panel';
 import { CarEditComponent } from './car-edit/car-edit.component';
 import { AppSharedModule } from '../shared/app-shared.module';
-import { SharedModule, PaginatorModule } from 'primeng/primeng';
+import { PaginatorModule } from 'primeng/primeng';
 
 @NgModule({
   imports: [
@@ -20,7 +20,6 @@ import { SharedModule, PaginatorModule } from 'primeng/primeng';
     FormsModule,
     ReactiveFormsModule,
     AppSharedModule,
-    SharedModule,
     TableModule,
     PaginatorModule,
     PanelModule,

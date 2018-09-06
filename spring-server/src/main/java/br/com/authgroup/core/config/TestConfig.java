@@ -1,4 +1,4 @@
-package br.com.authgroup.appconfig;
+package br.com.authgroup.core.config;
 
 import java.text.ParseException;
 
@@ -7,7 +7,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Profile;
 
-import br.com.authgroup.dbconfig.DBService;
+import br.com.authgroup.core.database.DBService;
 
 @Configuration
 @Profile("test")

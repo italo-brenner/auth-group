@@ -9,7 +9,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort.Direction;
 import org.springframework.stereotype.Service;
 
-import br.com.authgroup.validationconfig.exception.ObjectNotFoundException;
+import br.com.authgroup.core.exception.ObjectNotFoundException;
 
 @Service
 public class CarService {

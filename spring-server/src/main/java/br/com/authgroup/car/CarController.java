@@ -19,15 +19,15 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/api/cars")
 public class CarController {
-	
+
 	@Autowired
 	private CarService carService;
-	
+
 	@GetMapping
 	public List<Car> listCars() {
 		return carService.listCars();
 	}
-	
+
 	@PostMapping
 	public void createCar(@RequestBody Car car) {
 		carService.createCar(car);
@@ -37,17 +37,17 @@ public class CarController {
 	public Car getCar(@PathVariable Long id) {
 		return carService.getCar(id);
 	}
-	
+
 	@PutMapping("/{id}")
 	public void updateCar(@RequestBody Car car) {
 		carService.updateCar(car);
 	}
-	
+
 	@DeleteMapping("/{id}")
 	public void deleteCar(@PathVariable Long id) {
 		carService.deleteCar(id);
 	}
-	
+
 	@RequestMapping(value="/page", method=RequestMethod.GET)
 	public ResponseEntity<Page<Car>> findPage(
 			@RequestParam(value="page", defaultValue="0") Integer page,
@@ -56,6 +56,6 @@ public class CarController {
 			@RequestParam(value="direction", defaultValue="ASC") String direction) {
 		Page<Car> cars = carService.findPage(page, linesPerPages, orderBy, direction);
 		return ResponseEntity.ok().body(cars);
-}
-	
+	}
+
 }

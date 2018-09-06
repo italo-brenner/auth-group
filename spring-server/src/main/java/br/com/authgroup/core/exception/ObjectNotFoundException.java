@@ -1,4 +1,4 @@
-package br.com.authgroup.validationconfig.exception;
+package br.com.authgroup.core.exception;
 
 public class ObjectNotFoundException extends RuntimeException {
 

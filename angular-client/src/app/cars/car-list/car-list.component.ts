@@ -42,10 +42,6 @@ export class CarListComponent implements OnInit {
 
   paginate(event) {
     this.listCars(event.page);
-    //event.first = Index of the first record
-    //event.rows = Number of rows to display in new page
-    //event.page = Index of the new page
-    //event.pageCount = Total number of pages
   }
 
   deleteCar(id: string) {
@@ -73,4 +69,5 @@ export class CarListComponent implements OnInit {
   }
 
   onReject() {}
+
 }

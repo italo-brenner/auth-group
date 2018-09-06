@@ -1,4 +1,4 @@
-package br.com.authgroup.dbconfig;
+package br.com.authgroup.core.database;
 
 import org.h2.server.web.WebServlet;
 import org.springframework.boot.web.servlet.ServletRegistrationBean;

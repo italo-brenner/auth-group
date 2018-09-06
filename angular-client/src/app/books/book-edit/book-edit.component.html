@@ -1,0 +1,27 @@
+<form [formGroup]="formGroup" (ngSubmit)="onSubmit(formGroup.value)">
+  <p-panel header="Livro">
+    <div class="ui-grid ui-grid-responsive ui-grid-pad ui-fluid" style="margin: 10px 0px">
+      <div class="ui-grid-row">
+        <div class="ui-grid-col-2">
+          Nome *:
+        </div>
+        <div class="ui-grid-col-6">
+          <input pInputText type="text" formControlName="name" placeholder="Nome" />
+        </div>
+        <div class="ui-grid-col-4">
+          <p-message severity="error" text="Nome eh obrigatorio" *ngIf="! formGroup.controls['name'].valid && formGroup.controls['name'].dirty"></p-message>
+        </div>
+      </div>
+      <div class="ui-grid-row">
+        <div class="ui-grid-col-2"></div>
+        <div class="ui-grid-col-3">
+          <button pButton type="submit" label="Confimar" [disabled]="! formGroup.valid"></button>
+        </div>
+        <div class="ui-grid-col-3">
+          <button pButton class="ui-button-secondary" type="button" label="Cancelar" (click)="cancel()"></button>
+        </div>
+        <div class="ui-grid-col-4"></div>
+      </div>
+    </div>
+  </p-panel>
+</form>

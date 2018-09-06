@@ -1,4 +1,4 @@
-package br.com.authgroup.validationconfig;
+package br.com.authgroup.core.validation;
 
 import java.io.Serializable;
 
