@@ -63,7 +63,6 @@ export class BookEditComponent implements OnInit {
         this.onConfirmEditBook(book);
       }
     });
-    
   }
 
   onConfirmEditBook(book: Book) {
