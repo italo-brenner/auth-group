@@ -28,6 +28,10 @@ const routes: Routes = [
     loadChildren: 'src/app/planes/planes.module#PlanesModule'
   },
   {
+    path: 'resources',
+    loadChildren: 'src/app/resources/resources.module#ResourcesModule'
+  },
+  {
     path: 'not-found',
     component: NotFoundComponent
   },

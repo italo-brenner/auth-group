@@ -1,0 +1,30 @@
+<p-table [value]="resources">
+  <ng-template pTemplate="caption">
+    <div class="ui-helper-clearfix">
+      <p-button routerLink="/resources/new" type="button" icon="fa fa-plus" label="Novo" style="float:left"></p-button>
+    </div>
+  </ng-template>
+  <ng-template pTemplate="header">
+    <tr>
+      <th>Id</th>
+      <th>Method</th>
+      <th>Name</th>
+      <th class="ui-column-icon"></th>
+      <th class="ui-column-icon"></th>
+    </tr>
+  </ng-template>
+  <ng-template pTemplate="body" let-resource>
+    <tr>
+      <td>{{resource.id}}</td>
+      <td>{{resource.method}}</td>
+      <td>{{resource.name}}</td>
+      <td>
+        <p-button routerLink="/resources/{{resource.id}}" label="" icon="fa fa-edit"></p-button>
+      </td>
+      <td>
+        <p-button (click)="deleteResource(resource.id)" label="" icon="fa fa-trash"></p-button>
+      </td>
+    </tr>
+  </ng-template>
+</p-table>
+<p-paginator [rows]="10" totalRecords="{{totalRecords}}" (onPageChange)="paginate($event)"></p-paginator>
