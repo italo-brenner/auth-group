@@ -1,6 +1,7 @@
 package br.com.authgroup.core.security;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -35,14 +36,12 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 		http.cors().and().csrf().disable();
-		List<Resource> resources = resourceRepository.findAll();
+		List<Resource> resources = resourceRepository.listEagerUserGroup();
 		
 		for (Resource resource : resources) {
 			http.authorizeRequests()
 				.antMatchers(resource.getMethod(), resource.getName())
-				//.hasAnyAuthority(resource.getListUserGroup().stream().map(userGroup -> userGroup.getName()).collect(Collectors.toList()).toArray(new String[resource.getListUserGroup().size()]))
-				.authenticated();
-			
+				.hasAnyAuthority(resource.getListUserGroup().stream().map(userGroup -> userGroup.getName()).collect(Collectors.toList()).toArray(new String[resource.getListUserGroup().size()]));
 		}
 		
 		http.authorizeRequests().anyRequest().permitAll();

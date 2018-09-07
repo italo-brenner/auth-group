@@ -59,8 +59,14 @@ public class DBService {
 			planeRepository.save(plane);
 		}
 		
+		Resource resource = new Resource();
+		resource.setMethod("GET");
+		resource.setName("/api/books/page");
+		resourceRepository.save(resource);
+		
 		UserGroup userGroup = new UserGroup();
 		userGroup.setName("ROLE_ROOT");
+		userGroup.getListResource().add(resource);
 		userGroupRepository.save(userGroup);
 		
 		ApplicationUser root = new ApplicationUser();
@@ -68,14 +74,6 @@ public class DBService {
 		root.setPassword("123");
 		root.setUserGroup(userGroup);
 		applicationUserRepository.save(root);
-		
-		/*
-		Resource resource = new Resource();
-		resource.setMethod("GET");
-		resource.setName("/api/books/page");
-		resource.getListUserGroup().add(userGroup);
-		resourceRepository.save(resource);
-		*/
 	}
 	
 }

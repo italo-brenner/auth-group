@@ -1,5 +1,6 @@
 package br.com.authgroup.usergroup;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.Entity;
@@ -25,10 +26,10 @@ public class UserGroup {
 	private String name;
 	
 	@OneToMany(mappedBy="userGroup")
-	private List<ApplicationUser> listApplicationUser;
+	private List<ApplicationUser> listApplicationUser = new ArrayList<>();
 	
 	@ManyToMany
-	private List<Resource> listResource;
+	private List<Resource> listResource = new ArrayList<>();
 	
 	@OneToMany(mappedBy="userGroup")
 	@JsonManagedReference
