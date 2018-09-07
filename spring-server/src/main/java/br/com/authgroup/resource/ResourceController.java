@@ -34,8 +34,10 @@ public class ResourceController {
 	}
 
 	@GetMapping("/{id}")
-	public Resource getResource(@PathVariable Long id) {
-		return resourceService.getResource(id);
+	public ResourceDTO getResource(@PathVariable Long id) {
+		Resource resource = resourceService.getResource(id);
+		ResourceDTO resourceDTO = new ResourceDTO(resource);
+		return resourceDTO;
 	}
 
 	@PutMapping("/{id}")

@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 
 import br.com.authgroup.resource.Resource;
 import br.com.authgroup.resource.ResourceRepository;
+import br.com.authgroup.usergroup.UserGroup;
 import br.com.authgroup.core.exception.ObjectNotFoundException;
 
 @Service
@@ -46,8 +47,11 @@ public class ResourceService {
 	}
 	
 	public void deleteResource(Long id) {
-		existsResource(id);
-		resourceRepository.deleteById(id);
+		Resource mResource = getResource(id);
+		for (UserGroup userGroup : mResource.getListUserGroup()) {
+			userGroup.getListResource().remove(mResource);
+		}
+		resourceRepository.delete(mResource);
 	}
 
 	public Page<Resource> findPage(Integer page, Integer linesPerPages, String orderBy, String direction) {

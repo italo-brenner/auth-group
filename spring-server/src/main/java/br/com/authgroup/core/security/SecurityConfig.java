@@ -6,6 +6,7 @@ import java.util.stream.Collectors;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
@@ -40,7 +41,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 		
 		for (Resource resource : resources) {
 			http.authorizeRequests()
-				.antMatchers(resource.getMethod(), resource.getName())
+				.antMatchers(HttpMethod.valueOf(resource.getMethod()), resource.getName())
 				.hasAnyAuthority(resource.getListUserGroup().stream().map(userGroup -> userGroup.getName()).collect(Collectors.toList()).toArray(new String[resource.getListUserGroup().size()]));
 		}
 		
