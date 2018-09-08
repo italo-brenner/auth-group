@@ -28,7 +28,7 @@ public class UserGroup {
 	@OneToMany(mappedBy="userGroup")
 	private List<ApplicationUser> listApplicationUser = new ArrayList<>();
 	
-	@ManyToMany
+	@ManyToMany(mappedBy="listUserGroup")
 	private List<Resource> listResource = new ArrayList<>();
 	
 	@OneToMany(mappedBy="userGroup")

@@ -58,16 +58,16 @@ public class DBService {
 			
 			planeRepository.save(plane);
 		}
+
+		UserGroup userGroup = new UserGroup();
+		userGroup.setName("ROLE_ROOT");
+		userGroupRepository.save(userGroup);
 		
 		Resource resource = new Resource();
 		resource.setMethod("GET");
 		resource.setName("/api/books/page");
+		resource.getListUserGroup().add(userGroup);
 		resourceRepository.save(resource);
-		
-		UserGroup userGroup = new UserGroup();
-		userGroup.setName("ROLE_ROOT");
-		userGroup.getListResource().add(resource);
-		userGroupRepository.save(userGroup);
 		
 		ApplicationUser root = new ApplicationUser();
 		root.setUsername("root");

@@ -1,0 +1,28 @@
+<p-table [value]="userGroups">
+  <ng-template pTemplate="caption">
+      <div class="ui-helper-clearfix">
+          <p-button routerLink="/usergroups/new" type="button" icon="fa fa-plus" label="Novo" style="float:left"></p-button>
+      </div>
+  </ng-template>
+  <ng-template pTemplate="header">
+      <tr>
+          <th>Id</th>
+          <th>Name</th>
+          <th class="ui-column-icon"></th>
+          <th class="ui-column-icon"></th>
+      </tr>
+  </ng-template>
+  <ng-template pTemplate="body" let-userGroup>
+      <tr>
+          <td>{{userGroup.id}}</td>
+          <td>{{userGroup.name}}</td>
+          <td>
+              <p-button routerLink="/usergroups/{{userGroup.id}}" label="" icon="fa fa-edit"></p-button>
+          </td>
+          <td>
+              <p-button (click)="deleteUserGroup(userGroup.id)" label="" icon="fa fa-trash"></p-button>
+          </td>
+      </tr>
+  </ng-template>
+</p-table>
+<p-paginator [rows]="10" totalRecords="{{totalRecords}}" (onPageChange)="paginate($event)"></p-paginator>

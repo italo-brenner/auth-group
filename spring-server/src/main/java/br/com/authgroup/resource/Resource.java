@@ -22,7 +22,7 @@ public class Resource {
 	
 	private String name;
 	
-	@ManyToMany(mappedBy="listResource")
+	@ManyToMany
 	private List<UserGroup> listUserGroup = new ArrayList<>();
 
 	public Long getId() {
