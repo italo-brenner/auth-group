@@ -7,7 +7,11 @@ import { UserLoginComponent } from './user-login/user-login.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { PanelModule } from 'primeng/panel';
 import { ButtonModule } from 'primeng/button';
-import { InputTextModule, MessageModule } from 'primeng/primeng';
+import { InputTextModule, MessageModule, PaginatorModule } from 'primeng/primeng';
+import { UserEditComponent } from './user-edit/user-edit.component';
+import { UserListComponent } from './user-list/user-list.component';
+import { AppSharedModule } from '../shared/app-shared.module';
+import { TableModule } from 'primeng/table';
 
 @NgModule({
   imports: [
@@ -15,11 +19,14 @@ import { InputTextModule, MessageModule } from 'primeng/primeng';
     UsersRoutingModule,
     FormsModule,
     ReactiveFormsModule,
+    AppSharedModule,
+    TableModule,
+    PaginatorModule,
     PanelModule,
     ButtonModule,
     InputTextModule,
     MessageModule
   ],
-  declarations: [UsersComponent, UserLoginComponent]
+  declarations: [UsersComponent, UserLoginComponent, UserEditComponent, UserListComponent]
 })
 export class UsersModule { }

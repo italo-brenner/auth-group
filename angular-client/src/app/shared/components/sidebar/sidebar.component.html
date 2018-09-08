@@ -9,13 +9,17 @@
         <i class="fa fa-user"></i>
         <span>Login</span>
       </a>
+      <a [routerLink]="['/users']" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}">
+        <i class="fa fa-users"></i>
+        <span>Usuários</span>
+      </a>
       <a [routerLink]="['/resources']" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}">
         <i class="fa fa-sitemap"></i>
-        <span>Resources</span>
+        <span>Recursos</span>
       </a>
       <a [routerLink]="['/usergroups']" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}">
         <i class="fa fa-users"></i>
-        <span>User Group</span>
+        <span>Grupos Usuários</span>
       </a>
       <a [routerLink]="['/page1']" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}">
         <i class="fa fa-file"></i>
