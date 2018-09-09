@@ -24,6 +24,17 @@
         </div>
       </div>
       <div class="ui-grid-row">
+        <div class="ui-grid-col-2">
+          Grupo Usuário *:
+        </div>
+        <div class="ui-grid-col-6">
+          <p-dropdown [options]="userGroups" formControlName="userGroup" placeholder="Selecione" optionLabel="name"></p-dropdown>
+        </div>
+        <div class="ui-grid-col-4">
+          <p-message severity="error" text="Grupo do Usuário é obrigatório" *ngIf="! formGroup.controls['userGroup'].valid && formGroup.controls['userGroup'].dirty"></p-message>
+        </div>
+      </div>
+      <div class="ui-grid-row">
         <div class="ui-grid-col-2"></div>
         <div class="ui-grid-col-3">
           <button pButton type="submit" label="Confimar" [disabled]="! formGroup.valid"></button>

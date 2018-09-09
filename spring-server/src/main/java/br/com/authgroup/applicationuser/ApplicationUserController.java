@@ -1,6 +1,7 @@
 package br.com.authgroup.applicationuser;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -24,8 +25,9 @@ public class ApplicationUserController {
 	private ApplicationUserService applicationUserService;
 
 	@GetMapping
-	public List<ApplicationUser> listApplicationUsers() {
-		return applicationUserService.listApplicationUsers();
+	public List<ApplicationUserDTO> listApplicationUsers() {
+		List<ApplicationUserDTO> listApplicationUserDTO = applicationUserService.listApplicationUsers().stream().map(applicationUser -> new ApplicationUserDTO(applicationUser)).collect(Collectors.toList());
+		return listApplicationUserDTO;
 	}
 
 	@PostMapping

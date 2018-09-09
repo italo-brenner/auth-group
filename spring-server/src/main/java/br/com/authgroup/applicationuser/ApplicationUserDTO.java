@@ -2,6 +2,8 @@ package br.com.authgroup.applicationuser;
 
 import java.io.Serializable;
 
+import br.com.authgroup.usergroup.UserGroupDTO;
+
 public class ApplicationUserDTO implements Serializable {
 	
 	private static final long serialVersionUID = 1L;
@@ -11,6 +13,8 @@ public class ApplicationUserDTO implements Serializable {
 	private String username;
 	
 	private String password;
+	
+	private UserGroupDTO userGroup;
 
 	public ApplicationUserDTO() {
 	}
@@ -19,6 +23,7 @@ public class ApplicationUserDTO implements Serializable {
 		this.id = applicationUser.getId();
 		this.username = applicationUser.getUsername();
 		this.password = applicationUser.getPassword();
+		this.userGroup = new UserGroupDTO(applicationUser.getUserGroup());
 	}
 	
 	public Long getId() {
@@ -43,6 +48,14 @@ public class ApplicationUserDTO implements Serializable {
 
 	public void setPassword(String password) {
 		this.password = password;
+	}
+
+	public UserGroupDTO getUserGroup() {
+		return userGroup;
+	}
+
+	public void setUserGroup(UserGroupDTO userGroup) {
+		this.userGroup = userGroup;
 	}
 	
 }
