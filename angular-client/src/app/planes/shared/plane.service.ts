@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Plane } from './plane.model';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -9,34 +10,31 @@ export class PlaneService {
 
   constructor(private http: HttpClient) { }
 
-  getPlanes() : Promise<Plane[]> {
-    return this.http.get<any>('/api/planes')
-      .toPromise();
+  getPlanes() : Observable<Plane[]> {
+    return this.http.get<any>('/api/planes');
   }
 
-  getPlanesPage(page: string = '0') : Promise<any> {
+  getPlanesPage(page: string = '0') : Observable<any> {
     return this.http.get<any>('/api/planes/page', {
       params: {
         'page' : page
-      }})
-      .toPromise();
+      }});
   }
   
-  getPlane(id) : Promise<Plane> {
-    return this.http.get<any>('/api/planes/' + id)
-      .toPromise();
+  getPlane(id) : Observable<Plane> {
+    return this.http.get<any>('/api/planes/' + id);
   }
 
-  createPlane(plane : Plane) : Promise<any> {
-    return this.http.post<any>('/api/planes', plane).toPromise();
+  createPlane(plane : Plane) : Observable<any> {
+    return this.http.post<any>('/api/planes', plane);
   }
 
-  updatePlane(plane : Plane) : Promise<any> {
-    return this.http.put<any>('/api/planes/' + plane.id, plane).toPromise();
+  updatePlane(plane : Plane) : Observable<any> {
+    return this.http.put<any>('/api/planes/' + plane.id, plane);
   }
 
-  deletePlane(id : string) : Promise<any> {
-    return this.http.delete<any>('/api/planes/' + id).toPromise();
+  deletePlane(id : string) : Observable<any> {
+    return this.http.delete<any>('/api/planes/' + id);
   }
 
 }

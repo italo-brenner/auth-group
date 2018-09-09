@@ -35,11 +35,10 @@ export class BookEditComponent implements OnInit {
     if (bookId) {
       this.bookService
         .getBook(bookId)
-        .then(book => {
+        .subscribe(book => {
           this.book = book;
           this.formGroup.controls.name.setValue(this.book.name);
-        })
-        .catch(err => {
+        }, err => {
           if (err.status == 404) {
             this.router.navigate(["/not-found"], { replaceUrl: true });
           } else {
@@ -69,7 +68,9 @@ export class BookEditComponent implements OnInit {
     if (this.book.id) {
       book.id = this.book.id;
       this.bookService.updateBook(book)
-        .catch(err => {
+        .subscribe(() =>{
+          this.router.navigate(["/books"]);
+        }, err => {
           this.messageService.add({
             severity: "error",
             summary: err.status + " " + err.statusText,
@@ -78,7 +79,9 @@ export class BookEditComponent implements OnInit {
       });
     } else {
       this.bookService.createBook(book)
-        .catch(err => {
+        .subscribe(() =>{
+          this.router.navigate(["/books"]);
+        }, err => {
           this.messageService.add({
             severity: "error",
             summary: err.status + " " + err.statusText,
@@ -86,7 +89,7 @@ export class BookEditComponent implements OnInit {
           });
         });
     }
-    this.router.navigate(["/books"]);
+    
   }
 
   cancel() {

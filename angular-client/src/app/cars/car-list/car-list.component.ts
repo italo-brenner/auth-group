@@ -27,11 +27,10 @@ export class CarListComponent implements OnInit {
     this.page = page;
     this.carService
       .getCarsPage(page)
-      .then(res => {
+      .subscribe(res => {
         this.cars = res.content;
         this.totalRecords = res.totalElements;
-      })
-      .catch(err => {
+      }, err => {
         this.messageService.add({
           severity: "error",
           summary: err.status + " " + err.statusText,
@@ -55,17 +54,16 @@ export class CarListComponent implements OnInit {
 
   onConfirmDeleteCar(id: string) {
     this.carService.deleteCar(id)
-      .then(res => {
+      .subscribe(res => {
         console.log(res);
         this.listCars(this.page);
-      })
-      .catch(err => {
-          this.messageService.add({
-            severity: "error",
-            summary: err.status + " " + err.statusText,
-            detail: err.message
-          });
+      }, err => {
+        this.messageService.add({
+          severity: "error",
+          summary: err.status + " " + err.statusText,
+          detail: err.message
         });
+      });
   }
 
   onReject() {}

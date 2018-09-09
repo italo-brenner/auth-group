@@ -28,11 +28,10 @@ export class PlaneListComponent implements OnInit {
     this.page = page;
     this.planeService
       .getPlanesPage(page)
-      .then(res => {
+      .subscribe(res => {
         this.planes = res.content;
         this.totalRecords = res.totalElements;
-      })
-      .catch(err => {
+      }, err => {
         this.messageService.add({
           severity: "error",
           summary: err.status + " " + err.statusText,
@@ -56,17 +55,16 @@ export class PlaneListComponent implements OnInit {
 
   onConfirmDeletePlane(id: string) {
     this.planeService.deletePlane(id)
-      .then(res => {
+      .subscribe(res => {
         console.log(res);
         this.listPlanes(this.page);
-      })
-      .catch(err => {
-          this.messageService.add({
-            severity: "error",
-            summary: err.status + " " + err.statusText,
-            detail: err.message
-          });
+      }, err => {
+        this.messageService.add({
+          severity: "error",
+          summary: err.status + " " + err.statusText,
+          detail: err.message
         });
+      });
   }
 
   onReject() {}

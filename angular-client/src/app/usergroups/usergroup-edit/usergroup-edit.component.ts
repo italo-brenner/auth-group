@@ -70,6 +70,9 @@ export class UserGroupEditComponent implements OnInit {
     if (this.userGroup.id) {
       userGroup.id = this.userGroup.id;
       this.userGroupService.updateUserGroup(userGroup)
+        .then(() => {
+          this.router.navigate(["/usergroups"]);
+        })
         .catch(err => {
           this.messageService.add({
             severity: "error",
@@ -79,6 +82,9 @@ export class UserGroupEditComponent implements OnInit {
       });
     } else {
       this.userGroupService.createUserGroup(userGroup)
+        .then(() => {
+          this.router.navigate(["/usergroups"]);
+        })
         .catch(err => {
           this.messageService.add({
             severity: "error",
@@ -87,7 +93,6 @@ export class UserGroupEditComponent implements OnInit {
           });
         });
     }
-    this.router.navigate(["/usergroups"]);
   }
 
   cancel() {

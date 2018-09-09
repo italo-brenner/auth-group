@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { User } from '../shared/user.model';
+import { UserService } from '../shared/user.service';
+import { Router } from '@angular/router';
+import { MessageService } from 'primeng/api';
 
 @Component({
   selector: 'app-user-login',
@@ -13,7 +16,10 @@ export class UserLoginComponent implements OnInit {
   user: User;
 
   constructor(
-    private formBuilder: FormBuilder
+    private formBuilder: FormBuilder,
+    private userService: UserService,
+    private router: Router,
+    private messageService: MessageService
   ) {
     this.formGroup = this.formBuilder.group({
       username: ["", [Validators.required]],
@@ -22,6 +28,22 @@ export class UserLoginComponent implements OnInit {
   }
 
   ngOnInit() {
+  }
+
+  onSubmit(user: User) {
+    this.userService.login(user)
+      .subscribe(response  => {
+        console.log(response);
+        this.userService.successfulLogin(response.headers.get('Authorization'));
+        this.router.navigate(["/"]);
+      },
+      error => {
+        this.messageService.add({
+          severity: "error",
+          summary: error.status + " " + error.statusText,
+          detail: error.message
+        });
+      });
   }
 
 }

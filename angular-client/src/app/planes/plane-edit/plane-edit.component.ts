@@ -35,11 +35,10 @@ export class PlaneEditComponent implements OnInit {
     if (planeId) {
       this.planeService
         .getPlane(planeId)
-        .then(plane => {
+        .subscribe(plane => {
           this.plane = plane;
           this.formGroup.controls.name.setValue(this.plane.name);
-        })
-        .catch(err => {
+        }, err => {
           if (err.status == 404) {
             this.router.navigate(["/not-found"], { replaceUrl: true });
           } else {
@@ -70,7 +69,9 @@ export class PlaneEditComponent implements OnInit {
     if (this.plane.id) {
       plane.id = this.plane.id;
       this.planeService.updatePlane(plane)
-        .catch(err => {
+        .subscribe(()=>{
+          this.router.navigate(["/planes"]);
+        }, err => {
           this.messageService.add({
             severity: "error",
             summary: err.status + " " + err.statusText,
@@ -79,7 +80,9 @@ export class PlaneEditComponent implements OnInit {
       });
     } else {
       this.planeService.createPlane(plane)
-        .catch(err => {
+        .subscribe(()=>{
+          this.router.navigate(["/planes"]);
+        }, err => {
           this.messageService.add({
             severity: "error",
             summary: err.status + " " + err.statusText,
@@ -87,7 +90,6 @@ export class PlaneEditComponent implements OnInit {
           });
         });
     }
-    this.router.navigate(["/planes"]);
   }
 
   cancel() {

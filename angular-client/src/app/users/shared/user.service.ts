@@ -1,42 +1,57 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { User } from './user.model';
+import { LocalUser } from '../../shared/model/local-user.model';
+import { StorageService } from '../../shared/service/storage.service';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class UserService {
 
-  constructor(private http: HttpClient) { }
+  constructor(
+    private http: HttpClient,
+    public storage : StorageService
+  ) { }
 
-  getUsers() : Promise<User[]> {
-    return this.http.get<any>('/api/applicationusers')
-      .toPromise();
+  getUsers() : Observable<User[]> {
+    return this.http.get<any>('/api/applicationusers');
   }
 
-  getUsersPage(page: string = '0') : Promise<any> {
+  getUsersPage(page: string = '0') : Observable<any> {
     return this.http.get<any>('/api/applicationusers/page', {
       params: {
         'page' : page
-      }})
-      .toPromise();
+      }});
   }
   
-  getUser(id) : Promise<User> {
-    return this.http.get<any>('/api/applicationusers/' + id)
-      .toPromise();
+  getUser(id) : Observable<User> {
+    return this.http.get<any>('/api/applicationusers/' + id);
   }
 
-  createUser(user : User) : Promise<any> {
-    return this.http.post<any>('/api/applicationusers', user).toPromise();
+  createUser(user : User) : Observable<any> {
+    return this.http.post<any>('/api/applicationusers', user);
   }
 
-  updateUser(user : User) : Promise<any> {
-    return this.http.put<any>('/api/applicationusers/' + user.id, user).toPromise();
+  updateUser(user : User) : Observable<any> {
+    return this.http.put<any>('/api/applicationusers/' + user.id, user);
   }
 
-  deleteUser(id : string) : Promise<any> {
-    return this.http.delete<any>('/api/applicationusers/' + id).toPromise();
+  deleteUser(id : string) : Observable<any> {
+    return this.http.delete<any>('/api/applicationusers/' + id);
+  }
+
+  login(user: User) : Observable<any> {
+    return this.http.post('/api/login', user, {observe: 'response',responseType: 'text'});
+  }
+
+  successfulLogin(authorizationValue : string) {
+    let vToken = authorizationValue.substring(7);
+    let user : LocalUser = {
+        token : vToken
+    };
+    this.storage.setLocalUser(user);
   }
 
 }

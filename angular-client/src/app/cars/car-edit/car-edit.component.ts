@@ -34,11 +34,10 @@ export class CarEditComponent implements OnInit {
     if (carId) {
       this.carService
         .getCar(carId)
-        .then(car => {
+        .subscribe(car => {
           this.car = car;
           this.formGroup.controls.name.setValue(this.car.name);
-        })
-        .catch(err => {
+        }, err => {
           if (err.status == 404) {
             this.router.navigate(["/not-found"], { replaceUrl: true });
           } else {
@@ -69,7 +68,9 @@ export class CarEditComponent implements OnInit {
     if (this.car.id) {
       car.id = this.car.id;
       this.carService.updateCar(car)
-        .catch(err => {
+        .subscribe(() =>{
+          this.router.navigate(["/cars"]);
+        }, err => {
           this.messageService.add({
             severity: "error",
             summary: err.status + " " + err.statusText,
@@ -78,7 +79,9 @@ export class CarEditComponent implements OnInit {
       });
     } else {
       this.carService.createCar(car)
-        .catch(err => {
+        .subscribe(() =>{
+          this.router.navigate(["/cars"]);
+        }, err => {
           this.messageService.add({
             severity: "error",
             summary: err.status + " " + err.statusText,
@@ -86,7 +89,6 @@ export class CarEditComponent implements OnInit {
           });
         });
     }
-    this.router.navigate(["/cars"]);
   }
 
   cancel() {

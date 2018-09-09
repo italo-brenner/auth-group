@@ -27,11 +27,10 @@ export class BookListComponent implements OnInit {
     this.page = page;
     this.bookService
       .getBooksPage(page)
-      .then(res => {
+      .subscribe(res => {
         this.books = res.content;
         this.totalRecords = res.totalElements;
-      })
-      .catch(err => {
+      }, err => {
         this.messageService.add({
           severity: "error",
           summary: err.status + " " + err.statusText,
@@ -55,11 +54,10 @@ export class BookListComponent implements OnInit {
 
   onConfirmDeleteBook(id: string) {
     this.bookService.deleteBook(id)
-      .then(res => {
+      .subscribe(res => {
         console.log(res);
         this.listBooks(this.page);
-      })
-      .catch(err => {
+      }, err => {
           this.messageService.add({
             severity: "error",
             summary: err.status + " " + err.statusText,

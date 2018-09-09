@@ -8,6 +8,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { NotFoundComponent } from './shared/pages/not-found/not-found.component';
 import { ToastModule } from 'primeng/toast';
 import { ConfirmDialogModule, ConfirmationService, MessageService } from 'primeng/primeng';
+import { AuthInterceptorProvider } from './shared/inteceptor/auth-interceptor';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { ConfirmDialogModule, ConfirmationService, MessageService } from 'primen
   ],
   providers: [
     MessageService,
-    ConfirmationService
+    ConfirmationService,
+    AuthInterceptorProvider
   ],
   bootstrap: [AppComponent]
 })

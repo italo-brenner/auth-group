@@ -28,11 +28,10 @@ export class ResourceListComponent implements OnInit {
     this.page = page;
     this.resourceService
       .getResourcesPage(page)
-      .then(res => {
+      .subscribe(res => {
         this.resources = res.content;
         this.totalRecords = res.totalElements;
-      })
-      .catch(err => {
+      }, err => {
         this.messageService.add({
           severity: "error",
           summary: err.status + " " + err.statusText,
@@ -56,17 +55,16 @@ export class ResourceListComponent implements OnInit {
 
   onConfirmDeleteResource(id: string) {
     this.resourceService.deleteResource(id)
-      .then(res => {
+      .subscribe(res => {
         console.log(res);
         this.listResources(this.page);
-      })
-      .catch(err => {
-          this.messageService.add({
-            severity: "error",
-            summary: err.status + " " + err.statusText,
-            detail: err.message
-          });
+      }, err => {
+        this.messageService.add({
+          severity: "error",
+          summary: err.status + " " + err.statusText,
+          detail: err.message
         });
+      });
   }
 
   onReject() {}

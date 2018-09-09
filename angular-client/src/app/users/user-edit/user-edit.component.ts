@@ -41,13 +41,12 @@ export class UserEditComponent implements OnInit {
     if (userId) {
       this.userService
         .getUser(userId)
-        .then(user => {
+        .subscribe(user => {
           this.user = user;
           this.formGroup.controls.username.setValue(this.user.username);
           this.formGroup.controls.password.setValue(this.user.password);
           this.formGroup.controls.userGroup.setValue(this.user.userGroup);
-        })
-        .catch(err => {
+        }, err => {
           if (err.status == 404) {
             this.router.navigate(["/not-found"], { replaceUrl: true });
           } else {
@@ -90,10 +89,9 @@ export class UserEditComponent implements OnInit {
     if (this.user.id) {
       user.id = this.user.id;
       this.userService.updateUser(user)
-        .then(() => {
+        .subscribe(() => {
           this.router.navigate(["/users"]);
-        })
-        .catch(err => {
+        }, err => {
           this.messageService.add({
             severity: "error",
             summary: err.status + " " + err.statusText,
@@ -102,10 +100,9 @@ export class UserEditComponent implements OnInit {
       });
     } else {
       this.userService.createUser(user)
-        .then(() => {
+        .subscribe(() => {
           this.router.navigate(["/users"]);
-        })
-        .catch(err => {
+        }, err => {
           this.messageService.add({
             severity: "error",
             summary: err.status + " " + err.statusText,

@@ -60,7 +60,7 @@ public class DBService {
 		}
 
 		UserGroup userGroup = new UserGroup();
-		userGroup.setName("ROLE_ROOT");
+		userGroup.setName("ROLE_PLANE");
 		userGroupRepository.save(userGroup);
 		
 		userGroup = new UserGroup();
@@ -68,7 +68,7 @@ public class DBService {
 		userGroupRepository.save(userGroup);
 		
 		userGroup = new UserGroup();
-		userGroup.setName("ROLE_PLANE");
+		userGroup.setName("ROLE_ROOT");
 		userGroupRepository.save(userGroup);
 		
 		Resource resource = new Resource();

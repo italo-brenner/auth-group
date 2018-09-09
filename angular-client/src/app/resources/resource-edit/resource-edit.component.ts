@@ -55,12 +55,11 @@ export class ResourceEditComponent implements OnInit {
     if (resourceId) {
       this.resourceService
         .getResource(resourceId)
-        .then(resource => {
+        .subscribe(resource => {
           this.resource = resource;
           this.formGroup.controls.method.setValue(this.resource.method);
           this.formGroup.controls.name.setValue(this.resource.name);
-        })
-        .catch(err => {
+        }, err => {
           if (err.status == 404) {
             this.router.navigate(["/not-found"], { replaceUrl: true });
           } else {
@@ -83,10 +82,9 @@ export class ResourceEditComponent implements OnInit {
   initPickList(id?: string) {
     if (id) {
       this.resourceService.getNotUserGroupFromResource(id)
-        .then(usergroup => {
+        .subscribe(usergroup => {
           this.sourcelist = usergroup;
-        })
-        .catch(err => {
+        }, err => {
           this.messageService.add({
             severity: "error",
             summary: err.status + " " + err.statusText,
@@ -94,10 +92,9 @@ export class ResourceEditComponent implements OnInit {
           });
         });
       this.resourceService.getUserGroupFromResource(id)
-        .then(usergroup => {
+        .subscribe(usergroup => {
           this.targetlist = usergroup;
-        })
-        .catch(err => {
+        }, err => {
           this.messageService.add({
             severity: "error",
             summary: err.status + " " + err.statusText,
@@ -135,10 +132,9 @@ export class ResourceEditComponent implements OnInit {
     if (this.resource.id) {
       resource.id = this.resource.id;
       this.resourceService.updateResource(resource)
-        .then(() =>{
+        .subscribe(() =>{
           this.router.navigate(["/resources"]);
-        })
-        .catch(err => {
+        }, err => {
           this.messageService.add({
             severity: "error",
             summary: err.status + " " + err.statusText,
@@ -147,10 +143,9 @@ export class ResourceEditComponent implements OnInit {
       });
     } else {
       this.resourceService.createResource(resource)
-        .then(() =>{
+        .subscribe(() =>{
           this.router.navigate(["/resources"]);
-        })
-        .catch(err => {
+        }, err => {
           this.messageService.add({
             severity: "error",
             summary: err.status + " " + err.statusText,

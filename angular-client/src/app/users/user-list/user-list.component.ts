@@ -28,15 +28,14 @@ export class UserListComponent implements OnInit {
     this.page = page;
     this.userService
       .getUsersPage(page)
-      .then(res => {
-        this.users = res.content;
-        this.totalRecords = res.totalElements;
-      })
-      .catch(err => {
+      .subscribe(response => {
+        this.users = response.content;
+        this.totalRecords = response.totalElements;
+      }, error => {
         this.messageService.add({
           severity: "error",
-          summary: err.status + " " + err.statusText,
-          detail: err.message
+          summary: error.status + " " + error.statusText,
+          detail: error.message
         });
       });
   }
@@ -56,17 +55,15 @@ export class UserListComponent implements OnInit {
 
   onConfirmDeleteUser(id: string) {
     this.userService.deleteUser(id)
-      .then(res => {
-        console.log(res);
+      .subscribe(() => {
         this.listUsers(this.page);
-      })
-      .catch(err => {
-          this.messageService.add({
-            severity: "error",
-            summary: err.status + " " + err.statusText,
-            detail: err.message
-          });
+      }, error => {
+        this.messageService.add({
+          severity: "error",
+          summary: error.status + " " + error.statusText,
+          detail: error.message
         });
+      });
   }
 
   onReject() {}

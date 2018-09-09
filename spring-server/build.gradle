@@ -36,5 +36,6 @@ dependencies {
 	compile('javax.xml.bind:jaxb-api:2.2.11')
 	compile('io.jsonwebtoken:jjwt:0.9.1')
 	compile('com.h2database:h2')
+	compile('mysql:mysql-connector-java')
 	testCompile('org.springframework.boot:spring-boot-starter-test')
 }
