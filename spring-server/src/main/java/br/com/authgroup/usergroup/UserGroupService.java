@@ -61,4 +61,8 @@ public class UserGroupService {
 		return userGroupRepository.findAll(pageRequest);
 	}
 	
+	public List<UserGroup> getNotUserGroupFromResource(Long id) {
+		return userGroupRepository.getNotUserGroupFromResource(id);
+	}
+	
 }

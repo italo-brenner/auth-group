@@ -5,6 +5,8 @@ import { ResourceService } from '../shared/resource.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { MessageService, ConfirmationService, SelectItem } from 'primeng/api';
 import { Resource } from '../shared/resource.model';
+import { UserGroup } from '../../usergroups/shared/usergroup.model';
+import { UserGroupService } from '../../usergroups/shared/usergroup.service';
 
 @Component({
   selector: 'app-resource-edit',
@@ -16,9 +18,12 @@ export class ResourceEditComponent implements OnInit {
   formGroup: FormGroup;
   resource: Resource;
   methods: SelectItem[];
+  sourcelist: UserGroup[];
+  targetlist: UserGroup[];
 
   constructor(
     private resourceService: ResourceService,
+    private userGroupService: UserGroupService,
     private location: Location,
     private router: Router,
     private activatedRoute: ActivatedRoute,
@@ -27,7 +32,7 @@ export class ResourceEditComponent implements OnInit {
     private confirmationService: ConfirmationService
   ) {
     this.methods = [
-      {label:'Selecione', value:null},
+      {label: 'Selecione', value:null},
       {label: 'GET', value: 'GET'},
       {label: 'HEAD', value: 'HEAD'},
       {label: 'POST', value: 'POST'},
@@ -41,10 +46,12 @@ export class ResourceEditComponent implements OnInit {
       method: ["", [Validators.required]],
       name: ["", [Validators.required]]
     });
+    this.targetlist = [];
   }
 
   ngOnInit() {
     const resourceId = this.activatedRoute.snapshot.paramMap.get("id");
+    this.initPickList(resourceId);
     if (resourceId) {
       this.resourceService
         .getResource(resourceId)
@@ -73,6 +80,45 @@ export class ResourceEditComponent implements OnInit {
     }
   }
 
+  initPickList(id?: string) {
+    if (id) {
+      this.resourceService.getNotUserGroupFromResource(id)
+        .then(usergroup => {
+          this.sourcelist = usergroup;
+        })
+        .catch(err => {
+          this.messageService.add({
+            severity: "error",
+            summary: err.status + " " + err.statusText,
+            detail: err.message
+          });
+        });
+      this.resourceService.getUserGroupFromResource(id)
+        .then(usergroup => {
+          this.targetlist = usergroup;
+        })
+        .catch(err => {
+          this.messageService.add({
+            severity: "error",
+            summary: err.status + " " + err.statusText,
+            detail: err.message
+          });
+        });
+    } else {
+      this.userGroupService.getUserGroups()
+        .then(usergroup => {
+          this.sourcelist = usergroup;
+        })
+        .catch(err => {
+          this.messageService.add({
+            severity: "error",
+            summary: err.status + " " + err.statusText,
+            detail: err.message
+          });
+        });
+    }
+  }
+
   onSubmit(resource: Resource) {
     var confirmMessage = (this.resource.id) ? "Deseja modificar esse recurso?" : "Deseja criar um novo recurso?";
     this.confirmationService.confirm({
@@ -85,9 +131,13 @@ export class ResourceEditComponent implements OnInit {
   }
 
   onConfirmEditResource(resource: Resource) {
+    resource.listUserGroup = this.targetlist;
     if (this.resource.id) {
       resource.id = this.resource.id;
       this.resourceService.updateResource(resource)
+        .then(() =>{
+          this.router.navigate(["/resources"]);
+        })
         .catch(err => {
           this.messageService.add({
             severity: "error",
@@ -97,6 +147,9 @@ export class ResourceEditComponent implements OnInit {
       });
     } else {
       this.resourceService.createResource(resource)
+        .then(() =>{
+          this.router.navigate(["/resources"]);
+        })
         .catch(err => {
           this.messageService.add({
             severity: "error",
@@ -105,7 +158,7 @@ export class ResourceEditComponent implements OnInit {
           });
         });
     }
-    this.router.navigate(["/resources"]);
+    
   }
 
   cancel() {

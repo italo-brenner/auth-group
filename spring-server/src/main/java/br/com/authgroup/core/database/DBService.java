@@ -63,6 +63,14 @@ public class DBService {
 		userGroup.setName("ROLE_ROOT");
 		userGroupRepository.save(userGroup);
 		
+		userGroup = new UserGroup();
+		userGroup.setName("ROLE_BOOK");
+		userGroupRepository.save(userGroup);
+		
+		userGroup = new UserGroup();
+		userGroup.setName("ROLE_PLANE");
+		userGroupRepository.save(userGroup);
+		
 		Resource resource = new Resource();
 		resource.setMethod("GET");
 		resource.setName("/api/books/page");

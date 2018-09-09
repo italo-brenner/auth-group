@@ -1,6 +1,7 @@
 package br.com.authgroup.usergroup;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -24,8 +25,9 @@ public class UserGroupController {
 	private UserGroupService userGroupService;
 
 	@GetMapping
-	public List<UserGroup> listUserGroups() {
-		return userGroupService.listUserGroups();
+	public List<UserGroupDTO> listUserGroups() {
+		List<UserGroupDTO> listUserGroupDTO = userGroupService.listUserGroups().stream().map(userGroup -> new UserGroupDTO(userGroup)).collect(Collectors.toList());
+		return listUserGroupDTO;
 	}
 
 	@PostMapping

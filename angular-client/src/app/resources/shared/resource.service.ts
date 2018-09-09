@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Resource } from './resource.model';
+import { UserGroup } from '../../usergroups/shared/usergroup.model';
 
 @Injectable({
   providedIn: 'root'
@@ -37,6 +38,16 @@ export class ResourceService {
 
   deleteResource(id : string) : Promise<any> {
     return this.http.delete<any>('/api/resources/' + id).toPromise();
+  }
+  
+  getUserGroupFromResource(id : string) : Promise<UserGroup[]> {
+    return this.http.get<any>('/api/resources/' + id + '/usergroup')
+      .toPromise();
+  }
+
+  getNotUserGroupFromResource(id : string) : Promise<UserGroup[]> {
+    return this.http.get<any>('/api/resources/' + id + '/notusergroup')
+      .toPromise();
   }
 
 }

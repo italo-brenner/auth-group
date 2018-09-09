@@ -11,7 +11,8 @@ import {
   ButtonModule,
   MessageModule,
   InputTextModule,
-  PanelModule
+  PanelModule,
+  PickListModule
 } from "primeng/primeng";
 import { ResourceEditComponent } from "./resource-edit/resource-edit.component";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
@@ -28,7 +29,8 @@ import { FormsModule, ReactiveFormsModule } from "@angular/forms";
     ButtonModule,
     PanelModule,
     InputTextModule,
-    MessageModule
+    MessageModule,
+    PickListModule
   ],
   declarations: [
     ResourcesComponent,

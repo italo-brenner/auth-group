@@ -26,6 +26,18 @@
       <div class="ui-grid-row">
         <div class="ui-grid-col-2"></div>
         <div class="ui-grid-col-3">
+          <p-pickList [source]="sourcelist" [target]="targetlist">
+            <ng-template let-usergroup pTemplate="item">
+              <div class="ui-helper-clearfix">
+                <div>{{usergroup.name}}</div>
+              </div>
+            </ng-template>
+          </p-pickList>
+        </div>
+      </div>
+      <div class="ui-grid-row">
+        <div class="ui-grid-col-2"></div>
+        <div class="ui-grid-col-3">
           <button pButton type="submit" label="Confimar" [disabled]="! formGroup.valid"></button>
         </div>
         <div class="ui-grid-col-3">
