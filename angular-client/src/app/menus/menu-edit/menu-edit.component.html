@@ -1,0 +1,61 @@
+<form [formGroup]="formGroup" (ngSubmit)="onSubmit(formGroup.value)">
+  <p-panel header="Recursos">
+    <div class="ui-grid ui-grid-responsive ui-grid-pad ui-fluid" style="margin: 10px 0px">
+      <div class="ui-grid-row">
+        <div class="ui-grid-col-2">
+          Título *:
+        </div>
+        <div class="ui-grid-col-6">
+          <input pInputText type="text" formControlName="title" placeholder="Título" />
+        </div>
+        <div class="ui-grid-col-4">
+          <p-message severity="error" text="Título é obrigatório" *ngIf="! formGroup.controls['title'].valid && formGroup.controls['title'].dirty"></p-message>
+        </div>
+      </div>
+      <div class="ui-grid-row">
+        <div class="ui-grid-col-2">
+          Font Awesome *:
+        </div>
+        <div class="ui-grid-col-6">
+          <input pInputText type="text" formControlName="fontAwesome" placeholder="Font Awesome" />
+        </div>
+        <div class="ui-grid-col-4">
+          <p-message severity="error" text="Font Awesome é obrigatório" *ngIf="! formGroup.controls['fontAwesome'].valid && formGroup.controls['fontAwesome'].dirty"></p-message>
+        </div>
+      </div>
+      <div class="ui-grid-row">
+        <div class="ui-grid-col-2">
+          Link *:
+        </div>
+        <div class="ui-grid-col-6">
+          <input pInputText type="text" formControlName="link" placeholder="Link" />
+        </div>
+        <div class="ui-grid-col-4">
+          <p-message severity="error" text="Link é obrigatório" *ngIf="! formGroup.controls['link'].valid && formGroup.controls['link'].dirty"></p-message>
+        </div>
+      </div>
+      <div class="ui-grid-row">
+        <div class="ui-grid-col-2"></div>
+        <div class="ui-grid-col-3">
+          <p-pickList [source]="sourcelist" [target]="targetlist">
+            <ng-template let-usergroup pTemplate="item">
+              <div class="ui-helper-clearfix">
+                <div>{{usergroup.name}}</div>
+              </div>
+            </ng-template>
+          </p-pickList>
+        </div>
+      </div>
+      <div class="ui-grid-row">
+        <div class="ui-grid-col-2"></div>
+        <div class="ui-grid-col-3">
+          <button pButton type="submit" label="Confimar" [disabled]="! formGroup.valid"></button>
+        </div>
+        <div class="ui-grid-col-3">
+          <button pButton class="ui-button-secondary" type="button" label="Cancelar" (click)="cancel()"></button>
+        </div>
+        <div class="ui-grid-col-4"></div>
+      </div>
+    </div>
+  </p-panel>
+</form>

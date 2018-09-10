@@ -1,5 +1,6 @@
 package br.com.authgroup.usergroup;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -10,15 +11,15 @@ import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 
-import com.fasterxml.jackson.annotation.JsonManagedReference;
-
 import br.com.authgroup.applicationuser.ApplicationUser;
 import br.com.authgroup.menu.Menu;
 import br.com.authgroup.resource.Resource;
 
 @Entity
-public class UserGroup {
+public class UserGroup implements Serializable {
 	
+	private static final long serialVersionUID = 1L;
+
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Long id;
@@ -31,9 +32,8 @@ public class UserGroup {
 	@ManyToMany(mappedBy="listUserGroup")
 	private List<Resource> listResource = new ArrayList<>();
 	
-	@OneToMany(mappedBy="userGroup")
-	@JsonManagedReference
-	private List<Menu> listMenu;
+	@ManyToMany(mappedBy="listUserGroup")
+	private List<Menu> listMenu = new ArrayList<>();
 
 	public Long getId() {
 		return id;

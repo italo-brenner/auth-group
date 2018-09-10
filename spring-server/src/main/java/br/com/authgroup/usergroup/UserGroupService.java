@@ -65,4 +65,8 @@ public class UserGroupService {
 		return userGroupRepository.getNotUserGroupFromResource(id);
 	}
 	
+	public List<UserGroup> getNotUserGroupFromMenu(Long id) {
+		return userGroupRepository.getNotUserGroupFromMenu(id);
+	}
+	
 }

@@ -36,6 +36,10 @@ const routes: Routes = [
     loadChildren: 'src/app/usergroups/usergroups.module#UserGroupsModule'
   },
   {
+    path: 'menus',
+    loadChildren: 'src/app/menus/menus.module#MenusModule'
+  },
+  {
     path: 'not-found',
     component: NotFoundComponent
   },

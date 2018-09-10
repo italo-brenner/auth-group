@@ -57,20 +57,20 @@ public class MenuControllerTest extends AuthGroupApplicationTests {
 		userGroupRepository.save(userGroup2);
 		
 		menu1 = new Menu();
-		menu1.setName("Menu 1");
-		menu1.setUserGroup(userGroup1);
+		menu1.setTitle("Menu 1");
+		menu1.getListUserGroup().add(userGroup1);
 		
 		menuRepository.save(menu1);
 		
 		menu2 = new Menu();
-		menu2.setName("Menu 2");
-		menu2.setUserGroup(userGroup1);
+		menu2.setTitle("Menu 2");
+		menu2.getListUserGroup().add(userGroup1);
 		
 		menuRepository.save(menu2);
 		
 		menu3 = new Menu();
-		menu3.setName("Menu 3");
-		menu3.setUserGroup(userGroup2);
+		menu3.setTitle("Menu 3");
+		menu3.getListUserGroup().add(userGroup2);
 		
 		menuRepository.save(menu3);
 		
@@ -82,20 +82,20 @@ public class MenuControllerTest extends AuthGroupApplicationTests {
 		mockMvc.perform(MockMvcRequestBuilders.get("/api/menu"))
 		.andExpect(MockMvcResultMatchers.status().isOk())
 		.andExpect(MockMvcResultMatchers.content().contentType(contentTypeJSON))
-		.andExpect(MockMvcResultMatchers.jsonPath("$.[0].name", Matchers.is("Menu 1")))
-		.andExpect(MockMvcResultMatchers.jsonPath("$.[1].name", Matchers.is("Menu 2")))
-		.andExpect(MockMvcResultMatchers.jsonPath("$.[2].name", Matchers.is("Menu 3")));
+		.andExpect(MockMvcResultMatchers.jsonPath("$.[0].title", Matchers.is("Menu 1")))
+		.andExpect(MockMvcResultMatchers.jsonPath("$.[1].title", Matchers.is("Menu 2")))
+		.andExpect(MockMvcResultMatchers.jsonPath("$.[2].title", Matchers.is("Menu 3")));
 	}
 
 	@Test
 	public void addMenu() throws Exception {
 		Menu menu = new Menu();
-		menu.setName("name");
+		menu.setTitle("name");
 		
 		UserGroup userGroup = new UserGroup();
 		userGroup.setId(1L);
 		
-		menu.setUserGroup(userGroup);
+		menu.getListUserGroup().add(userGroup);
 		
 		mockMvc.perform(MockMvcRequestBuilders.post("/api/menu")
                 .contentType(contentTypeJSON)
@@ -108,7 +108,7 @@ public class MenuControllerTest extends AuthGroupApplicationTests {
 		mockMvc.perform(MockMvcRequestBuilders.get("/api/menu/" + menu1.getId()))
 		.andExpect(MockMvcResultMatchers.status().isOk())
 		.andExpect(MockMvcResultMatchers.content().contentType(contentTypeJSON))
-		.andExpect(MockMvcResultMatchers.jsonPath("$.name", Matchers.is(menu1.getName())));
+		.andExpect(MockMvcResultMatchers.jsonPath("$.title", Matchers.is(menu1.getTitle())));
 	}
 	
 	@Test
@@ -116,8 +116,8 @@ public class MenuControllerTest extends AuthGroupApplicationTests {
 		mockMvc.perform(MockMvcRequestBuilders.get("/api/menu/usergroup/" + userGroup1.getId()))
 		.andExpect(MockMvcResultMatchers.status().isOk())
 		.andExpect(MockMvcResultMatchers.content().contentType(contentTypeJSON))
-		.andExpect(MockMvcResultMatchers.jsonPath("$.[0].name", Matchers.is("Menu 1")))
-		.andExpect(MockMvcResultMatchers.jsonPath("$.[1].name", Matchers.is("Menu 2")));
+		.andExpect(MockMvcResultMatchers.jsonPath("$.[0].title", Matchers.is("Menu 1")))
+		.andExpect(MockMvcResultMatchers.jsonPath("$.[1].title", Matchers.is("Menu 2")));
 	}
 	
 }
