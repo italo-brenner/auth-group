@@ -32,8 +32,8 @@ public class MenuController {
 	private UserGroupService userGroupService;
 
 	@GetMapping
-	public List<Menu> listMenus() {
-		return menuService.listMenus();
+	public List<MenuDTO> listMenus() {
+		return menuService.listMenus().stream().map(menu -> new MenuDTO(menu)).collect(Collectors.toList());
 	}
 
 	@PostMapping
