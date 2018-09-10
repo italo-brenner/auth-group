@@ -62,10 +62,9 @@ export class UserEditComponent implements OnInit {
     }
     this.userGroupService
       .getUserGroups()
-      .then(res => {
+      .subscribe(res => {
         this.userGroups = res;
-      })
-      .catch(err => {
+      }, err => {
         this.messageService.add({
           severity: "error",
           summary: err.status + " " + err.statusText,

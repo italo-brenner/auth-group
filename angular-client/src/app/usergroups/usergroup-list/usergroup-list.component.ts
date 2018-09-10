@@ -28,11 +28,10 @@ export class UserGroupListComponent implements OnInit {
     this.page = page;
     this.userGroupService
       .getUserGroupsPage(page)
-      .then(res => {
+      .subscribe(res => {
         this.userGroups = res.content;
         this.totalRecords = res.totalElements;
-      })
-      .catch(err => {
+      }, err => {
         this.messageService.add({
           severity: "error",
           summary: err.status + " " + err.statusText,
@@ -56,17 +55,16 @@ export class UserGroupListComponent implements OnInit {
 
   onConfirmDeleteUserGroup(id: string) {
     this.userGroupService.deleteUserGroup(id)
-      .then(res => {
+      .subscribe(res => {
         console.log(res);
         this.listUserGroups(this.page);
-      })
-      .catch(err => {
-          this.messageService.add({
-            severity: "error",
-            summary: err.status + " " + err.statusText,
-            detail: err.message
-          });
+      }, err => {
+        this.messageService.add({
+          severity: "error",
+          summary: err.status + " " + err.statusText,
+          detail: err.message
         });
+      });
   }
 
   onReject() {}

@@ -35,11 +35,10 @@ export class UserGroupEditComponent implements OnInit {
     if (userGroupId) {
       this.userGroupService
         .getUserGroup(userGroupId)
-        .then(userGroup => {
+        .subscribe(userGroup => {
           this.userGroup = userGroup;
           this.formGroup.controls.name.setValue(this.userGroup.name);
-        })
-        .catch(err => {
+        }, err => {
           if (err.status == 404) {
             this.router.navigate(["/not-found"], { replaceUrl: true });
           } else {
@@ -70,10 +69,9 @@ export class UserGroupEditComponent implements OnInit {
     if (this.userGroup.id) {
       userGroup.id = this.userGroup.id;
       this.userGroupService.updateUserGroup(userGroup)
-        .then(() => {
+        .subscribe(() => {
           this.router.navigate(["/usergroups"]);
-        })
-        .catch(err => {
+        }, err => {
           this.messageService.add({
             severity: "error",
             summary: err.status + " " + err.statusText,
@@ -82,10 +80,9 @@ export class UserGroupEditComponent implements OnInit {
       });
     } else {
       this.userGroupService.createUserGroup(userGroup)
-        .then(() => {
+        .subscribe(() => {
           this.router.navigate(["/usergroups"]);
-        })
-        .catch(err => {
+        }, err => {
           this.messageService.add({
             severity: "error",
             summary: err.status + " " + err.statusText,
