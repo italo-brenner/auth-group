@@ -12,6 +12,7 @@ import { UserEditComponent } from './user-edit/user-edit.component';
 import { UserListComponent } from './user-list/user-list.component';
 import { AppSharedModule } from '../shared/app-shared.module';
 import { TableModule } from 'primeng/table';
+import { UserLogoutComponent } from './user-logout/user-logout.component';
 
 @NgModule({
   imports: [
@@ -27,6 +28,6 @@ import { TableModule } from 'primeng/table';
     InputTextModule,
     MessageModule
   ],
-  declarations: [UsersComponent, UserLoginComponent, UserEditComponent, UserListComponent]
+  declarations: [UsersComponent, UserLoginComponent, UserEditComponent, UserListComponent, UserLogoutComponent]
 })
 export class UsersModule { }

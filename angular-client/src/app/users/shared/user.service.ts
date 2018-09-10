@@ -1,57 +1,60 @@
-import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { User } from './user.model';
-import { LocalUser } from '../../shared/model/local-user.model';
-import { StorageService } from '../../shared/service/storage.service';
-import { Observable } from 'rxjs';
+import { Injectable } from "@angular/core";
+import { HttpClient } from "@angular/common/http";
+import { User } from "./user.model";
+import { LocalUser } from "../../shared/model/local-user.model";
+import { StorageService } from "../../shared/service/storage.service";
+import { Observable } from "rxjs";
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: "root"
 })
 export class UserService {
+  constructor(private http: HttpClient, public storage: StorageService) {}
 
-  constructor(
-    private http: HttpClient,
-    public storage : StorageService
-  ) { }
-
-  getUsers() : Observable<User[]> {
-    return this.http.get<any>('/api/applicationusers');
+  getUsers(): Observable<User[]> {
+    return this.http.get<any>("/api/applicationusers");
   }
 
-  getUsersPage(page: string = '0') : Observable<any> {
-    return this.http.get<any>('/api/applicationusers/page', {
+  getUsersPage(page: string = "0"): Observable<any> {
+    return this.http.get<any>("/api/applicationusers/page", {
       params: {
-        'page' : page
-      }});
-  }
-  
-  getUser(id) : Observable<User> {
-    return this.http.get<any>('/api/applicationusers/' + id);
+        page: page
+      }
+    });
   }
 
-  createUser(user : User) : Observable<any> {
-    return this.http.post<any>('/api/applicationusers', user);
+  getUser(id): Observable<User> {
+    return this.http.get<any>("/api/applicationusers/" + id);
   }
 
-  updateUser(user : User) : Observable<any> {
-    return this.http.put<any>('/api/applicationusers/' + user.id, user);
+  createUser(user: User): Observable<any> {
+    return this.http.post<any>("/api/applicationusers", user);
   }
 
-  deleteUser(id : string) : Observable<any> {
-    return this.http.delete<any>('/api/applicationusers/' + id);
+  updateUser(user: User): Observable<any> {
+    return this.http.put<any>("/api/applicationusers/" + user.id, user);
   }
 
-  login(user: User) : Observable<any> {
-    return this.http.post('/api/login', user, {observe: 'response',responseType: 'text'});
+  deleteUser(id: string): Observable<any> {
+    return this.http.delete<any>("/api/applicationusers/" + id);
   }
 
-  successfulLogin(authorizationValue : string) {
+  login(user: User): Observable<any> {
+    return this.http.post("/api/login", user, {
+      observe: "response",
+      responseType: "text"
+    });
+  }
+
+  successfulLogin(authorizationValue: string) {
     let vToken = authorizationValue.substring(7);
-    let user : LocalUser = {
-        token : vToken
+    let user: LocalUser = {
+      token: vToken
     };
     this.storage.setLocalUser(user);
   }
 
+  logout() {
+    this.storage.setLocalUser(null);
+  }
 }

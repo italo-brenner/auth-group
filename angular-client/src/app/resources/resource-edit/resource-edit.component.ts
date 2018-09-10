@@ -103,10 +103,9 @@ export class ResourceEditComponent implements OnInit {
         });
     } else {
       this.userGroupService.getUserGroups()
-        .then(usergroup => {
+        .subscribe(usergroup => {
           this.sourcelist = usergroup;
-        })
-        .catch(err => {
+        }, err => {
           this.messageService.add({
             severity: "error",
             summary: err.status + " " + err.statusText,
