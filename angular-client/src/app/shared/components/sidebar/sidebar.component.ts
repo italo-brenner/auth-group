@@ -19,7 +19,7 @@ export class SidebarComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.menuService.getMenus().subscribe(
+    this.menuService.listMenuFromLoggedUser().subscribe(
       response => {
         this.menus = response;
       },

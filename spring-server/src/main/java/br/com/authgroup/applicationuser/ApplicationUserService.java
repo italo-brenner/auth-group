@@ -1,5 +1,6 @@
 package br.com.authgroup.applicationuser;
 
+import java.util.Iterator;
 import java.util.List;
 import java.util.Optional;
 
@@ -7,6 +8,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort.Direction;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -14,12 +19,17 @@ import org.springframework.stereotype.Service;
 
 import br.com.authgroup.core.exception.ObjectNotFoundException;
 import br.com.authgroup.core.security.UserSS;
+import br.com.authgroup.usergroup.UserGroup;
+import br.com.authgroup.usergroup.UserGroupRepository;
 
 @Service
 public class ApplicationUserService implements UserDetailsService {
 
 	@Autowired
 	private ApplicationUserRepository applicationUserRepository;
+	
+	@Autowired
+	private UserGroupRepository userGroupRepository;
 	
 	public List<ApplicationUser> listApplicationUsers() {
 		return applicationUserRepository.findAll();
@@ -55,6 +65,23 @@ public class ApplicationUserService implements UserDetailsService {
 	public Page<ApplicationUser> findPage(Integer page, Integer linesPerPages, String orderBy, String direction) {
 		PageRequest pageRequest = PageRequest.of(page, linesPerPages, Direction.valueOf(direction), orderBy);
 		return applicationUserRepository.findAll(pageRequest);
+	}
+	
+	public UserGroup getCurrentUserGroup() {
+		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+		String role = null;
+		if (authentication != null) {
+			Iterator<? extends GrantedAuthority> authorities = authentication.getAuthorities().iterator();
+			if (authorities.hasNext()) {
+				SimpleGrantedAuthority authority = (SimpleGrantedAuthority) authorities.next();
+				role = authority.getAuthority();
+			} else {
+				role = "ROLE_ANONYMOUS";
+			}
+		} else {
+			role = "ROLE_ANONYMOUS";
+		}
+		return userGroupRepository.findByName(role);
 	}
 	
 	@Override

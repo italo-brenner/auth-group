@@ -9,9 +9,8 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort.Direction;
 import org.springframework.stereotype.Service;
 
+import br.com.authgroup.applicationuser.ApplicationUserService;
 import br.com.authgroup.core.exception.ObjectNotFoundException;
-import br.com.authgroup.menu.Menu;
-import br.com.authgroup.menu.MenuRepository;
 import br.com.authgroup.usergroup.UserGroup;
 
 @Service
@@ -19,6 +18,9 @@ public class MenuService {
 
 	@Autowired
 	private MenuRepository menuRepository;
+	
+	@Autowired
+	private ApplicationUserService applicationUserService;
 	
 	public List<Menu> listMenus() {
 		return menuRepository.findAll();
@@ -57,6 +59,11 @@ public class MenuService {
 	public Page<Menu> findPage(Integer page, Integer linesPerPages, String orderBy, String direction) {
 		PageRequest pageRequest = PageRequest.of(page, linesPerPages, Direction.valueOf(direction), orderBy);
 		return menuRepository.findAll(pageRequest);
+	}
+	
+	public List<Menu> listMenuFromLoggedUser() {
+		
+		return menuRepository.findByListUserGroup(applicationUserService.getCurrentUserGroup());
 	}
 	
 }

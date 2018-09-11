@@ -46,4 +46,8 @@ export class MenuService {
     return this.http.get<any>('/api/menus/' + id + '/notusergroup');
   }
 
+  listMenuFromLoggedUser() : Observable<Menu[]> {
+    return this.http.get<any>('/api/menus/loggeduser');
+  }
+
 }

@@ -82,5 +82,10 @@ public class MenuController {
 		List<UserGroupDTO> listUserGroupDTO = listUserGroup.stream().map(userGroup -> new UserGroupDTO(userGroup)).collect(Collectors.toList());
 		return listUserGroupDTO;
 	}
+	
+	@GetMapping("/loggeduser")
+	public List<MenuDTO> listMenuFromLoggedUser() {
+		return menuService.listMenuFromLoggedUser().stream().map(menu -> new MenuDTO(menu)).collect(Collectors.toList());
+	}
 
 }
