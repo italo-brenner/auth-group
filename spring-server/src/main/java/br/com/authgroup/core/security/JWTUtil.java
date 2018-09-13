@@ -1,6 +1,8 @@
 package br.com.authgroup.core.security;
 
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
@@ -18,9 +20,12 @@ public class JWTUtil {
 	@Value("${jwt.expiration}")
 	private Long expiration;
 	
-	public String generateToken(String username) {
+	public String generateToken(String username, String role) {
+		Map<String, Object> authority = new HashMap<>();
+		authority.put("role", role);
 		return Jwts.builder()
 				.setSubject(username)
+				.claim("role", role)
 				.setExpiration(new Date(System.currentTimeMillis() + expiration))
 				.signWith(SignatureAlgorithm.HS512, secret.getBytes())
 				.compact(); 

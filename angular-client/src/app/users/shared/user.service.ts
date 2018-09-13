@@ -3,13 +3,20 @@ import { HttpClient } from "@angular/common/http";
 import { User } from "./user.model";
 import { LocalUser } from "../../shared/model/local-user.model";
 import { StorageService } from "../../shared/service/storage.service";
+import { JwtHelperService } from "@auth0/angular-jwt";
 import { Observable } from "rxjs";
 
 @Injectable({
   providedIn: "root"
 })
 export class UserService {
-  constructor(private http: HttpClient, public storage: StorageService) {}
+
+  jwtHelperService : JwtHelperService = new JwtHelperService();
+
+  constructor(
+    private http: HttpClient,
+    private storage: StorageService
+  ) {}
 
   getUsers(): Observable<User[]> {
     return this.http.get<any>("/api/applicationusers");
@@ -49,6 +56,8 @@ export class UserService {
   successfulLogin(authorizationValue: string) {
     let vToken = authorizationValue.substring(7);
     let user: LocalUser = {
+      username : this.jwtHelperService.decodeToken(vToken).sub,
+      role : this.jwtHelperService.decodeToken(vToken).role,
       token: vToken
     };
     this.storage.setLocalUser(user);

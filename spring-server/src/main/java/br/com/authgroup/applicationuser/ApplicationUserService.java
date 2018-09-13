@@ -1,6 +1,5 @@
 package br.com.authgroup.applicationuser;
 
-import java.util.Iterator;
 import java.util.List;
 import java.util.Optional;
 
@@ -9,8 +8,6 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort.Direction;
 import org.springframework.security.core.Authentication;
-import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -70,14 +67,9 @@ public class ApplicationUserService implements UserDetailsService {
 	public UserGroup getCurrentUserGroup() {
 		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 		String role = null;
-		if (authentication != null) {
-			Iterator<? extends GrantedAuthority> authorities = authentication.getAuthorities().iterator();
-			if (authorities.hasNext()) {
-				SimpleGrantedAuthority authority = (SimpleGrantedAuthority) authorities.next();
-				role = authority.getAuthority();
-			} else {
-				role = "ROLE_ANONYMOUS";
-			}
+		if (authentication.getPrincipal() instanceof UserSS) {
+			UserSS user = (UserSS) authentication.getPrincipal();
+			role = user.getRole();
 		} else {
 			role = "ROLE_ANONYMOUS";
 		}

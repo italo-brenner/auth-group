@@ -2,6 +2,7 @@ package br.com.authgroup.core.security;
 
 import java.util.Arrays;
 import java.util.Collection;
+import java.util.Iterator;
 
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -65,6 +66,18 @@ public class UserSS implements UserDetails {
 	@Override
 	public boolean isEnabled() {
 		return true;
+	}
+	
+	public String getRole() {
+		String role = null;
+		Iterator<? extends GrantedAuthority> authorities = getAuthorities().iterator();
+		if (authorities.hasNext()) {
+			SimpleGrantedAuthority authority = (SimpleGrantedAuthority) authorities.next();
+			role = authority.getAuthority();
+		} else {
+			role = "ROLE_ANONYMOUS";
+		}
+		return role;
 	}
 
 }
