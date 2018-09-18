@@ -1,9 +1,49 @@
 <div class="layout-sidebar" [ngClass]="{'layout-sidebar-active':app.mobileMenuActive}">
   <ul class="layout-menu" (click)="app.hideMobileMenu($event)">
-    <li *ngFor="let menu of menus">
-      <a [routerLink]="[menu.link]" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}">
-        <i class="fa fa-{{menu.fontAwesome}}"></i>
-        <span>{{menu.title}}</span>
+    <li>
+      <a [routerLink]="['/']" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}">
+        <i class="fa fa-globe"></i>
+        <span>Home</span>
+      </a>
+      <a [routerLink]="['/users/login']" *ngIf="!authService.isAuthenticated()" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}">
+        <i class="fa fa-user"></i>
+        <span>Login</span>
+      </a>
+      <a [routerLink]="['/users']" *ngIf="authService.isAuthenticated() && authService.hasRoles(['ROLE_ROOT'])" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}">
+        <i class="fa fa-users"></i>
+        <span>Usuários</span>
+      </a>
+      <a [routerLink]="['/resources']" *ngIf="authService.isAuthenticated() && authService.hasRoles(['ROLE_ROOT'])" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}">
+        <i class="fa fa-sitemap"></i>
+        <span>Recursos</span>
+      </a>
+      <a [routerLink]="['/usergroups']" *ngIf="authService.isAuthenticated() && authService.hasRoles(['ROLE_ROOT'])" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}">
+        <i class="fa fa-users"></i>
+        <span>Grupos Usuários</span>
+      </a>
+      <a [routerLink]="['/menus']" *ngIf="authService.isAuthenticated() && authService.hasRoles(['ROLE_ROOT'])" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}">
+        <i class="fa fa-bars"></i>
+        <span>Menu</span>
+      </a>
+      <a [routerLink]="['/page1']" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}">
+        <i class="fa fa-file"></i>
+        <span>Página 1</span>
+      </a>
+      <a [routerLink]="['/cars']" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}">
+        <i class="fa fa-car"></i>
+        <span>Carros</span>
+      </a>
+      <a [routerLink]="['/books']" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}">
+        <i class="fa fa-book"></i>
+        <span>Livros</span>
+      </a>
+      <a [routerLink]="['/planes']" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}">
+        <i class="fa fa-plane"></i>
+        <span>Aviões</span>
+      </a>
+      <a [routerLink]="['/users/logout']" *ngIf="authService.isAuthenticated()" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}">
+        <i class="fa fa-sign-out"></i>
+        <span>Logout</span>
       </a>
     </li>
   </ul>

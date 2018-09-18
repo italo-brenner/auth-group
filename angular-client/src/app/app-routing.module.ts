@@ -42,7 +42,9 @@ const routes: Routes = [
   },
   {
     path: 'menus',
-    loadChildren: 'src/app/menus/menus.module#MenusModule'
+    loadChildren: 'src/app/menus/menus.module#MenusModule',
+    canLoad: [RoleGuard],
+    data: { expectedRole: ["ROLE_ROOT"] }
   },
   {
     path: 'not-found',

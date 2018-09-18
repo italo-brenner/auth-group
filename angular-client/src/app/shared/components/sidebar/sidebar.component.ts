@@ -1,8 +1,6 @@
 import { Component, OnInit } from "@angular/core";
 import { AppComponent } from "../../../app.component";
-import { MenuService } from "../../../menus/shared/menu.service";
-import { Menu } from "../../../menus/shared/menu.model";
-import { MessageService } from "primeng/api";
+import { AuthService } from "../../service/auth.service";
 
 @Component({
   selector: "app-sidebar",
@@ -10,26 +8,12 @@ import { MessageService } from "primeng/api";
   styleUrls: ["./sidebar.component.scss"]
 })
 export class SidebarComponent implements OnInit {
-  menus: Menu[];
 
   constructor(
     public app: AppComponent,
-    private menuService: MenuService,
-    private messageService: MessageService
+    public authService: AuthService
   ) {}
 
   ngOnInit() {
-    this.menuService.listMenuFromLoggedUser().subscribe(
-      response => {
-        this.menus = response;
-      },
-      err => {
-        this.messageService.add({
-          severity: "error",
-          summary: err.status + " " + err.statusText,
-          detail: err.message
-        });
-      }
-    );
   }
 }

@@ -12,8 +12,6 @@ export class RoleGuardService {
   canLoad(route: Route): boolean {
     
     const expectedRole = route.data.expectedRole;
-    console.log(this.authService.isAuthenticated());
-    console.log(this.authService.hasRoles(expectedRole));
     if (
       !this.authService.isAuthenticated() ||
       !this.authService.hasRoles(expectedRole)

@@ -2,6 +2,7 @@ import { Component, OnInit } from "@angular/core";
 import { Car } from "../shared/car.model";
 import { CarService } from "../shared/car.service";
 import { ConfirmationService, MessageService } from "primeng/api";
+import { AuthService } from "../../shared/service/auth.service";
 
 @Component({
   selector: "app-car-list",
@@ -15,6 +16,7 @@ export class CarListComponent implements OnInit {
 
   constructor(
     private carService: CarService,
+    public authService: AuthService,
     private messageService: MessageService,
     private confirmationService: ConfirmationService
   ) {}

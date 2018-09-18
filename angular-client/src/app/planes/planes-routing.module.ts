@@ -3,6 +3,7 @@ import { Routes, RouterModule } from "@angular/router";
 import { PlanesComponent } from "./planes.component";
 import { PlaneListComponent } from "./plane-list/plane-list.component";
 import { PlaneEditComponent } from "./plane-edit/plane-edit.component";
+import { RoleGuardService as RoleGuard } from "../shared/service/role-guard.service";
 
 const routes: Routes = [
   {
@@ -10,8 +11,18 @@ const routes: Routes = [
     component: PlanesComponent,
     children: [
       { path: "", component: PlaneListComponent },
-      { path: 'new',    component: PlaneEditComponent },
-      { path: ':id',    component: PlaneEditComponent }
+      {
+        path: "new",
+        component: PlaneEditComponent,
+        canLoad: [RoleGuard],
+        data: { expectedRole: ["ROLE_ROOT", "ROLE_PLANE"] }
+      },
+      {
+        path: ":id",
+        component: PlaneEditComponent,
+        canLoad: [RoleGuard],
+        data: { expectedRole: ["ROLE_ROOT", "ROLE_PLANE"] }
+      }
     ]
   }
 ];

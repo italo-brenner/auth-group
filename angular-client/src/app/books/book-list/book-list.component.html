@@ -1,5 +1,5 @@
 <p-table [value]="books">
-    <ng-template pTemplate="caption">
+    <ng-template pTemplate="caption" *ngIf="authService.isAuthenticated() && authService.hasRoles(['ROLE_ROOT', 'ROLE_BOOK'])">
         <div class="ui-helper-clearfix">
             <p-button routerLink="/books/new" type="button" icon="fa fa-plus" label="Novo" style="float:left"></p-button>
         </div>
@@ -8,18 +8,18 @@
         <tr>
             <th>Id</th>
             <th>Name</th>
-            <th class="ui-column-icon"></th>
-            <th class="ui-column-icon"></th>
+            <th class="ui-column-icon" *ngIf="authService.isAuthenticated() && authService.hasRoles(['ROLE_ROOT', 'ROLE_BOOK'])"></th>
+            <th class="ui-column-icon" *ngIf="authService.isAuthenticated() && authService.hasRoles(['ROLE_ROOT', 'ROLE_BOOK'])"></th>
         </tr>
     </ng-template>
     <ng-template pTemplate="body" let-book>
         <tr>
             <td>{{book.id}}</td>
             <td>{{book.name}}</td>
-            <td>
+            <td *ngIf="authService.isAuthenticated() && authService.hasRoles(['ROLE_ROOT', 'ROLE_BOOK'])">
                 <p-button routerLink="/books/{{book.id}}" label="" icon="fa fa-edit"></p-button>
             </td>
-            <td>
+            <td *ngIf="authService.isAuthenticated() && authService.hasRoles(['ROLE_ROOT', 'ROLE_BOOK'])">
                 <p-button (click)="deleteBook(book.id)" label="" icon="fa fa-trash"></p-button>
             </td>
         </tr>

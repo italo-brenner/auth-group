@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { BookService } from '../shared/book.service';
 import { MessageService, ConfirmationService } from 'primeng/api';
 import { Book } from '../shared/book.model';
+import { AuthService } from '../../shared/service/auth.service';
 
 @Component({
   selector: 'app-book-list',
@@ -15,6 +16,7 @@ export class BookListComponent implements OnInit {
 
   constructor(
     private bookService: BookService,
+    public authService: AuthService,
     private messageService: MessageService,
     private confirmationService: ConfirmationService
   ) {}

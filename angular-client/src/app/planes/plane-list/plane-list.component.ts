@@ -2,6 +2,7 @@ import { Component, OnInit } from "@angular/core";
 import { Plane } from "../shared/plane.model";
 import { PlaneService } from "../shared/plane.service";
 import { ConfirmationService, MessageService } from "primeng/api";
+import { AuthService } from "../../shared/service/auth.service";
 
 @Component({
   selector: "app-plane-list",
@@ -16,6 +17,7 @@ export class PlaneListComponent implements OnInit {
 
   constructor(
     private planeService: PlaneService,
+    public authService: AuthService,
     private messageService: MessageService,
     private confirmationService: ConfirmationService
   ) {}
