@@ -4,6 +4,7 @@ import { User } from '../shared/user.model';
 import { UserService } from '../shared/user.service';
 import { Router } from '@angular/router';
 import { MessageService } from 'primeng/api';
+import { AuthService } from '../../shared/service/auth.service';
 
 @Component({
   selector: 'app-user-login',
@@ -17,7 +18,7 @@ export class UserLoginComponent implements OnInit {
 
   constructor(
     private formBuilder: FormBuilder,
-    private userService: UserService,
+    private authService: AuthService,
     private router: Router,
     private messageService: MessageService
   ) {
@@ -31,10 +32,10 @@ export class UserLoginComponent implements OnInit {
   }
 
   onSubmit(user: User) {
-    this.userService.login(user)
+    this.authService.login(user)
       .subscribe(response  => {
         console.log(response);
-        this.userService.successfulLogin(response.headers.get('Authorization'));
+        this.authService.successfulLogin(response.headers.get('Authorization'));
         this.router.navigate(["/"]);
       },
       error => {

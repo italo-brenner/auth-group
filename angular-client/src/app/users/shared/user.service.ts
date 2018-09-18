@@ -45,25 +45,5 @@ export class UserService {
   deleteUser(id: string): Observable<any> {
     return this.http.delete<any>("/api/applicationusers/" + id);
   }
-
-  login(user: User): Observable<any> {
-    return this.http.post("/api/login", user, {
-      observe: "response",
-      responseType: "text"
-    });
-  }
-
-  successfulLogin(authorizationValue: string) {
-    let vToken = authorizationValue.substring(7);
-    let user: LocalUser = {
-      username : this.jwtHelperService.decodeToken(vToken).sub,
-      role : this.jwtHelperService.decodeToken(vToken).role,
-      token: vToken
-    };
-    this.storage.setLocalUser(user);
-  }
-
-  logout() {
-    this.storage.setLocalUser(null);
-  }
+  
 }

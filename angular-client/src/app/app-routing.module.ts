@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { NotFoundComponent } from './shared/pages/not-found/not-found.component';
+import { RoleGuardService as RoleGuard } from './shared/service/role-guard.service';
 
 const routes: Routes = [
   {
@@ -29,11 +30,15 @@ const routes: Routes = [
   },
   {
     path: 'resources',
-    loadChildren: 'src/app/resources/resources.module#ResourcesModule'
+    loadChildren: 'src/app/resources/resources.module#ResourcesModule',
+    canLoad: [RoleGuard],
+    data: { expectedRole: ["ROLE_ROOT"] }
   },
   {
     path: 'usergroups',
-    loadChildren: 'src/app/usergroups/usergroups.module#UserGroupsModule'
+    loadChildren: 'src/app/usergroups/usergroups.module#UserGroupsModule',
+    canLoad: [RoleGuard],
+    data: { expectedRole: ["ROLE_ROOT"] }
   },
   {
     path: 'menus',
