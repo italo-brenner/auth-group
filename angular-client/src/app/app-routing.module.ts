@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { NotFoundComponent } from './shared/pages/not-found/not-found.component';
 import { RoleGuardService as RoleGuard } from './shared/service/role-guard.service';
+import { ForbiddenComponent } from './shared/pages/forbidden/forbidden.component';
 
 const routes: Routes = [
   {
@@ -41,14 +42,12 @@ const routes: Routes = [
     data: { expectedRole: ["ROLE_ROOT"] }
   },
   {
-    path: 'menus',
-    loadChildren: 'src/app/menus/menus.module#MenusModule',
-    canLoad: [RoleGuard],
-    data: { expectedRole: ["ROLE_ROOT"] }
-  },
-  {
     path: 'not-found',
     component: NotFoundComponent
+  },
+  {
+    path: 'forbidden',
+    component: ForbiddenComponent
   },
   {
     path: '',

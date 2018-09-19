@@ -56,7 +56,6 @@ export class MenuListComponent implements OnInit {
   onConfirmDeleteMenu(id: string) {
     this.menuService.deleteMenu(id)
       .subscribe(res => {
-        console.log(res);
         this.listMenus(this.page);
       }, err => {
         this.messageService.add({

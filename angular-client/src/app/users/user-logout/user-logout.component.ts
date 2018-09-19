@@ -1,5 +1,4 @@
 import { Component, OnInit } from "@angular/core";
-import { UserService } from "../shared/user.service";
 import { Router } from "@angular/router";
 import { AuthService } from "../../shared/service/auth.service";
 

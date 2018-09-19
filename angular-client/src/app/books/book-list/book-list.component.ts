@@ -1,13 +1,13 @@
-import { Component, OnInit } from '@angular/core';
-import { BookService } from '../shared/book.service';
-import { MessageService, ConfirmationService } from 'primeng/api';
-import { Book } from '../shared/book.model';
-import { AuthService } from '../../shared/service/auth.service';
+import { Component, OnInit } from "@angular/core";
+import { BookService } from "../shared/book.service";
+import { ConfirmationService } from "primeng/api";
+import { Book } from "../shared/book.model";
+import { AuthService } from "../../shared/service/auth.service";
 
 @Component({
-  selector: 'app-book-list',
-  templateUrl: './book-list.component.html',
-  styleUrls: ['./book-list.component.scss']
+  selector: "app-book-list",
+  templateUrl: "./book-list.component.html",
+  styleUrls: ["./book-list.component.scss"]
 })
 export class BookListComponent implements OnInit {
   books: Book[];
@@ -17,7 +17,6 @@ export class BookListComponent implements OnInit {
   constructor(
     private bookService: BookService,
     public authService: AuthService,
-    private messageService: MessageService,
     private confirmationService: ConfirmationService
   ) {}
 
@@ -25,20 +24,12 @@ export class BookListComponent implements OnInit {
     this.listBooks();
   }
 
-  listBooks(page: string = '0') {
+  listBooks(page: string = "0") {
     this.page = page;
-    this.bookService
-      .getBooksPage(page)
-      .subscribe(res => {
-        this.books = res.content;
-        this.totalRecords = res.totalElements;
-      }, err => {
-        this.messageService.add({
-          severity: "error",
-          summary: err.status + " " + err.statusText,
-          detail: err.message
-        });
-      });
+    this.bookService.getBooksPage(page).subscribe(res => {
+      this.books = res.content;
+      this.totalRecords = res.totalElements;
+    });
   }
 
   paginate(event) {
@@ -55,17 +46,9 @@ export class BookListComponent implements OnInit {
   }
 
   onConfirmDeleteBook(id: string) {
-    this.bookService.deleteBook(id)
-      .subscribe(res => {
-        console.log(res);
-        this.listBooks(this.page);
-      }, err => {
-          this.messageService.add({
-            severity: "error",
-            summary: err.status + " " + err.statusText,
-            detail: err.message
-          });
-        });
+    this.bookService.deleteBook(id).subscribe(res => {
+      this.listBooks(this.page);
+    });
   }
 
   onReject() {}

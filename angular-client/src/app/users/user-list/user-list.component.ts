@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { User } from "../shared/user.model";
 import { UserService } from "../shared/user.service";
-import { ConfirmationService, MessageService } from "primeng/api";
+import { ConfirmationService } from "primeng/api";
 
 @Component({
   selector: 'app-user-list',
@@ -16,7 +16,6 @@ export class UserListComponent implements OnInit {
 
   constructor(
     private userService: UserService,
-    private messageService: MessageService,
     private confirmationService: ConfirmationService
   ) {}
 
@@ -31,12 +30,6 @@ export class UserListComponent implements OnInit {
       .subscribe(response => {
         this.users = response.content;
         this.totalRecords = response.totalElements;
-      }, error => {
-        this.messageService.add({
-          severity: "error",
-          summary: error.status + " " + error.statusText,
-          detail: error.message
-        });
       });
   }
 
@@ -57,12 +50,6 @@ export class UserListComponent implements OnInit {
     this.userService.deleteUser(id)
       .subscribe(() => {
         this.listUsers(this.page);
-      }, error => {
-        this.messageService.add({
-          severity: "error",
-          summary: error.status + " " + error.statusText,
-          detail: error.message
-        });
       });
   }
 

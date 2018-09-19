@@ -1,20 +1,19 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit } from "@angular/core";
 import { Location } from "@angular/common";
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { UserService } from '../shared/user.service';
-import { Router, ActivatedRoute } from '@angular/router';
-import { MessageService, ConfirmationService, SelectItem } from 'primeng/api';
-import { User } from '../shared/user.model';
-import { UserGroupService } from '../../usergroups/shared/usergroup.service';
-import { UserGroup } from '../../usergroups/shared/usergroup.model';
+import { FormGroup, FormBuilder, Validators } from "@angular/forms";
+import { UserService } from "../shared/user.service";
+import { Router, ActivatedRoute } from "@angular/router";
+import { ConfirmationService } from "primeng/api";
+import { User } from "../shared/user.model";
+import { UserGroupService } from "../../usergroups/shared/usergroup.service";
+import { UserGroup } from "../../usergroups/shared/usergroup.model";
 
 @Component({
-  selector: 'app-user-edit',
-  templateUrl: './user-edit.component.html',
-  styleUrls: ['./user-edit.component.scss']
+  selector: "app-user-edit",
+  templateUrl: "./user-edit.component.html",
+  styleUrls: ["./user-edit.component.scss"]
 })
 export class UserEditComponent implements OnInit {
-
   formGroup: FormGroup;
   user: User;
   userGroups: UserGroup[];
@@ -26,7 +25,6 @@ export class UserEditComponent implements OnInit {
     private router: Router,
     private activatedRoute: ActivatedRoute,
     private formBuilder: FormBuilder,
-    private messageService: MessageService,
     private confirmationService: ConfirmationService
   ) {
     this.formGroup = this.formBuilder.group({
@@ -39,81 +37,51 @@ export class UserEditComponent implements OnInit {
   ngOnInit() {
     const userId = this.activatedRoute.snapshot.paramMap.get("id");
     if (userId) {
-      this.userService
-        .getUser(userId)
-        .subscribe(user => {
-          this.user = user;
-          this.formGroup.controls.username.setValue(this.user.username);
-          this.formGroup.controls.password.setValue(this.user.password);
-          this.formGroup.controls.userGroup.setValue(this.user.userGroup);
-        }, err => {
-          if (err.status == 404) {
-            this.router.navigate(["/not-found"], { replaceUrl: true });
-          } else {
-            this.messageService.add({
-              severity: "error",
-              summary: err.status + " " + err.statusText,
-              detail: err.message
-            });
-          }
-        });
-    } else {
-      this.user = { id: undefined, username: undefined, password: undefined, userGroup: undefined };
-    }
-    this.userGroupService
-      .getUserGroups()
-      .subscribe(res => {
-        this.userGroups = res;
-      }, err => {
-        this.messageService.add({
-          severity: "error",
-          summary: err.status + " " + err.statusText,
-          detail: err.message
-        });
+      this.userService.getUser(userId).subscribe(user => {
+        this.user = user;
+        this.formGroup.controls.username.setValue(this.user.username);
+        this.formGroup.controls.password.setValue(this.user.password);
+        this.formGroup.controls.userGroup.setValue(this.user.userGroup);
       });
+    } else {
+      this.user = {
+        id: undefined,
+        username: undefined,
+        password: undefined,
+        userGroup: undefined
+      };
+    }
+    this.userGroupService.getUserGroups().subscribe(res => {
+      this.userGroups = res;
+    });
   }
 
   onSubmit(user: User) {
-    var confirmMessage = (this.user.id) ? "Deseja modificar esse usuário?" : "Deseja criar um novo usuário?";
+    var confirmMessage = this.user.id
+      ? "Deseja modificar esse usuário?"
+      : "Deseja criar um novo usuário?";
     this.confirmationService.confirm({
       message: confirmMessage,
       accept: () => {
         this.onConfirmEditUser(user);
       }
     });
-    
   }
 
   onConfirmEditUser(user: User) {
     if (this.user.id) {
       user.id = this.user.id;
-      this.userService.updateUser(user)
-        .subscribe(() => {
-          this.router.navigate(["/users"]);
-        }, err => {
-          this.messageService.add({
-            severity: "error",
-            summary: err.status + " " + err.statusText,
-            detail: err.message
-          });
+      this.userService.updateUser(user).subscribe(() => {
+        this.router.navigate(["/users"]);
       });
     } else {
-      this.userService.createUser(user)
-        .subscribe(() => {
-          this.router.navigate(["/users"]);
-        }, err => {
-          this.messageService.add({
-            severity: "error",
-            summary: err.status + " " + err.statusText,
-            detail: err.message
-          });
-        });
+      this.userService.createUser(user).subscribe(() => {
+        this.router.navigate(["/users"]);
+      });
     }
-    
   }
 
   cancel() {
     this.location.back();
   }
-
 }

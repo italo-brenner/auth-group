@@ -1,7 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 import { Plane } from "../shared/plane.model";
 import { PlaneService } from "../shared/plane.service";
-import { ConfirmationService, MessageService } from "primeng/api";
+import { ConfirmationService } from "primeng/api";
 import { AuthService } from "../../shared/service/auth.service";
 
 @Component({
@@ -18,7 +18,6 @@ export class PlaneListComponent implements OnInit {
   constructor(
     private planeService: PlaneService,
     public authService: AuthService,
-    private messageService: MessageService,
     private confirmationService: ConfirmationService
   ) {}
 
@@ -33,12 +32,6 @@ export class PlaneListComponent implements OnInit {
       .subscribe(res => {
         this.planes = res.content;
         this.totalRecords = res.totalElements;
-      }, err => {
-        this.messageService.add({
-          severity: "error",
-          summary: err.status + " " + err.statusText,
-          detail: err.message
-        });
       });
   }
 
@@ -58,14 +51,7 @@ export class PlaneListComponent implements OnInit {
   onConfirmDeletePlane(id: string) {
     this.planeService.deletePlane(id)
       .subscribe(res => {
-        console.log(res);
         this.listPlanes(this.page);
-      }, err => {
-        this.messageService.add({
-          severity: "error",
-          summary: err.status + " " + err.statusText,
-          detail: err.message
-        });
       });
   }
 

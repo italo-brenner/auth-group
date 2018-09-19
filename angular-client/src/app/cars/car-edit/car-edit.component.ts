@@ -4,7 +4,7 @@ import { Router, ActivatedRoute } from "@angular/router";
 import { FormGroup, FormBuilder, Validators } from "@angular/forms";
 import { CarService } from "../shared/car.service";
 import { Car } from "../shared/car.model";
-import { MessageService, ConfirmationService } from "primeng/api";
+import { ConfirmationService } from "primeng/api";
 
 @Component({
   selector: "app-car-edit",
@@ -21,7 +21,6 @@ export class CarEditComponent implements OnInit {
     private router: Router,
     private activatedRoute: ActivatedRoute,
     private formBuilder: FormBuilder,
-    private messageService: MessageService,
     private confirmationService: ConfirmationService
   ) {
     this.formGroup = this.formBuilder.group({
@@ -37,16 +36,6 @@ export class CarEditComponent implements OnInit {
         .subscribe(car => {
           this.car = car;
           this.formGroup.controls.name.setValue(this.car.name);
-        }, err => {
-          if (err.status == 404) {
-            this.router.navigate(["/not-found"], { replaceUrl: true });
-          } else {
-            this.messageService.add({
-              severity: "error",
-              summary: err.status + " " + err.statusText,
-              detail: err.message
-            });
-          }
         });
     } else {
       this.car = { id: undefined, name: undefined };
@@ -61,7 +50,6 @@ export class CarEditComponent implements OnInit {
         this.onConfirmEditCar(car);
       }
     });
-    
   }
 
   onConfirmEditCar(car: Car) {
@@ -70,23 +58,11 @@ export class CarEditComponent implements OnInit {
       this.carService.updateCar(car)
         .subscribe(() =>{
           this.router.navigate(["/cars"]);
-        }, err => {
-          this.messageService.add({
-            severity: "error",
-            summary: err.status + " " + err.statusText,
-            detail: err.message
-          });
-      });
+        });
     } else {
       this.carService.createCar(car)
         .subscribe(() =>{
           this.router.navigate(["/cars"]);
-        }, err => {
-          this.messageService.add({
-            severity: "error",
-            summary: err.status + " " + err.statusText,
-            detail: err.message
-          });
         });
     }
   }

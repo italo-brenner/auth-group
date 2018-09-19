@@ -1,18 +1,17 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit } from "@angular/core";
 import { Location } from "@angular/common";
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { PlaneService } from '../shared/plane.service';
-import { Router, ActivatedRoute } from '@angular/router';
-import { MessageService, ConfirmationService } from 'primeng/api';
-import { Plane } from '../shared/plane.model';
+import { FormGroup, FormBuilder, Validators } from "@angular/forms";
+import { PlaneService } from "../shared/plane.service";
+import { Router, ActivatedRoute } from "@angular/router";
+import { ConfirmationService } from "primeng/api";
+import { Plane } from "../shared/plane.model";
 
 @Component({
-  selector: 'app-plane-edit',
-  templateUrl: './plane-edit.component.html',
-  styleUrls: ['./plane-edit.component.scss']
+  selector: "app-plane-edit",
+  templateUrl: "./plane-edit.component.html",
+  styleUrls: ["./plane-edit.component.scss"]
 })
 export class PlaneEditComponent implements OnInit {
-
   formGroup: FormGroup;
   plane: Plane;
 
@@ -22,7 +21,6 @@ export class PlaneEditComponent implements OnInit {
     private router: Router,
     private activatedRoute: ActivatedRoute,
     private formBuilder: FormBuilder,
-    private messageService: MessageService,
     private confirmationService: ConfirmationService
   ) {
     this.formGroup = this.formBuilder.group({
@@ -33,67 +31,41 @@ export class PlaneEditComponent implements OnInit {
   ngOnInit() {
     const planeId = this.activatedRoute.snapshot.paramMap.get("id");
     if (planeId) {
-      this.planeService
-        .getPlane(planeId)
-        .subscribe(plane => {
-          this.plane = plane;
-          this.formGroup.controls.name.setValue(this.plane.name);
-        }, err => {
-          if (err.status == 404) {
-            this.router.navigate(["/not-found"], { replaceUrl: true });
-          } else {
-            this.messageService.add({
-              severity: "error",
-              summary: err.status + " " + err.statusText,
-              detail: err.message
-            });
-          }
-        });
+      this.planeService.getPlane(planeId).subscribe(plane => {
+        this.plane = plane;
+        this.formGroup.controls.name.setValue(this.plane.name);
+      });
     } else {
       this.plane = { id: undefined, name: undefined };
     }
   }
 
   onSubmit(plane: Plane) {
-    var confirmMessage = (this.plane.id) ? "Deseja modificar esse avião?" : "Deseja criar um novo avião?";
+    var confirmMessage = this.plane.id
+      ? "Deseja modificar esse avião?"
+      : "Deseja criar um novo avião?";
     this.confirmationService.confirm({
       message: confirmMessage,
       accept: () => {
         this.onConfirmEditPlane(plane);
       }
     });
-    
   }
 
   onConfirmEditPlane(plane: Plane) {
     if (this.plane.id) {
       plane.id = this.plane.id;
-      this.planeService.updatePlane(plane)
-        .subscribe(()=>{
-          this.router.navigate(["/planes"]);
-        }, err => {
-          this.messageService.add({
-            severity: "error",
-            summary: err.status + " " + err.statusText,
-            detail: err.message
-          });
+      this.planeService.updatePlane(plane).subscribe(() => {
+        this.router.navigate(["/planes"]);
       });
     } else {
-      this.planeService.createPlane(plane)
-        .subscribe(()=>{
-          this.router.navigate(["/planes"]);
-        }, err => {
-          this.messageService.add({
-            severity: "error",
-            summary: err.status + " " + err.statusText,
-            detail: err.message
-          });
-        });
+      this.planeService.createPlane(plane).subscribe(() => {
+        this.router.navigate(["/planes"]);
+      });
     }
   }
 
   cancel() {
     this.location.back();
   }
-
 }

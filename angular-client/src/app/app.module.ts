@@ -9,11 +9,14 @@ import { NotFoundComponent } from './shared/pages/not-found/not-found.component'
 import { ToastModule } from 'primeng/toast';
 import { ConfirmDialogModule, ConfirmationService, MessageService } from 'primeng/primeng';
 import { AuthInterceptorProvider } from './shared/inteceptor/auth-interceptor';
+import { ErrorInterceptorProvider } from './shared/inteceptor/error-interceptor';
+import { ForbiddenComponent } from './shared/pages/forbidden/forbidden.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    NotFoundComponent
+    NotFoundComponent,
+    ForbiddenComponent
   ],
   imports: [
     BrowserModule,
@@ -26,7 +29,8 @@ import { AuthInterceptorProvider } from './shared/inteceptor/auth-interceptor';
   providers: [
     MessageService,
     ConfirmationService,
-    AuthInterceptorProvider
+    AuthInterceptorProvider,
+    ErrorInterceptorProvider
   ],
   bootstrap: [AppComponent]
 })

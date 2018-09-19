@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Resource } from "../shared/resource.model";
 import { ResourceService } from "../shared/resource.service";
-import { ConfirmationService, MessageService } from "primeng/api";
+import { ConfirmationService } from "primeng/api";
 
 @Component({
   selector: 'app-resource-list',
@@ -16,7 +16,6 @@ export class ResourceListComponent implements OnInit {
 
   constructor(
     private resourceService: ResourceService,
-    private messageService: MessageService,
     private confirmationService: ConfirmationService
   ) {}
 
@@ -31,12 +30,6 @@ export class ResourceListComponent implements OnInit {
       .subscribe(res => {
         this.resources = res.content;
         this.totalRecords = res.totalElements;
-      }, err => {
-        this.messageService.add({
-          severity: "error",
-          summary: err.status + " " + err.statusText,
-          detail: err.message
-        });
       });
   }
 
@@ -56,14 +49,7 @@ export class ResourceListComponent implements OnInit {
   onConfirmDeleteResource(id: string) {
     this.resourceService.deleteResource(id)
       .subscribe(res => {
-        console.log(res);
         this.listResources(this.page);
-      }, err => {
-        this.messageService.add({
-          severity: "error",
-          summary: err.status + " " + err.statusText,
-          detail: err.message
-        });
       });
   }
 

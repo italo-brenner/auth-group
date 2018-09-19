@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { UserGroup } from "../shared/usergroup.model";
 import { UserGroupService } from "../shared/usergroup.service";
-import { ConfirmationService, MessageService } from "primeng/api";
+import { ConfirmationService } from "primeng/api";
 
 @Component({
   selector: 'app-usergroup-list',
@@ -16,7 +16,6 @@ export class UserGroupListComponent implements OnInit {
 
   constructor(
     private userGroupService: UserGroupService,
-    private messageService: MessageService,
     private confirmationService: ConfirmationService
   ) {}
 
@@ -31,12 +30,6 @@ export class UserGroupListComponent implements OnInit {
       .subscribe(res => {
         this.userGroups = res.content;
         this.totalRecords = res.totalElements;
-      }, err => {
-        this.messageService.add({
-          severity: "error",
-          summary: err.status + " " + err.statusText,
-          detail: err.message
-        });
       });
   }
 
@@ -56,14 +49,7 @@ export class UserGroupListComponent implements OnInit {
   onConfirmDeleteUserGroup(id: string) {
     this.userGroupService.deleteUserGroup(id)
       .subscribe(res => {
-        console.log(res);
         this.listUserGroups(this.page);
-      }, err => {
-        this.messageService.add({
-          severity: "error",
-          summary: err.status + " " + err.statusText,
-          detail: err.message
-        });
       });
   }
 
