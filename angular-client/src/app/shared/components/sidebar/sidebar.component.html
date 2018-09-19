@@ -21,10 +21,6 @@
         <i class="fa fa-users"></i>
         <span>Grupos Usuários</span>
       </a>
-      <a [routerLink]="['/menus']" *ngIf="authService.isAuthenticated() && authService.hasRoles(['ROLE_ROOT'])" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}">
-        <i class="fa fa-bars"></i>
-        <span>Menu</span>
-      </a>
       <a [routerLink]="['/page1']" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}">
         <i class="fa fa-file"></i>
         <span>Página 1</span>

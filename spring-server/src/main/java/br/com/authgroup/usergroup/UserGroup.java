@@ -12,7 +12,6 @@ import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 
 import br.com.authgroup.applicationuser.ApplicationUser;
-import br.com.authgroup.menu.Menu;
 import br.com.authgroup.resource.Resource;
 
 @Entity
@@ -32,9 +31,6 @@ public class UserGroup implements Serializable {
 	@ManyToMany(mappedBy="listUserGroup")
 	private List<Resource> listResource = new ArrayList<>();
 	
-	@ManyToMany(mappedBy="listUserGroup")
-	private List<Menu> listMenu = new ArrayList<>();
-
 	public Long getId() {
 		return id;
 	}
@@ -67,12 +63,4 @@ public class UserGroup implements Serializable {
 		this.listResource = listResource;
 	}
 
-	public List<Menu> getListMenu() {
-		return listMenu;
-	}
-
-	public void setListMenu(List<Menu> listMenu) {
-		this.listMenu = listMenu;
-	}
-	
 }
